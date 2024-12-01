@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-
     <style>
         body {
             margin: 0;
@@ -12,10 +11,10 @@
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             color: #fff;
-            background-repeat: no-repeat;
-            background-position-x: center;
-            background-size: 100vw 100vh;
+            max-width: 2000px;
+            max-height: 50px;
         }
+
         nav {
             background: #000;
             padding: 10px 20px;
@@ -26,6 +25,7 @@
             top: 0;
             z-index: 1000;
         }
+
         nav a {
             color: #fff;
             text-decoration: none;
@@ -33,14 +33,44 @@
             font-size: 1.2em;
             transition: color 0.3s;
         }
+
         nav a:hover {
             color: #744fe2;
         }
+
         .logo {
             font-size: 1.5em;
             font-weight: bold;
             color: #f06292;
         }
+
+        @keyframes rainbowGlow {
+            0% {
+                box-shadow: 0 0 10px 2px red;
+            }
+            14% {
+                box-shadow: 0 0 10px 2px orange;
+            }
+            28% {
+                box-shadow: 0 0 10px 2px yellow;
+            }
+            42% {
+                box-shadow: 0 0 10px 2px green;
+            }
+            57% {
+                box-shadow: 0 0 10px 2px cyan;
+            }
+            71% {
+                box-shadow: 0 0 10px 2px blue;
+            }
+            85% {
+                box-shadow: 0 0 10px 2px purple;
+            }
+            100% {
+                box-shadow: 0 0 10px 2px red;
+            }
+        }
+
         .gallery {
             display: flex;
             justify-content: center;
@@ -48,17 +78,20 @@
             gap: 15px;
             padding: 40px 20px;
         }
+
         .gallery img {
             width: 150px;
             height: 200px;
             object-fit: cover;
             border-radius: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s;
         }
+
         .gallery img:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 20px 5px #744fe2;
-        } 
+            animation: rainbowGlow 1.5s infinite;
+        }
+
         .bottom-container {
             background: rgba(0, 0, 0, 0.8);
             padding: 30px;
@@ -67,15 +100,35 @@
             max-width: 800px;
             text-align: center;
             color: #ccc;
-            font-size: 1.2em;
-            line-height: 1.4;
         }
+
         .bottom-container h2 {
             font-size: 2em;
             color: #f06292;
             margin-bottom: 20px;
         }
 
+        .bottom-container p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #000;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #88200b;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -90,7 +143,6 @@
         </ul>
     </nav>
 
-
     <div class="gallery">
         <img src="" alt="Profile 1">
         <img src="" alt="Profile 2">
@@ -100,12 +152,12 @@
         <img src="" alt="Profile 6">
     </div>
 
-
     <div class="bottom-container">
         <h2>About Us</h2>
         <p>
            insert a text here
         </p>
     </div>
+
 </body>
 </html>
