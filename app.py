@@ -18,10 +18,5 @@ def works():
         result = input_string.upper()
     return render_template('touppercase.html', result=result)
 
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
-
 if __name__ == "__main__":
     app.run(debug=True)
