@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from link_list import LinkedList
 
 app = Flask(__name__)
 
@@ -14,9 +15,21 @@ def profile():
 def works():
     return render_template('works.html')
 
+
 @app.route('/link_list')
 def link_list():
-    return render_template('link_list.html')
+    # Creating a linked list and performing operations
+    sushi_preparation = LinkedList()
+    sushi_preparation.insert_at_beginning("prepare to assemble")
+    sushi_preparation.insert_at_beginning("wash rice")
+    sushi_preparation.insert_at_beginning("cut fish")
+    sushi_preparation.insert_at_end("roll sushi")
+    sushi_preparation.insert_at_end("eat sushi")
+
+    # Get the current state of the linked list
+    linked_list_content = sushi_preparation.printLinkedList()
+
+    return render_template('link_list.html', linked_list_content=linked_list_content)
 
 @app.route('/stack')
 def stack():

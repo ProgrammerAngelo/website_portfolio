@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Link List</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}">
 </head>
 <body>
     <h1>Link List</h1>
@@ -13,7 +13,14 @@
         <a href="/profile">Profile</a> |
         <a href="/works">Works</a>
     </nav>
-    <!-- Add your content here -->
+
+    <h2>Current Link List Content:</h2>
+    <ul>
+        {% for item in linked_list_content %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
     <footer>© 2024 My Website</footer>
 </body>
 </html>

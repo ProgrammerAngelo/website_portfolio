@@ -1,0 +1,46 @@
+body {
+    background: linear-gradient(to bottom right, #420866, #051704, #5ff45c);
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent background for header */
+}
+h1 {
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+}
+/* Navigation Styling */
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+nav a:hover {
+    color: #ff4081;
+    transition: color 0.3s;
+}
+
+/* Footer Styling */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+}
