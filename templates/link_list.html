@@ -90,7 +90,7 @@
         async function removeAt() {
             const data = document.getElementById('data-input').value;
             if (!data.trim()) {
-                document.getElementById('result').textContent = "Please enter valid data.";
+                document.getElementById('result').textContent = "Data ntt found. Cannot remove a specific item..";
                 return;
             }
             const response = await fetch('/remove_at', {
@@ -111,7 +111,7 @@
             const response = await fetch('/print_linked_list');
             const result = await response.json();
             const listOutput = document.getElementById('list-output');
-            listOutput.innerHTML = ""; // Clear the current list
+            listOutput.innerHTML = "";
             result.list.forEach(item => {
                 const listItem = document.createElement('li');
                 listItem.textContent = item;
