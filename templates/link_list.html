@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Link List</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/link_list_style.css') }}">
 </head>
 <body>
     <h1>Link List</h1>
@@ -15,12 +16,108 @@
     </nav>
 
     <h2>Current Link List Content:</h2>
-    <ul>
+    <ul id="list-output">
         {% for item in linked_list_content %}
             <li>{{ item }}</li>
         {% endfor %}
     </ul>
 
+    <div>
+        <label for="data-input">Enter Data:</label>
+        <input type="text" id="data-input" placeholder="Enter value">
+    </div>
+    <button onclick="insertAtBeginning()">Insert at Beginning</button>
+    <button onclick="insertAtEnd()">Insert at End</button>
+    <button onclick="removeBeginning()">Remove from Beginning</button>
+    <button onclick="removeAtEnd()">Remove from End</button>
+    <button onclick="removeAt()">Remove Specific Item</button>
+    <button onclick="printLinkedList()">Refresh List</button>
+
+    <div id="output">
+        <h3>Status:</h3>
+        <p id="result"></p>
+    </div>
+
     <footer>© 2024 My Website</footer>
+
+    <script>
+        async function insertAtBeginning() {
+            const data = document.getElementById('data-input').value;
+            if (!data.trim()) {
+                document.getElementById('result').textContent = "Please enter valid data.";
+                return;
+            }
+            const response = await fetch('/insert_at_beginning', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data })
+            });
+            const result = await response.json();
+            document.getElementById('result').textContent = result.message;
+            await refreshList();
+        }
+
+        async function insertAtEnd() {
+            const data = document.getElementById('data-input').value;
+            if (!data.trim()) {
+                document.getElementById('result').textContent = "Please enter valid data.";
+                return;
+            }
+            const response = await fetch('/insert_at_end', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data })
+            });
+            const result = await response.json();
+            document.getElementById('result').textContent = result.message;
+            await refreshList();
+        }
+
+        async function removeBeginning() {
+            const response = await fetch('/remove_beginning', { method: 'POST' });
+            const result = await response.json();
+            document.getElementById('result').textContent = result.message;
+            await refreshList();
+        }
+
+        async function removeAtEnd() {
+            const response = await fetch('/remove_at_end', { method: 'POST' });
+            const result = await response.json();
+            document.getElementById('result').textContent = result.message;
+            await refreshList();
+        }
+
+        async function removeAt() {
+            const data = document.getElementById('data-input').value;
+            if (!data.trim()) {
+                document.getElementById('result').textContent = "Please enter valid data.";
+                return;
+            }
+            const response = await fetch('/remove_at', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data })
+            });
+            const result = await response.json();
+            document.getElementById('result').textContent = result.message;
+            await refreshList();
+        }
+
+        async function printLinkedList() {
+            await refreshList();
+        }
+
+        async function refreshList() {
+            const response = await fetch('/print_linked_list');
+            const result = await response.json();
+            const listOutput = document.getElementById('list-output');
+            listOutput.innerHTML = ""; // Clear the current list
+            result.list.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = item;
+                listOutput.appendChild(listItem);
+            });
+        }
+    </script>
 </body>
 </html>
