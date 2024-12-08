@@ -1,23 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Works</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}">
-</head>
-<body>
-    <h1>Works</h1>
-    <nav>
-        <a href="/">Home</a> |
-        <a href="/profile">Profile</a> |
-        <a href="/works">Works</a>
-    </nav>
-    <ul>
-        <li><a href="/link_list">Link List</a></li>
-        <li><a href="/stack">Stack</a></li>
-        <li><a href="/queue">Queue</a></li>
-    </ul>
-    <footer>© 2024 My Website</footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="static/css/works_style.css" />
+    <title>Portfolio Webpage</title>
+  </head>
+
+  <body>
+    <!-- HEADER SECTION -->
+    <header>
+      <a href="#" class="logo">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="Logo"
+        />
+      </a>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('profiles') }}">Profiles</a></li>
+          <li><a href="{{ url_for('works') }}" class="active">Works</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- CHAR RAVEN IN THE LOWER LEFT CORNER -->
+    <img
+      src="{{ url_for('static', filename='images/raven.png') }}"
+      alt="Raven"
+      class="raven-image"
+    />
+
+    <!-- DATA STRUCTURES IMPLEMENTATION CARDS: Container Box for grouping the cards -->
+    <div class="container-box">
+      <!-- Title Section inside the container -->
+      <div class="title">Data Structure Implementations</div>
+
+      <div class="card-group">
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/linked_list.png') }}" />
+          <div class="layer"></div>
+          <div class="info">
+            <h1>Linked List</h1>
+            <p>
+              A linear data structure consisting of nodes, where each node
+              contains a value and a reference (or pointer) to the next node in
+              the sequence.
+            </p>
+            <a href="{{ url_for('link_list') }}">
+                <button class="explore-button">Explore</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/stack.png') }}" />
+          <div class="layer"></div>
+          <div class="info">
+            <h1>Stack</h1>
+            <p>
+              A linear data structure that follows the LIFO (Last In, First Out)
+              principle, where the last element added is the first one to be
+              removed.
+            </p>
+            <a href="{{ url_for('link_list') }}">
+                <button class="explore-button">Explore</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/queue.png') }}" />
+          <div class="layer"></div>
+          <div class="info">
+            <h1>Queue</h1>
+            <p>
+              A linear data structure that follows the FIFO (First In, First
+              Out) principle.
+            </p>
+            <a href="{{ url_for('link_list') }}">
+                <button class="explore-button">Explore</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/binary_tree.png') }}" />
+          <div class="layer"></div>
+          <div class="info">
+            <h1>Binary Tree</h1>
+            <p>
+              A hierarchical data structure in which each node has at most two
+              children, referred to as the left child and right child.
+            </p>
+            <a href="{{ url_for('link_list') }}">
+                <button class="explore-button">Explore</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

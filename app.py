@@ -6,22 +6,25 @@ app = Flask(__name__)
 # Initialize a global linked list instance
 linked_list = LinkedList()
 
+# RENDERING THE TABS
 @app.route('/')
 def home():
     return render_template('home.html')
 
-@app.route('/profile')
-def profile():
-    return render_template('profile.html')
+@app.route('/profiles')
+def profiles():
+    return render_template('profiles.html')
 
 @app.route('/works')
 def works():
     return render_template('works.html')
 
+# LINKED LIST SYNTAX
 @app.route('/link_list')
 def link_list():
     linked_list_content = linked_list.printLinkedList()
     return render_template('link_list.html', linked_list_content=linked_list_content)
+
 # Linked list API routes
 @app.route('/insert_at_beginning', methods=['POST'])
 def insert_at_beginning():
@@ -44,14 +47,14 @@ def remove_beginning():
     removed_data = linked_list.remove_beginning()
     if removed_data is None:
         return jsonify({'message': 'List is empty!'}), 400
-    return jsonify({'message': f"Removed '{removed_data}' from the beginning."})
+    return jsonify({'message': f"Removed '{removed_data}' at the beginning."})
 
 @app.route('/remove_at_end', methods=['POST'])
 def remove_at_end():
     removed_data = linked_list.remove_at_end()
     if removed_data is None:
         return jsonify({'message': 'List is empty!'}), 400
-    return jsonify({'message': f"Removed '{removed_data}' from the end."})
+    return jsonify({'message': f"Removed '{removed_data}' at the end."})
 
 @app.route('/remove_at', methods=['POST'])
 def remove_at():
@@ -68,10 +71,12 @@ def print_linked_list():
     linked_list_content = linked_list.printLinkedList()
     return jsonify({'list': linked_list_content})
 
+# STACK SYNTAX
 @app.route('/stack')
 def stack():
     return render_template('stack.html')
 
+# - QUEUE SYNTAX
 @app.route('/queue')
 def queue():
     return render_template('queue.html')
