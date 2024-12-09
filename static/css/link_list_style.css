@@ -234,6 +234,7 @@ svg text {
   grid-template-rows: repeat(3, auto); /* 3 rows */
   gap: 10px;
   padding: 10px;
+  inline-size: auto;
 }
 
 .buttons-section button {
