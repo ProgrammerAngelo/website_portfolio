@@ -19,6 +19,33 @@ def profiles():
 def works():
     return render_template('works.html')
 
+@app.route('/chin_profile')
+def chin_profile():
+    return render_template('chin_profile.html')
+
+@app.route('/kei_profile')
+def kei_profile():
+    return render_template('kei_profile.html')
+
+@app.route('/ryl_profile')
+def ryl_profile():
+    return render_template('ryl_profile.html')
+
+@app.route('/ed_profile')
+def ed_profile():
+    return render_template('ed_profile.html')
+@app.route('/gab_profile')
+def gab_profile():
+    return render_template('gab_profile.html')
+
+@app.route('/gelo_profile')
+def gelo_profile():
+    return render_template('gelo_profile.html')
+
+@app.route('/ris_profile')
+def ris_profile():
+    return render_template('ris_profile.html')
+
 # LINKED LIST SYNTAX
 @app.route('/link_list')
 def link_list():

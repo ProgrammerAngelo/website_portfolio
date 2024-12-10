@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile Page</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/ris_profile_style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" />
+    </a>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('profiles') }}" class="active">Profiles</a></li>
+        <li><a href="{{ url_for('works') }}">Works</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="glassmorphism">
+      <!-- Left side for image and technical skills -->
+      <div class="left-side">
+        <div class="circular-container">
+          <img id="profile-img" src="{{ url_for('static', filename='images/img_reece.jpg') }}" alt="Profile Picture" />
+        </div>
+
+        <!-- Technical Skills Section -->
+        <div class="skills">
+          <h3>Technical Skills</h3>
+
+          <div class="skill">
+            <label for="python"></label>
+            <div class="skill-container">
+              <div class="progress-bar">
+                <div class="progress python"></div>
+              </div>
+              <div class="skill-image-circle">
+                <img class="skill-image" src="{{ url_for('static', filename='images/python-logo.png') }}" alt="Python Logo" />
+              </div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <label for="html"></label>
+            <div class="skill-container">
+              <div class="progress-bar">
+                <div class="progress html"></div>
+              </div>
+              <div class="skill-image-circle">
+                <img class="skill-image" src="{{ url_for('static', filename='images/html-logo.png') }}" alt="HTML Logo" />
+              </div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <label for="css"></label>
+            <div class="skill-container">
+              <div class="progress-bar">
+                <div class="progress css"></div>
+              </div>
+              <div class="skill-image-circle">
+                <img class="skill-image" src="{{ url_for('static', filename='images/css-logo.png') }}" alt="CSS Logo" />
+              </div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <label for="aws"></label>
+            <div class="skill-container">
+              <div class="progress-bar">
+                <div class="progress aws"></div>
+              </div>
+              <div class="skill-image-circle">
+                <img class="skill-image" src="{{ url_for('static', filename='images/aws-logo.png') }}" alt="AWS Logo" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side for profile description -->
+      <div class="right-side">
+        <h2>ABOUT ME</h2>
+        <p>Hello! My name is Reece, and I’m an engineering student who’s passionate about exploring the intersection of creativity and technology.
+             I’ve always been fascinated by the way simple ideas can evolve into powerful solutions, whether it’s through building circuits, coding applications, or designing innovative systems.
+            As an aspiring engineer, I’ve had the chance to dive into hands-on projects that have taught me a lot.
+             I’ve coded interactive tools using Python, experimented with hardware like Arduino and Raspberry Pi, and even participated in a hackathon where my team designed a smart energy monitor.
+              Each experience has deepened my love for combining technical skills with practical problem-solving.
+            When I’m not immersed in tech, you’ll find me playing guitar, sketching designs, or exploring local food spots with friends.
+             I believe life is about balance—creativity, collaboration, and discovery. To me, engineering is more than just equations; it’s a way to bring ideas to life and make a difference in the world.</p>
+
+        <!-- Portfolio and GitHub Section -->
+        <div class="portfolio-section">
+          <h3>Selected Projects</h3>
+        </div>
+
+        <!-- GitHub Link Square -->
+        <div class="github-container">
+          <a href="https://github.com/your-github-profile" target="_blank">
+            <div class="square-container">
+              <img src="https://github.com/favicon.ico" alt="GitHub Logo" class="square-image" />
+            </div>
+          </a>
+        </div>
+
+        <!-- Let's Connect Section -->
+        <div class="connect-section">
+          <h3>Let's Connect</h3>
+          <div class="social-grid">
+            <div class="social-icons">
+              <a href="">
+                <i class="fa-brands fa-linkedin"></i>
+              </a>
+              <a href="https://github.com/ReeceTeylan">
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <a href="https://www.facebook.com/reece.teylan?mibextid=ZbWKwL">
+                <i class="fa-brands fa-facebook"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/rissssssssssssssss/"
+              >
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+          </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+          <h3>Contact</h3>
+          <div class="contact-grid">
+            <div class="contact-item gmail">
+              <a href="mailto:your-email@gmail.com" target="_blank">
+                <span>Email: Reecebaron.teylan@gmail.com</span>
+              </a>
+            </div>
+            <div class="contact-item phone">
+              <a href="tel:+1234567890" target="_blank">
+                <span>Phone num: +639157970379</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
