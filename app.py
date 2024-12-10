@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from link_list import LinkedList
+from stack import ShuntingYard
 
 app = Flask(__name__)
 
@@ -76,10 +77,20 @@ def print_linked_list():
 def stack():
     return render_template('stack.html')
 
+@app.route('/convert', methods=['POST'])
+def convert():
+    infix_expression = request.form['infix']  # Get the infix expression from the form
+    converter = ShuntingYard(infix_expression)  # Create instance of ShuntingYard class
+    postfix = converter.convert()  # Perform the conversion
+    steps = converter.get_steps()  # Get the steps
+    return render_template('stack.html', steps=steps, postfix=postfix)
+
 # - QUEUE SYNTAX
 @app.route('/queue')
 def queue():
     return render_template('queue.html')
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
