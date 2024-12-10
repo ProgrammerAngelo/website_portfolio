@@ -1,11 +1,10 @@
-/* Container styles */
 /* Container for the row of posters */
 .github-row {
   display: flex;
   justify-content: space-between; /* Adds space between posters */
   align-items: center; /* Vertically centers the posters */
   flex-wrap: wrap; /* Allows wrapping if the screen is smaller */
-  gap: 16px; /* Adds spacing between posters */
+  gap: 20px; /* Adds spacing between posters */
   margin-top: 20px;
 }
 
@@ -105,7 +104,7 @@
 }
 
 .skills h3 {
-  font-size: 3rem; /* Adjusted font size to match Portfolio section */
+  font-size: 2rem; /* Adjusted font size to match Portfolio section */
   margin-bottom: 10px;
   text-align: center;
   color: #fff;
@@ -147,22 +146,22 @@
 
 /* Individual skill progress widths (adjust these to represent your skill levels) */
 .python {
-  width: 99%; /* Python skill level */
+  width: 80%; /* Python skill level */
   background-color: #306998; /* Python color */
 }
 
 .html {
-  width: 90%; /* HTML skill level */
+  width: 70%; /* HTML skill level */
   background-color: #e34c26; /* HTML color */
 }
 
 .css {
-  width: 87%; /* CSS skill level */
+  width: 70%; /* CSS skill level */
   background-color: #264de4; /* CSS color */
 }
 
 .aws {
-  width: 89%; /* AWS skill level */
+  width: 20%; /* AWS skill level */
   background-color: #ff9900; /* AWS color */
 }
 
@@ -220,54 +219,47 @@
 }
 
 /* GitHub Section */
-/* GitHub Section */
 .github-container {
   width: 100px;
-  height: 100px; /* Adjust size to make it square */
-  margin-top: 20px; /* Adds spacing above */
-  margin-bottom: 20px; /* Adds space below */
+  height: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .github-container a {
-  display: block; /* Make the link block level so it takes up the entire square */
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  background-color: #333; /* Optional background color for visibility */
-  border-radius: 8px; /* Optional rounded corners */
-  overflow: hidden; /* Ensure the image fits the square */
-  text-align: center; /* Center content inside */
-}
-
-.square-image {
-  width: 60%; /* Scale image inside the square */
-  height: 60%; /* Scale image to fit */
-  object-fit: contain; /* Ensures the image doesn't stretch */
-  margin: 20% auto; /* Centers the image vertically and horizontally */
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
 }
 
 /* Let's Connect Section */
 .connect-section {
-  font-size: 1.5rem;
-  width: 100%; /* Full width for the section */
-  margin-top: 40px; /* Moves the "Let's Connect" section further down */
+  font-size: 1.2rem;
+  width: 100%;
+  margin-top: 40px;
 }
 
-/* Responsiveness and Layout for Small Screens */
+/* Image styling for posters inside the square */
+.square-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Responsive design: Ensure images fit in smaller screens */
 @media (max-width: 768px) {
-  .right-side {
-    flex-direction: column; /* Stack sections vertically */
+  .square-image {
+    object-fit: contain;
   }
+}
 
-  .portfolio-github-section {
-    flex-direction: column; /* Stack Portfolio and GitHub vertically */
-  }
-
-  .portfolio-section,
-  .github-container {
-    width: 100%; /* Full width on small screens */
-  }
-
-  .contact-grid {
-    flex-direction: column; /* Stack contact items vertically */
+@media (max-width: 480px) {
+  .square-image {
+    object-fit: contain; /* Ensures the image fits well on very small screens */
   }
 }

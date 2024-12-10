@@ -1,238 +1,238 @@
 /* Container styles */
 .container {
-    width: 100%;
-    height: 100vh; /* Full viewport height */
-    display: flex;
-    justify-content: center;  /* Center the glassmorphism container horizontally */
-    align-items: center;      /* Center the glassmorphism container vertically */
-    padding: 20px;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center; /* Center the glassmorphism container horizontally */
+  align-items: center; /* Center the glassmorphism container vertically */
+  padding: 20px;
 }
 
 /* Glassmorphism effect on the container */
 .glassmorphism {
-    justify-content: center;
-    align-items: center;
-    width: 80%; /* Adjust size of the glassmorphism box */
-    max-width: 1200px; /* Optional: max width for large screens */
-    min-height: 80vh; /* Minimum height of the container */
-    padding: 20px;
-    display: flex;
-    flex-direction: row; /* Align items horizontally (image and text side by side) */
-    justify-content: flex-start; /* Align items to the left */
-    align-items: flex-start; /* Align items to the top */
-    border-top: 2px solid rgba(255, 255, 255, 0.45);
-    border-left: 2px solid rgba(255, 255, 255, 0.45);
-    box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.2);
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 15px;
-    overflow: hidden;
-    backdrop-filter: blur(10px); /* Glassmorphism blur effect */
+  justify-content: center;
+  align-items: center;
+  width: 80%; /* Adjust size of the glassmorphism box */
+  max-width: 1200px; /* Optional: max width for large screens */
+  min-height: 80vh; /* Minimum height of the container */
+  padding: 20px;
+  display: flex;
+  flex-direction: row; /* Align items horizontally (image and text side by side) */
+  justify-content: flex-start; /* Align items to the left */
+  align-items: flex-start; /* Align items to the top */
+  border-top: 2px solid rgba(255, 255, 255, 0.45);
+  border-left: 2px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  overflow: hidden;
+  backdrop-filter: blur(10px); /* Glassmorphism blur effect */
 }
 
 /* Left side for image and skills */
 .left-side {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 250px; /* Adjust the size of the left side container */
-    height: auto; /* Allow the height to adjust based on content */
-    margin-right: 40px;
-    box-sizing: border-box;
-    padding: 20px;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 250px; /* Adjust the size of the left side container */
+  height: auto; /* Allow the height to adjust based on content */
+  margin-right: 40px;
+  box-sizing: border-box;
+  padding: 20px;
+  position: relative;
 }
 
 /* Circular container for the image */
 .circular-container {
-    width: 150px; /* Increased the size of the circle */
-    height: 150px; /* Same as width to maintain circular shape */
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 150px; /* Increased the size of the circle */
+  height: 150px; /* Same as width to maintain circular shape */
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Image inside the circular container */
 .circular-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 /* Technical skills section */
 .skills {
-    margin-top: 20px;
-    width: 100%;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .skills h3 {
-    font-size: 3rem;  /* Adjusted font size to match Portfolio section */
-    margin-bottom: 10px;
-    text-align: center;
-    color: #fff;
+  font-size: 3rem; /* Adjusted font size to match Portfolio section */
+  margin-bottom: 10px;
+  text-align: center;
+  color: #fff;
 }
 
 .skill {
-    margin-bottom: 20px; /* Increased bottom margin for spacing */
-    width: 100%;
+  margin-bottom: 20px; /* Increased bottom margin for spacing */
+  width: 100%;
 }
 
 /* Label for each skill */
 .skill label {
-    font-size: 3rem;
-    color: #fff;
+  font-size: 3rem;
+  color: #fff;
 }
 
 /* Skill container to hold progress bar and image */
 .skill-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Progress bar container */
 .progress-bar {
-    width: 80%;  /* Adjust the width to make space for image */
-    height: 20px;
-    background-color: #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-right: 10px;
+  width: 80%; /* Adjust the width to make space for image */
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 10px;
 }
 
 /* Progress levels for each skill */
 .progress {
-    height: 100%;
-    transition: width 1s ease-in-out;
+  height: 100%;
+  transition: width 1s ease-in-out;
 }
 
 /* Individual skill progress widths (adjust these to represent your skill levels) */
 .python {
-    width: 99%; /* Python skill level */
-    background-color: #306998; /* Python color */
+  width: 80%; /* Python skill level */
+  background-color: #306998; /* Python color */
 }
 
 .html {
-    width: 85%; /* HTML skill level */
-    background-color: #e34c26; /* HTML color */
+  width: 60%; /* HTML skill level */
+  background-color: #e34c26; /* HTML color */
 }
 
 .css {
-    width: 86%; /* CSS skill level */
-    background-color: #264de4; /* CSS color */
+  width: 60%; /* CSS skill level */
+  background-color: #264de4; /* CSS color */
 }
 
 .aws {
-    width: 3%; /* AWS skill level */
-    background-color: #ff9900; /* AWS color */
+  width: 3%; /* AWS skill level */
+  background-color: #ff9900; /* AWS color */
 }
 
 /* Small circle for skill image */
 .skill-image-circle {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Image inside the small circle */
 .skill-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Right side for profile description */
 .right-side {
-    display: flex;
-    flex-direction: column; /* Arrange items vertically */
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 60%;
-    padding-left: 30px;
+  display: flex;
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 60%;
+  padding-left: 30px;
 }
 
 /* Portfolio and GitHub section in one row */
 .portfolio-github-section {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 100px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 100px;
 }
 
 .right-side h2 {
-    margin-bottom: 20px; /* Adds more space between the "Profile Information" and "Portfolio" */
+  margin-bottom: 20px; /* Adds more space between the "Profile Information" and "Portfolio" */
 }
 
 .right-side p {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .portfolio-section h3 {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 /* Portfolio Section */
 .portfolio-section {
-    width: 100%; /* Full width for the portfolio section */
-    margin-top: 10px; /* Adds a gap between Profile Information and Portfolio */
-    margin-bottom: 10px; /* Keeps the gap between Portfolio and GitHub */
+  width: 100%; /* Full width for the portfolio section */
+  margin-top: 10px; /* Adds a gap between Profile Information and Portfolio */
+  margin-bottom: 10px; /* Keeps the gap between Portfolio and GitHub */
 }
 
 /* GitHub Section */
 /* GitHub Section */
 .github-container {
-    width: 100px;
-    height: 100px; /* Adjust size to make it square */
-    margin-top: 20px; /* Adds spacing above */
-    margin-bottom: 20px; /* Adds space below */
+  width: 100px;
+  height: 100px; /* Adjust size to make it square */
+  margin-top: 20px; /* Adds spacing above */
+  margin-bottom: 20px; /* Adds space below */
 }
 
 .github-container a {
-    display: block; /* Make the link block level so it takes up the entire square */
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: #333; /* Optional background color for visibility */
-    border-radius: 8px; /* Optional rounded corners */
-    overflow: hidden; /* Ensure the image fits the square */
-    text-align: center; /* Center content inside */
+  display: block; /* Make the link block level so it takes up the entire square */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: #333; /* Optional background color for visibility */
+  border-radius: 8px; /* Optional rounded corners */
+  overflow: hidden; /* Ensure the image fits the square */
+  text-align: center; /* Center content inside */
 }
 
 .square-image {
-    width: 60%; /* Scale image inside the square */
-    height: 60%; /* Scale image to fit */
-    object-fit: contain; /* Ensures the image doesn't stretch */
-    margin: 20% auto; /* Centers the image vertically and horizontally */
+  width: 60%; /* Scale image inside the square */
+  height: 60%; /* Scale image to fit */
+  object-fit: contain; /* Ensures the image doesn't stretch */
+  margin: 20% auto; /* Centers the image vertically and horizontally */
 }
 
 /* Let's Connect Section */
 .connect-section {
-    font-size: 1.5rem;
-    width: 100%; /* Full width for the section */
-    margin-top: 40px; /* Moves the "Let's Connect" section further down */
+  font-size: 1.5rem;
+  width: 100%; /* Full width for the section */
+  margin-top: 40px; /* Moves the "Let's Connect" section further down */
 }
 
 /* Responsiveness and Layout for Small Screens */
 @media (max-width: 768px) {
-    .right-side {
-        flex-direction: column; /* Stack sections vertically */
-    }
+  .right-side {
+    flex-direction: column; /* Stack sections vertically */
+  }
 
-    .portfolio-github-section {
-        flex-direction: column; /* Stack Portfolio and GitHub vertically */
-    }
+  .portfolio-github-section {
+    flex-direction: column; /* Stack Portfolio and GitHub vertically */
+  }
 
-    .portfolio-section,
-    .github-container {
-        width: 100%; /* Full width on small screens */
-    }
+  .portfolio-section,
+  .github-container {
+    width: 100%; /* Full width on small screens */
+  }
 
-    .contact-grid {
-        flex-direction: column; /* Stack contact items vertically */
-    }
+  .contact-grid {
+    flex-direction: column; /* Stack contact items vertically */
+  }
 }

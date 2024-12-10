@@ -1,56 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profile Page</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/base_profile_style.css') }}" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-</head>
-<body>
-  <header>
-    <a href="#" class="logo">
-      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" />
-    </a>
-    <nav>
-      <ul>
-        <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="{{ url_for('profiles') }}" class="active">Profiles</a></li>
-        <li><a href="{{ url_for('works') }}">Works</a></li>
-      </ul>
-    </nav>
-  </header>
-  <div class="bottom-container">
-    <h2>About Us</h2>
-    <p>
-      Decode the Details--Choose the person you want to learn more about.!
-    </p>
-  </div>
-  <div class="gallery">
-    <!-- Clickable images, linking to their respective profile pages -->
-    <a href="{{ url_for('chin_profile') }}">
-      <img src="static/images/img_chin.jpg" alt="chin Profile">
-    </a>
-    <a href="kei_profile">
-      <img src="static/images/img_kei.jpg" alt="kei Profile">
-    </a>
-    <a href="ryl_profile">
-      <img src="static/images/img_daryl.jpg" alt="ryl Profile">
-    </a>
-    <a href="ed_profile">
-      <img src="static/images/img_ed.jpg" alt="ed Profile">
-    </a>
-    <a href="gab_profile">
-      <img src="static/images/img_gab.jpg" alt="gab Profile">
-    </a>
-    <a href="gelo_profile">
-      <img src="static/images/img_gelo.jpg" alt="gelo Profile">
-    </a>
-    <a href="ris_profile">
-      <img src="static/images/img_reece.jpg" alt="ris Profile">
-    </a>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/base_style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/base_profile_style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <a href="#" class="logo">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="Logo"
+        />
+      </a>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li>
+            <a href="{{ url_for('profiles') }}" class="active">Profiles</a>
+          </li>
+          <li><a href="{{ url_for('works') }}">Works</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="gallery">
+      <!-- Clickable images, linking to their respective profile pages -->
+      <a href="{{ url_for('chin_profile') }}">
+        <img src="static/images/img_chin.jpg" alt="chin Profile" />
+      </a>
+      <a href="kei_profile">
+        <img src="static/images/img_kei.jpg" alt="kei Profile" />
+      </a>
+      <a href="ryl_profile">
+        <img src="static/images/img_daryl.jpg" alt="ryl Profile" />
+      </a>
+      <a href="ed_profile">
+        <img src="static/images/img_ed.jpg" alt="ed Profile" />
+      </a>
+      <a href="gab_profile">
+        <img src="static/images/img_gab.jpg" alt="gab Profile" />
+      </a>
+      <a href="gelo_profile">
+        <img src="static/images/img_gelo.jpg" alt="gelo Profile" />
+      </a>
+      <a href="ris_profile">
+        <img src="static/images/img_reece.jpg" alt="ris Profile" />
+      </a>
+    </div>
+  </body>
 </html>
