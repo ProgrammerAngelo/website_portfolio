@@ -109,11 +109,11 @@ nav a.active {
   0%,
   60%,
   100% {
-    color: white;
+    color: rgb(43, 223, 243);
     text-shadow: none;
   }
   40% {
-    color: #ae1dfc;
+    color: #cd8def;
     text-shadow: 0 0 15px #e527db, 0 0 50px #32cde5;
   }
 }
@@ -163,49 +163,23 @@ nav a.active {
 
 /* CONVERSION BOX STYLES */
 .conversion-box {
-  --border-size: 3px;
-  --border-angle: 0turn;
-  flex: 1; /* Makes the conversion box take available space */
+  flex: 1; /* This makes the result box take available space */
   display: flex;
+  height: 50vmin;
+  overflow-y: auto;
   justify-content: center;
   align-items: center;
-
-  width: 60vmin;
+  padding: 2rem;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.6
+  ); /* Optional: To make the result box stand out */
+  border: 3px solid #fff;
+  color: white;
   height: 50vmin;
-  background-image: conic-gradient(
-      from var(--border-angle),
-      rgb(124, 11, 155),
-      rgb(23, 23, 126) 50%,
-      rgb(172, 36, 142)
-    ),
-    conic-gradient(
-      from var(--border-angle),
-      transparent 20%,
-      rgb(243, 243, 243),
-      rgb(255, 255, 255)
-    );
-  background-size: calc(100% - (var(--border-size) * 2))
-      calc(100% - (var(--border-size) * 2)),
-    cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  animation: bg-spin 3s linear infinite;
-}
-
-@keyframes bg-spin {
-  to {
-    --border-angle: 1turn;
-  }
-}
-
-&:hover {
-  animation-play-state: paused;
-}
-
-@property --border-angle {
-  syntax: "<angle>";
-  inherits: true;
-  initial-value: 0turn;
+  overflow-y: auto; /* Allows scrolling if content exceeds box height */
 }
 
 /* CONVERTER CONTAINER CONTENT STYLES */
@@ -231,26 +205,94 @@ input[type="text"] {
   width: 100%;
   margin: 0.5rem 0;
 }
-
-.button-container {
-  margin-top: 1rem;
-}
-
-button {
-  padding: 1rem 2rem;
-  font-size: 1.6rem;
-  background-color: #b74b4b;
-  color: white;
-  border: none;
+/**/
+.btn {
+  pointer-events: auto;
   cursor: pointer;
-  transition: 0.3s ease;
+  border: none;
+  margin: 0 auto;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 2rem;
 }
 
-button:hover {
-  background-color: #f03;
+.button_primary {
+  font-family: "Syne", sans-serif;
+  font-size: 1.2rem;
+  color: #fff;
+  background: none;
+  padding: 0;
+  margin-top: 5px;
 }
 
-/*======================================================================*/
+.button_primary span {
+  display: block;
+  position: relative;
+  padding: 1.5rem 1.5rem;
+  mix-blend-mode: difference;
+  justify-content: center;
+}
+
+.button_primary .btn_bg {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #e7e7e7;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+}
+
+.button_primary:hover .btn_bg {
+  transform: scale3d(1.2, 1.2, 1);
+}
+
+.button_primary .btn_bg::before,
+.button_primary .btn_bg::after {
+  content: "";
+  position: absolute;
+  background: #000;
+}
+
+.button_primary .btn_bg::before {
+  width: 110%;
+  height: 0;
+  padding-bottom: 110%;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 1);
+}
+
+.button_primary:hover .btn_bg::before {
+  transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+  transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
+}
+
+.button_primary .btn_bg::after {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.button_primary:hover .btn_bg::after {
+  opacity: 1;
+  transition-duration: 0.15s;
+  transition-delay: 0.9s;
+}
+
+.conversion-box,
+.result-box {
+  flex: 1;
+  height: 50vmin;
+  overflow-y: auto;
+}
+
 /* RESULT BOX STYLE */
 .result-box {
   flex: 1; /* This makes the result box take available space */
@@ -271,8 +313,13 @@ button:hover {
   margin-top: 2rem;
 }
 
+.result {
+  margin-top: 1rem;
+  font-size: 14px;
+}
+
 .result h2 {
-  font-size: 2rem;
+  font-size: 20px;
   margin-bottom: 1rem;
 }
 
@@ -282,11 +329,11 @@ button:hover {
 }
 
 .result li {
-  font-size: 1.6rem;
+  font-size: 14px;
   margin-bottom: 0.5rem;
 }
 
 .result p {
-  font-size: 1.8rem;
+  font-size: 14px;
   margin-top: 1rem;
 }
