@@ -39,15 +39,17 @@
     </div>
 
     <div class="container">
-      <!-- Conversion Box -->
       <div class="conversion-box">
         <div class="converter-container-content">
           <h1 class="converter-text">Infix to Postfix Converter</h1>
           <form action="/convert" method="POST">
-            <label class="direction" for="infix">Enter Infix Expression:</label><br />
+            <label class="direction" for="infix">Enter an Infix Expression:</label><br />
             <input type="text" id="infix" name="infix" required />
             <div class="button-container">
-              <button type="submit">Convert</button>
+              <button class="btn button_primary">
+                <div class="btn_bg"></div>
+                <span>Convert</span>
+              </button>
             </div>
           </form>
         </div>
@@ -63,7 +65,7 @@
             <li>{{ step }}</li>
             {% endfor %}
           </ul>
-          <h3>Final Postfix Expression:</h3>
+          <h3><br>  Final Postfix Expression:</h3>
           <p>{{ postfix }}</p>
         </div>
         {% endif %}
