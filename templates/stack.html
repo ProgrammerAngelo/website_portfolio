@@ -38,30 +38,38 @@
       </ul>
     </div>
 
-    <!-- CONTENT SECTION -->
     <div class="container">
-      <h1>Infix to Postfix Converter</h1>
-      <form action="/convert" method="POST">
-        <label for="infix">Enter Infix Expression:</label><br />
-        <input type="text" id="infix" name="infix" required />
-        <div class="button-container">
-          <button type="submit">Convert</button>
+      <!-- Conversion Box -->
+      <div class="conversion-box">
+        <div class="converter-container-content">
+          <h1 class="converter-text">Infix to Postfix Converter</h1>
+          <form action="/convert" method="POST">
+            <label class="direction" for="infix">Enter Infix Expression:</label><br />
+            <input type="text" id="infix" name="infix" required />
+            <div class="button-container">
+              <button type="submit">Convert</button>
+            </div>
+          </form>
         </div>
-      </form>
-
-      <!-- Show step-by-step result -->
-      {% if steps %}
-      <div class="result">
-        <h2>Step-by-Step Process:</h2>
-        <ul>
-          {% for step in steps %}
-          <li>{{ step }}</li>
-          {% endfor %}
-        </ul>
-        <h3>Final Postfix Expression:</h3>
-        <p>{{ postfix }}</p>
       </div>
-      {% endif %}
+    
+      <!-- Result Box -->
+      <div class="result-box">
+        {% if steps %}
+        <div class="result">
+          <h2>Step-by-Step Process:</h2>
+          <ul>
+            {% for step in steps %}
+            <li>{{ step }}</li>
+            {% endfor %}
+          </ul>
+          <h3>Final Postfix Expression:</h3>
+          <p>{{ postfix }}</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    
     </div>
   </body>
 </html>
