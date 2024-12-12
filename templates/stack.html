@@ -1,43 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/stack_style.css') }}"
+    />
     <title>Stack</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}">
-</head>
-<body>
-    <h1>Stack</h1>
-    <h2>Shunting Yard Algorithm</h2>
-    <nav>
-        <a href="/">Home</a> |
-        <a href="/profile">Profile</a> |
-        <a href="/works">Works</a>
-    </nav>
-    <!-- Add your content here -->
-    <div class="container">
+  </head>
+
+  <body>
+    <!-- HEADER SECTION -->
+    <header>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"
+        rel="stylesheet"
+      />
+      <a href="#" class="logo">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="Logo"
+        />
+      </a>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('profiles') }}">Profiles</a></li>
+          <li><a href="{{ url_for('works') }}" class="active">Works</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- TITLE SECTION -->
+    <div class="title-text">
+    
+    </div>
+
+
+      <!-- Add your content here -->
+      <div class="container">
         <h1>Infix to Postfix Converter</h1>
         <form action="/convert" method="POST">
-            <label for="infix">Enter Infix Expression:</label><br>
-            <input type="text" id="infix" name="infix" required>
-            <div class="button-container">
-                <button type="submit">Convert</button>
-            </div>
+          <label for="infix">Enter Infix Expression:</label><br />
+          <input type="text" id="infix" name="infix" required />
+          <div class="button-container">
+            <button type="submit">Convert</button>
+          </div>
         </form>
 
         <!--Show step-by-step result-->
         {% if steps %}
         <div class="result">
-            <h2>Step-by-Step Process:</h2>
-            <ul>
-                {% for step in steps %}
-                    <li>{{ step }}</li>
-                {% endfor %}
-            </ul>
-            <h3>Final Postfix Expression:</h3>
-            <p>{{ postfix }}</p>
+          <h2>Step-by-Step Process:</h2>
+          <ul>
+            {% for step in steps %}
+            <li>{{ step }}</li>
+            {% endfor %}
+          </ul>
+          <h3>Final Postfix Expression:</h3>
+          <p>{{ postfix }}</p>
         </div>
         {% endif %}
+      </div>
     </div>
-</body>
+  </body>
 </html>
