@@ -205,7 +205,15 @@ input[type="text"] {
   width: 100%;
   margin: 0.5rem 0;
 }
-/**/
+
+/* Button Styles */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-top: 1rem;
+}
+
 .btn {
   pointer-events: auto;
   cursor: pointer;
@@ -223,6 +231,7 @@ input[type="text"] {
   background: none;
   padding: 0;
   margin-top: 5px;
+  gap: 10px;
 }
 
 .button_primary span {
@@ -309,6 +318,7 @@ input[type="text"] {
   overflow-y: auto; /* Allows scrolling if content exceeds box height */
 }
 
+/* Result Text Styles */
 .result {
   margin-top: 2rem;
 }
