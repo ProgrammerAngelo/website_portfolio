@@ -162,56 +162,28 @@ nav a.active {
 }
 
 /* CONVERSION BOX STYLES */
-/* CONVERSION BOX STYLES */
-@keyframes bg-spin {
-  0% {
-    --border-angle: 0deg; /* Initial angle */
-  }
-  100% {
-    --border-angle: 360deg; /* Full rotation */
-  }
-}
-
 .conversion-box {
+  --border-size: 3px;
+  --border-angle: 0turn;
   flex: 1; /* Makes the conversion box take available space */
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: conic-gradient(
-      from var(--border-angle, 0deg),
-      /* Using default 0deg */ #213,
-      #112 50%,
-      #213
-    ),
-    conic-gradient(from var(--border-angle, 0deg), transparent 20%, #08f, #f03);
-  background-size: 100% 100%; /* Adjust background size */
-  background-position: center center;
-  background-repeat: no-repeat;
-  animation: bg-spin 3s linear infinite; /* Apply spin animation */
-  border: 5px solid transparent; /* Transparent border to let the animation show */
-  padding: 20px;
-  transition: all 0.3s ease;
-  height: 50vmin;
-  position: relative;
-}
-
-.conversion-box:hover {
-  animation-play-state: paused; /* Pauses the animation on hover */
-}
-
-.conversion-box {
-  --border-size: 3px;
-  --border-angle: 0turn;
 
   width: 60vmin;
   height: 50vmin;
   background-image: conic-gradient(
       from var(--border-angle),
-      #213,
-      #112 50%,
-      #213
+      rgb(124, 11, 155),
+      rgb(23, 23, 126) 50%,
+      rgb(172, 36, 142)
     ),
-    conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+    conic-gradient(
+      from var(--border-angle),
+      transparent 20%,
+      rgb(243, 243, 243),
+      rgb(255, 255, 255)
+    );
   background-size: calc(100% - (var(--border-size) * 2))
       calc(100% - (var(--border-size) * 2)),
     cover;
@@ -236,7 +208,7 @@ nav a.active {
   initial-value: 0turn;
 }
 
-/* Additional styles for other elements */
+/* CONVERTER CONTAINER CONTENT STYLES */
 .converter-container-content {
   text-align: center;
   color: white;
