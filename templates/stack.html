@@ -9,14 +9,9 @@
     />
     <title>Stack</title>
   </head>
-
   <body>
     <!-- HEADER SECTION -->
     <header>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"
-        rel="stylesheet"
-      />
       <a href="#" class="logo">
         <img
           src="{{ url_for('static', filename='images/logo.png') }}"
@@ -34,35 +29,39 @@
 
     <!-- TITLE SECTION -->
     <div class="title-text">
-    
+      <ul>
+        <li>S</li>
+        <li>T</li>
+        <li>A</li>
+        <li>C</li>
+        <li>K</li>
+      </ul>
     </div>
 
-
-      <!-- Add your content here -->
-      <div class="container">
-        <h1>Infix to Postfix Converter</h1>
-        <form action="/convert" method="POST">
-          <label for="infix">Enter Infix Expression:</label><br />
-          <input type="text" id="infix" name="infix" required />
-          <div class="button-container">
-            <button type="submit">Convert</button>
-          </div>
-        </form>
-
-        <!--Show step-by-step result-->
-        {% if steps %}
-        <div class="result">
-          <h2>Step-by-Step Process:</h2>
-          <ul>
-            {% for step in steps %}
-            <li>{{ step }}</li>
-            {% endfor %}
-          </ul>
-          <h3>Final Postfix Expression:</h3>
-          <p>{{ postfix }}</p>
+    <!-- CONTENT SECTION -->
+    <div class="container">
+      <h1>Infix to Postfix Converter</h1>
+      <form action="/convert" method="POST">
+        <label for="infix">Enter Infix Expression:</label><br />
+        <input type="text" id="infix" name="infix" required />
+        <div class="button-container">
+          <button type="submit">Convert</button>
         </div>
-        {% endif %}
+      </form>
+
+      <!-- Show step-by-step result -->
+      {% if steps %}
+      <div class="result">
+        <h2>Step-by-Step Process:</h2>
+        <ul>
+          {% for step in steps %}
+          <li>{{ step }}</li>
+          {% endfor %}
+        </ul>
+        <h3>Final Postfix Expression:</h3>
+        <p>{{ postfix }}</p>
       </div>
+      {% endif %}
     </div>
   </body>
 </html>
