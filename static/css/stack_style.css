@@ -26,7 +26,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: white;
-  position: relative; /* Ensure pseudo-element is positioned correctly */
+  position: relative;
 }
 
 body::before {
@@ -36,13 +36,8 @@ body::before {
   left: 0;
   width: 100%;
   height: 500%;
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.4
-  ); /* Darken the background (0.4 is the opacity level) */
-  z-index: -1; /* Make sure the overlay stays behind the content */
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: -1;
 }
 
 /* HEADER SECTION */
@@ -109,32 +104,48 @@ nav a.active {
   border-bottom: 3px solid #b74b4b;
 }
 
-@media (max-width: 995px) {
-  nav {
-    position: absolute;
-    display: none;
-    top: 0;
-    right: 0;
-    width: 40%;
-    border-left: 3px solid #b74b4b;
-    border-bottom: 3px solid #b74b4b;
-    border-bottom-left-radius: 2rem;
-    padding: 1rem solid;
-    background-color: #161616;
-    border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+/* TITLE ANIMATION */
+@keyframes pre-load {
+  0%,
+  60%,
+  100% {
+    color: white;
+    text-shadow: none;
   }
-  nav.active {
-    display: block;
+  40% {
+    color: #ae1dfc;
+    text-shadow: 0 0 15px #e527db, 0 0 50px #32cde5;
   }
-  nav a {
-    display: block;
-    font-size: 2rem;
-    margin: 3rem 0;
-  }
-  nav a:hover,
-  nav a.active {
-    padding: 1rem;
-    border-radius: 0.5rem;
-    border-bottom: 0.5rem solid #b74b4b;
-  }
+}
+
+.title-text ul {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 10rem;
+}
+
+.title-text li {
+  list-style: none;
+  display: inline-block;
+  font-size: 6rem;
+  letter-spacing: 0.5rem;
+  animation: pre-load 3s linear infinite;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.title-text li:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.title-text li:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.title-text li:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.title-text li:nth-child(4) {
+  animation-delay: 0.8s;
+}
+.title-text li:nth-child(5) {
+  animation-delay: 1s;
 }
