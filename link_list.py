@@ -1,8 +1,10 @@
+# || CREATING A NODE ||
 class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
 
+# CREATING THE LINKED LIST ||
 class LinkedList:
     def __init__(self):
         self.head = None

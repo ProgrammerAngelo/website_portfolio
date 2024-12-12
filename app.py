@@ -1,13 +1,18 @@
+# || IMPORTS ||
 from flask import Flask, render_template, request, jsonify
 from link_list import LinkedList
 from stack import ShuntingYard
 
+# ========================
+# || ROOT ||
 app = Flask(__name__)
 
-# Initialize a global linked list instance
+# ========================
+# || INITIALIZE A GLOBAL LINKED LIST INSTANCE ||
 linked_list = LinkedList()
 
-# RENDERING THE TABS
+# ========================
+# || RENDERING THE TABS ||
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -47,13 +52,15 @@ def gelo_profile():
 def ris_profile():
     return render_template('ris_profile.html')
 
-# LINKED LIST SYNTAX
+# ========================
+# || LINKED LIST SYNTAX ||
+# - Rendering the linked list html
 @app.route('/link_list')
 def link_list():
     linked_list_content = linked_list.printLinkedList()
     return render_template('link_list.html', linked_list_content=linked_list_content)
 
-# Linked list API routes
+# - Linked list API routes
 @app.route('/insert_at_beginning', methods=['POST'])
 def insert_at_beginning():
     data = request.json.get('data', '').strip()
@@ -101,16 +108,18 @@ def print_linked_list():
 
 # ========================
 # STACK SYNTAX
+# - Rendering the stack.html
 @app.route('/stack')
 def stack():
     return render_template('stack.html')
 
+# - Stack API routes
 @app.route('/convert', methods=['POST'])
 def convert():
-    infix_expression = request.form['infix']  # Get the infix expression from the form
-    converter = ShuntingYard(infix_expression)  # Create instance of ShuntingYard class
-    postfix = converter.convert()  # Perform the conversion
-    steps = converter.get_steps()  # Get the steps
+    infix_expression = request.form['infix']  
+    converter = ShuntingYard(infix_expression)  
+    postfix = converter.convert()  
+    steps = converter.get_steps()  
     return render_template('stack.html', steps=steps, postfix=postfix)
 
 # ========================
