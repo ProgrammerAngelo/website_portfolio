@@ -1,3 +1,4 @@
+# || CREATING SHUNTING YARD ALGORITHM CLASS ||
 class ShuntingYard:
     def __init__(self, expression):
         self.expression = expression  # Infix expression
@@ -17,13 +18,13 @@ class ShuntingYard:
             if char.isalnum():  # Operand
                 self.output.append(char)
                 self.steps.append(''.join(self.output))  # Add current step
-            elif char == '(':  # Opening parenthesis
+            elif char == '(':
                 self.stack.append(char)
-            elif char == ')':  # Closing parenthesis
+            elif char == ')':  
                 while self.stack and self.stack[-1] != '(':
                     self.output.append(self.stack.pop())
                     self.steps.append(''.join(self.output))  # Add current step
-                self.stack.pop()  # Pop '('
+                self.stack.pop()  
             elif self.is_operator(char):  # Operator
                 while (self.stack and self.stack[-1] != '(' and
                        self.precedence(self.stack[-1]) >= self.precedence(char)):
