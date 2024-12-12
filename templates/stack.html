@@ -38,6 +38,7 @@
       </ul>
     </div>
 
+    <!--CONTENT SECTION -->
     <div class="container">
       <div class="conversion-box">
         <div class="converter-container-content">
@@ -50,10 +51,15 @@
                 <div class="btn_bg"></div>
                 <span>Convert</span>
               </button>
+              <button type="button" id="clearButton" class="btn button_primary">
+                <div class="btn_bg"></div>
+                <span>Clear</span>
+              </button>
             </div>
           </form>
         </div>
       </div>
+      
     
       <!-- Result Box -->
       <div class="result-box">
@@ -71,7 +77,20 @@
         {% endif %}
       </div>
     </div>
-    
     </div>
+
+    <script>
+      document.getElementById("clearButton").addEventListener("click", function () {
+        // Find the result container
+        const resultContainer = document.querySelector(".result");
+        
+        // Clear step-by-step process and postfix expression
+        if (resultContainer) {
+          resultContainer.innerHTML = ""; // Clears the content inside the result box
+        }
+      });
+    </script>
+    
+    
   </body>
 </html>
