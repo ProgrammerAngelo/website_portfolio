@@ -13,6 +13,7 @@
       href="{{ url_for('static', filename='css/link_list_style.css') }}"
     />
   </head>
+
   <body>
     <!-- HEADER SECTION -->
     <header>
@@ -35,13 +36,14 @@
       </nav>
     </header>
 
-    <!-- Title Section -->
+    <!-- TITLE SECTION -->
     <div class="title-text">
       <svg viewBox="0 0 1320 100">
         <text x="50%" y="50%" dy="40px" text-anchor="middle">To-Do List</text>
       </svg>
     </div>
 
+    <!-- CONTENT SECTION -->
     <div class="container-one">
       <!-- Left Section -->
       <div class="container-left">
@@ -82,6 +84,7 @@
         </div>
       </div>
 
+    <!-- JS SECTION -->
     <script>
       async function insertAtBeginning() {
         const data = document.getElementById("data-input").value;
