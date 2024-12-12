@@ -118,11 +118,13 @@ nav a.active {
   }
 }
 
+/* TITLE STYLES */
 .title-text ul {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  padding-top: 10rem;
+  padding-top: 9rem;
+  padding-bottom: 2rem;
 }
 
 .title-text li {
@@ -148,4 +150,171 @@ nav a.active {
 }
 .title-text li:nth-child(5) {
   animation-delay: 1s;
+}
+
+/* CONTENT CONTAINER */
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  width: 100%;
+}
+
+/* CONVERSION BOX STYLES */
+/* CONVERSION BOX STYLES */
+@keyframes bg-spin {
+  0% {
+    --border-angle: 0deg; /* Initial angle */
+  }
+  100% {
+    --border-angle: 360deg; /* Full rotation */
+  }
+}
+
+.conversion-box {
+  flex: 1; /* Makes the conversion box take available space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: conic-gradient(
+      from var(--border-angle, 0deg),
+      /* Using default 0deg */ #213,
+      #112 50%,
+      #213
+    ),
+    conic-gradient(from var(--border-angle, 0deg), transparent 20%, #08f, #f03);
+  background-size: 100% 100%; /* Adjust background size */
+  background-position: center center;
+  background-repeat: no-repeat;
+  animation: bg-spin 3s linear infinite; /* Apply spin animation */
+  border: 5px solid transparent; /* Transparent border to let the animation show */
+  padding: 20px;
+  transition: all 0.3s ease;
+  height: 50vmin;
+  position: relative;
+}
+
+.conversion-box:hover {
+  animation-play-state: paused; /* Pauses the animation on hover */
+}
+
+.conversion-box {
+  --border-size: 3px;
+  --border-angle: 0turn;
+
+  width: 60vmin;
+  height: 50vmin;
+  background-image: conic-gradient(
+      from var(--border-angle),
+      #213,
+      #112 50%,
+      #213
+    ),
+    conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+  background-size: calc(100% - (var(--border-size) * 2))
+      calc(100% - (var(--border-size) * 2)),
+    cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  animation: bg-spin 3s linear infinite;
+}
+
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+
+&:hover {
+  animation-play-state: paused;
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+/* Additional styles for other elements */
+.converter-container-content {
+  text-align: center;
+  color: white;
+}
+
+.converter-text {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+label.direction {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+input[type="text"] {
+  padding: 0.5rem;
+  font-size: 1.6rem;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.button-container {
+  margin-top: 1rem;
+}
+
+button {
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  background-color: #b74b4b;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background-color: #f03;
+}
+
+/*======================================================================*/
+/* RESULT BOX STYLE */
+.result-box {
+  flex: 1; /* This makes the result box take available space */
+  padding: 2rem;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.6
+  ); /* Optional: To make the result box stand out */
+  border: 3px solid #fff;
+  color: white;
+  height: 50vmin;
+  overflow-y: auto; /* Allows scrolling if content exceeds box height */
+}
+
+.result {
+  margin-top: 2rem;
+}
+
+.result h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.result ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.result li {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.result p {
+  font-size: 1.8rem;
+  margin-top: 1rem;
 }
