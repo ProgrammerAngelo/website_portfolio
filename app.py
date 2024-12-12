@@ -99,6 +99,7 @@ def print_linked_list():
     linked_list_content = linked_list.printLinkedList()
     return jsonify({'list': linked_list_content})
 
+# ========================
 # STACK SYNTAX
 @app.route('/stack')
 def stack():
@@ -112,10 +113,17 @@ def convert():
     steps = converter.get_steps()  # Get the steps
     return render_template('stack.html', steps=steps, postfix=postfix)
 
+# ========================
 # - QUEUE SYNTAX
 @app.route('/queue')
 def queue():
     return render_template('queue.html')
+
+# ========================
+# - BINARY TREE SYNTAX
+
+# ========================
+# - GRAPH SYNTAX
 
 
 
