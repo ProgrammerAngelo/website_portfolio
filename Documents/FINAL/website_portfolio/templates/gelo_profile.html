@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile Page</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/gelo_profile_style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" />
+    </a>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('profiles') }}" class="active">Profiles</a></li>
+        <li><a href="{{ url_for('works') }}">Works</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="glassmorphism">
+      <!-- Left side for image and technical skills -->
+      <div class="left-side">
+        <div class="circular-container">
+          <img id="profile-img" src="{{ url_for('static', filename='images/img_gelo.jpg') }}" alt="Profile Picture" />
+        </div>
+
+        <!-- Technical Skills Section -->
+        <div class="skills">
+          <h3>Technical Skills</h3>
+
+          <div class="skill">
+            <label for="python"></label>
+            <div class="skill-container">
+              <div class="progress-bar">
+                <div class="progress python"></div>
+              </div>
+              <div class="skill-image-circle">
+                <img class="skill-image" src="{{ url_for('static', filename='images/python_logo.png') }}" alt="Python Logo" />
+              </div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <label for="html"></label>
+            <div class="skill-container">
+              <div class="progress-bar">
+                <div class="progress html"></div>
+              </div>
+              <div class="skill-image-circle">
+                <img class="skill-image" src="{{ url_for('static', filename='images/html_logo.png') }}" alt="HTML Logo" />
+              </div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <label for="css"></label>
+            <div class="skill-container">
+              <div class="progress-bar">
+                <div class="progress css"></div>
+              </div>
+              <div class="skill-image-circle">
+                <img class="skill-image" src="{{ url_for('static', filename='images/css_logo.png') }}" alt="CSS Logo" />
+              </div>
+            </div>
+          </div>
+
+          <div class="skill">
+            <label for="aws"></label>
+            <div class="skill-container">
+              <div class="progress-bar">
+                <div class="progress aws"></div>
+              </div>
+              <div class="skill-image-circle">
+                <img class="skill-image" src="{{ url_for('static', filename='images/aws_logo.png') }}" alt="AWS Logo" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side for profile description -->
+      <div class="right-side">
+        <h2>ABOUT ME</h2>
+        <p>Hello! My name is Angelo, and I’m a passionate engineering student with a deep interest in technology, innovation, and problem-solving. Ever since I was young, I’ve been fascinated by how things work, whether it’s understanding the mechanics of a machine or the logic behind a piece of software.
+            As an aspiring engineer, I’ve worked on several projects that have allowed me to explore my interests.
+             For example, I’ve built small robotics prototypes, developed simple web applications using HTML, CSS, and Python, and collaborated on team projects to design sustainable solutions for everyday problems.
+              I find joy in tackling challenges and learning new skills along the way.</p>
+
+        <!-- Portfolio and GitHub Section -->
+        <div class="portfolio-section">
+          <h3>Selected Projects</h3>
+        </div>
+
+        <!-- GitHub Link Square -->
+        <div class="github-container">
+          <a href="https://github.com/your-github-profile" target="_blank">
+            <div class="square-container">
+              <img src="https://github.com/favicon.ico" alt="GitHub Logo" class="square-image" />
+            </div>
+          </a>
+        </div>
+
+        <!-- Let's Connect Section -->
+        <div class="connect-section">
+          <h3>Let's Connect</h3>
+          <div class="social-grid">
+            <div class="social-icons">
+              <a href="">
+                <i class="fa-brands fa-linkedin"></i>
+              </a>
+              <a href="https://github.com/ProgrammerAngelo?tab=repositories">
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <a href="https://www.facebook.com/angelo.pangilagan.7">
+                <i class="fa-brands fa-facebook"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/un.gelo_/profilecard/?igsh=MW9iNTk0ZHg1eGNodA=="
+              >
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+          </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+          <h3>Contact</h3>
+          <div class="contact-grid">
+            <div class="contact-item gmail">
+              <a href="mailto:your-email@gmail.com" target="_blank">
+                <span>Email: angelovpangilagan@gmail.com</span>
+              </a>
+            </div>
+            <div class="contact-item phone">
+              <a href="tel:+1234567890" target="_blank">
+                <span>Phone num: +639996871211</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
