@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request, jsonify
 from link_list import LinkedList
 from stack import ShuntingYard
+from queue_page import Queue_App
 
 # ========================
 # || ROOT ||
@@ -124,9 +125,35 @@ def convert():
 
 # ========================
 # - QUEUE SYNTAX
+
+# - Queue API routes
+queue = Queue_App()
 @app.route('/queue')
-def queue():
-    return render_template('queue.html')
+def queue_page():
+    return render_template('queue_page.html')
+
+# - Queue API routes
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    status_message = ""
+    
+    # Check if the form is submitted
+    if request.method == "POST":
+        if request.form.get("data"):  # Enqueue action
+            data = request.form.get("data")
+            queue_app.enqueue(data)
+            status_message = f"'{data}' added to queue."
+        elif request.form.get("dequeue"):  # Dequeue action
+            dequeued_value = queue_app.dequeue()
+            status_message = f"'{dequeued_value}' removed from queue." if dequeued_value != "Queue is empty!" else dequeued_value
+
+    # Get the current state of the queue
+    queue_items = queue_app.view_queue()
+
+    # Render the page with the queue items and status message
+    return render_template("index.html", queue=queue_items, status_message=status_message)
+
 
 # ========================
 # - BINARY TREE SYNTAX

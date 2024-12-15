@@ -1,0 +1,152 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #0a0a0a;
+    color: #fff;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    color: #d3a9f7;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+nav a {
+    margin: 0 15px;
+    font-size: 1.2rem;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #d3a9f7;
+}
+
+/* Main Section */
+main {
+    margin-top: 6rem;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Controls */
+.queue-controls {
+    margin-bottom: 2rem;
+}
+
+.input-field {
+    padding: 10px;
+    font-size: 1.5rem;
+    width: 250px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 2px solid #d3a9f7;
+    background-color: #1e1e1e;
+    color: white;
+}
+
+button[type="submit"] {
+    padding: 15px 25px;
+    font-size: 1.5rem;
+    background-color: #6a0dad;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #9b59b6;
+}
+
+/* Queue Display */
+.queue-display {
+    margin-top: 2rem;
+}
+
+.queue-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-box, .status-box {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 20px;
+    width: 45%;
+    border: 2px solid #d3a9f7;
+}
+
+h4 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+ul {
+    list-style: none;
+    font-size: 1.5rem;
+}
+
+li {
+    padding: 10px;
+    background-color: #1e1e1e;
+    margin: 5px 0;
+    border-radius: 8px;
+    border: 2px solid #d3a9f7;
+}
+
+/* Mobile Styling */
+@media (max-width: 768px) {
+    .queue-controls {
+        text-align: center;
+    }
+
+    .input-field {
+        width: 80%;
+    }
+
+    .button-container form {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .queue-display ul {
+        font-size: 1.5rem;
+    }
+
+    .queue-container {
+        flex-direction: column;
+    }
+
+    .task-box, .status-box {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
