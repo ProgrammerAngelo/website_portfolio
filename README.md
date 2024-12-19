@@ -8,7 +8,7 @@ Written in python, html, css, and using flask python library<br>
 # Codyssey Members are: <br>
 Agulto, Marck Christian I. <br>
 Delima, Sheena Mae D. <br>
-Flores, Gabriel <br>
+Flores, John Gabriel Louis <br>
 Macasinag, Edmharx <br>
 Pangilana, Angelo <br>
 Teylan, Reece Baron <br>
