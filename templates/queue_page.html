@@ -4,51 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Queue Implementation</title>
-<!-- input the base_style here for background -->
-    <link rel="stylesheet" href="static/css/queue_style.css" />
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/base_style.css') }}"
+    />
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/queue_style.css') }}"
+    />
 </head>
-<body>
+<body onload="viewQueue()">
+    <!-- Header Section -->
     <header>
-        <h1 class="queue-title">Queue Implementation</h1>
+        <a href="#" class="logo">
+          <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="Logo"
+          />
+        </a>
         <nav>
-            <a href="/">Home</a> |
-            <a href="/profiles">Profile</a> |
-            <a href="/works">Works</a>
+          <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('profiles') }}">Profiles</a></li>
+            <li><a href="{{ url_for('works') }}">Works</a></li>
+          </ul>
         </nav>
     </header>
 
+    <!-- Main Content -->
     <main>
-        <h2>Queue Implementation with Linked List</h2>
-        <div class="queue-controls">
-            <form action="/enqueue" method="POST">
-                <input type="text" name="data" placeholder="Enter value" class="input-field" />
-                <button type="submit" class="btn">Enqueue</button>
-            </form>
-            <form action="/dequeue" method="POST">
-                <button type="submit" class="btn">Dequeue</button>
-            </form>
-        </div>
-
-        <div class="queue-display">
-            <h3>Queue:</h3>
-            <div class="queue-container">
-                <div class="task-box">
-                    <h4>Tasks</h4>
-                    <ul>
-                        {% for item in queue %}
-                            <li>{{ item }}</li>
-                        {% else %}
-                            <li>Queue is empty!</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-
-                <div class="status-box">
-                    <h4>Status</h4>
-                    <p>{{ status_message }}</p>
-                </div>
+        <h1>Queue Implementation with Linked List</h1>
+        <div class="queue-container">
+            <input type="text" id="dataInput" placeholder="Enter value" />
+            <div class="button-group">
+                <button onclick="enqueue()">Enqueue</button>
+                <button onclick="dequeue()">Dequeue</button>
             </div>
+            <div id="queueDisplay"></div>
         </div>
     </main>
 </body>
+
+<!-- JavaScript -->
+<script>
+    async function enqueue() {
+        const data = document.getElementById("dataInput").value;
+        if (data === "") {
+            alert("Please enter a value!");
+            return;
+        }
+
+        const response = await fetch("/enqueue", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `data=${data}`,
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            updateQueue(result.queue);
+            document.getElementById("dataInput").value = "";
+        } else {
+            alert(result.message);
+        }
+    }
+
+    async function dequeue() {
+        const response = await fetch("/dequeue", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            alert(`Dequeued: ${result.dequeued}`);
+            updateQueue(result.queue);
+        } else {
+            alert(result.message);
+        }
+    }
+
+    async function viewQueue() {
+        const response = await fetch("/view");
+        const result = await response.json();
+        updateQueue(result.queue);
+    }
+
+    function updateQueue(queue) {
+        const queueDisplay = document.getElementById("queueDisplay");
+        queueDisplay.innerHTML = queue.length ? queue.join(" -> ") : "Queue is empty!";
+    }
+</script>
 </html>

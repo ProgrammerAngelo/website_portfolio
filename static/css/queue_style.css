@@ -1,152 +1,99 @@
-/* Global Styles */
-* {
+/* Ensure no scrolling on the body and html */
+html, body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    overflow: hidden; /* Prevent scrolling */
+    height: 100%; /* Make sure the height is limited to the viewport */
 }
 
+/* Ensure child elements fit within the viewport */
 body {
-    background-color: #0a0a0a;
-    color: #fff;
-    text-align: center;
-    padding: 2rem;
-}
-
-/* Header */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 1rem;
-    background: transparent;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    z-index: 100;
+    justify-content: center;
+    background-color: #0a192f; /* Match your background color */
 }
 
-header h1 {
-    font-size: 3.5rem;
-    color: #d3a9f7;
-    font-weight: bold;
-    letter-spacing: 2px;
+/* Title Style */
+h1 {
+    font-size: 36px; /* Matches the Binary Tree title size */
+    color: #64ffda; /* Consistent accent color */
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 10px; /* Push the title slightly down */
 }
 
-nav a {
-    margin: 0 15px;
-    font-size: 1.2rem;
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-nav a:hover {
-    color: #d3a9f7;
-}
-
-/* Main Section */
-main {
-    margin-top: 6rem;
-}
-
-h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-}
-
-/* Controls */
-.queue-controls {
-    margin-bottom: 2rem;
-}
-
-.input-field {
-    padding: 10px;
-    font-size: 1.5rem;
-    width: 250px;
+/* Input field and Buttons */
+input[type="text"] {
+    padding: 12px;
+    width: 90%;
+    max-width: 400px;
+    font-size: 18px;
     margin-bottom: 20px;
-    border-radius: 8px;
-    border: 2px solid #d3a9f7;
-    background-color: #1e1e1e;
+    border: 2px solid #64ffda;
+    border-radius: 12px;
+    box-sizing: border-box;
+    display: block;
+    margin: 20px auto;
+    background: #0a192f; /* Dark background for input */
     color: white;
-}
-
-button[type="submit"] {
-    padding: 15px 25px;
-    font-size: 1.5rem;
-    background-color: #6a0dad;
-    border: none;
-    color: white;
-    border-radius: 8px;
-    transition: background-color 0.3s;
-}
-
-button[type="submit"]:hover {
-    background-color: #9b59b6;
-}
-
-/* Queue Display */
-.queue-display {
-    margin-top: 2rem;
 }
 
 .queue-container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
 }
 
-.task-box, .status-box {
-    background-color: #1e1e1e;
-    border-radius: 8px;
-    padding: 20px;
-    width: 45%;
-    border: 2px solid #d3a9f7;
+.button-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
 }
 
-h4 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-ul {
-    list-style: none;
-    font-size: 1.5rem;
+button:hover {
+    background-color: #0056b3;
 }
 
-li {
-    padding: 10px;
-    background-color: #1e1e1e;
-    margin: 5px 0;
-    border-radius: 8px;
-    border: 2px solid #d3a9f7;
+#queueDisplay {
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #112240;
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #64ffda;
+    width: 90%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #ccd6f6;
+    text-align: center;
+    white-space: normal; /* Allow wrapping */
+    word-wrap: break-word; /* Break long words */
 }
 
-/* Mobile Styling */
+/* Responsiveness Adjustments */
 @media (max-width: 768px) {
-    .queue-controls {
-        text-align: center;
+    input[type="text"], button {
+        width: 90%;
     }
 
-    .input-field {
-        width: 80%;
-    }
-
-    .button-container form {
-        display: block;
-        margin-bottom: 10px;
-    }
-
-    .queue-display ul {
-        font-size: 1.5rem;
-    }
-
-    .queue-container {
-        flex-direction: column;
-    }
-
-    .task-box, .status-box {
+    #queueDisplay {
         width: 100%;
-        margin-bottom: 20px;
     }
 }

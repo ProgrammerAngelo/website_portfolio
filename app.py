@@ -3,14 +3,17 @@ from flask import Flask, render_template, request, jsonify
 from link_list import LinkedList
 from stack import ShuntingYard
 from queue_page import Queue_App
+from binary_tree_page import BinaryTree
 
 # ========================
 # || ROOT ||
 app = Flask(__name__)
+linked_list = LinkedList()
+queue_app = Queue_App()  # Instantiate the Queue_App object
+binary_tree = BinaryTree()
 
 # ========================
 # || INITIALIZE A GLOBAL LINKED LIST INSTANCE ||
-linked_list = LinkedList()
 
 # ========================
 # || RENDERING THE TABS ||
@@ -41,6 +44,7 @@ def ryl_profile():
 @app.route('/ed_profile')
 def ed_profile():
     return render_template('ed_profile.html')
+
 @app.route('/gab_profile')
 def gab_profile():
     return render_template('gab_profile.html')
@@ -55,13 +59,11 @@ def ris_profile():
 
 # ========================
 # || LINKED LIST SYNTAX ||
-# - Rendering the linked list html
 @app.route('/link_list')
 def link_list():
     linked_list_content = linked_list.printLinkedList()
     return render_template('link_list.html', linked_list_content=linked_list_content)
 
-# - Linked list API routes
 @app.route('/insert_at_beginning', methods=['POST'])
 def insert_at_beginning():
     data = request.json.get('data', '').strip()
@@ -109,12 +111,10 @@ def print_linked_list():
 
 # ========================
 # STACK SYNTAX
-# - Rendering the stack.html
 @app.route('/stack')
 def stack():
     return render_template('stack.html')
 
-# - Stack API routes
 @app.route('/convert', methods=['POST'])
 def convert():
     infix_expression = request.form['infix']  
@@ -124,44 +124,63 @@ def convert():
     return render_template('stack.html', steps=steps, postfix=postfix)
 
 # ========================
-# - QUEUE SYNTAX
+# QUEUE SYNTAX
 
-# - Queue API routes
-queue = Queue_App()
-@app.route('/queue')
+@app.route('/queue')  # Route for accessing the queue page
 def queue_page():
-    return render_template('queue_page.html')
+    return render_template('queue_page.html')  # This will render your queue page (HTML)
 
-# - Queue API routes
+@app.route('/enqueue', methods=['POST'])
+def enqueue():
+    data = request.form.get('data')  # Use .get() to safely retrieve the 'data' value
+    if not data:
+        return jsonify({"status": "error", "message": "No data provided"}), 400
+    queue_app.enqueue(data)  # Call the method on the instance of Queue_App
+    return jsonify({"status": "success", "queue": queue_app.view_queue()})  # View updated queue after enqueue
 
-@app.route("/", methods=["GET", "POST"])
-def index():
+@app.route('/dequeue', methods=['POST'])
+def dequeue():
+    dequeued = queue_app.dequeue()  # Call the method on the instance of Queue_App
+    if dequeued is None:
+        return jsonify({"status": "error", "message": "Queue is empty!"}), 400
+    return jsonify({"status": "success", "dequeued": dequeued, "queue": queue_app.view_queue()})  # Return the dequeued value and updated queue
+
+@app.route('/view', methods=['GET'])
+def view_queue():
+    return jsonify({"queue": queue_app.view_queue()})  # View current state of the queue
+
+# ========================
+# BINARY TREE SYNTAX
+@app.route('/binary_tree', methods=['GET', 'POST'])
+def binary_tree_page():
     status_message = ""
-    
-    # Check if the form is submitted
+    traversals = {}
+
     if request.method == "POST":
-        if request.form.get("data"):  # Enqueue action
-            data = request.form.get("data")
-            queue_app.enqueue(data)
-            status_message = f"'{data}' added to queue."
-        elif request.form.get("dequeue"):  # Dequeue action
-            dequeued_value = queue_app.dequeue()
-            status_message = f"'{dequeued_value}' removed from queue." if dequeued_value != "Queue is empty!" else dequeued_value
+        # Get the tree node values as comma-separated input
+        node_values = request.form.get("tree", "").split(',')
+        
+        # Clean up the values (strip spaces and filter out empty strings)
+        node_values = [value.strip() for value in node_values if value.strip()]
 
-    # Get the current state of the queue
-    queue_items = queue_app.view_queue()
+        # Insert values into the binary tree
+        if node_values:
+            for value in node_values:
+                try:
+                    binary_tree.insert(int(value))  # Insert each value into the binary tree
+                except ValueError:
+                    status_message = f"'{value}' is not a valid integer and was skipped."
 
-    # Render the page with the queue items and status message
-    return render_template("index.html", queue=queue_items, status_message=status_message)
+            # Get current traversals after insertions
+            traversals = {
+                'in_order': binary_tree.in_order_traversal(),
+                'pre_order': binary_tree.pre_order_traversal(),
+                'post_order': binary_tree.post_order_traversal(),
+            }
+        else:
+            status_message = "No valid input provided."
 
-
-# ========================
-# - BINARY TREE SYNTAX
-
-# ========================
-# - GRAPH SYNTAX
-
-
+    return render_template('binary_tree_page.html', traversals=traversals, status_message=status_message)
 
 if __name__ == "__main__":
     app.run(debug=True)
