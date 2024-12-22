@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/base_style.css') }}"
+    />
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/binary_tree_style.css') }}"
+    />
+    <title>Binary Tree</title>
+  </head>
+  <body>
+    <!-- HEADER SECTION -->
+    <header>
+      <a href="#" class="logo">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="Logo"
+        />
+      </a>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('profiles') }}">Profiles</a></li>
+          <li><a href="{{ url_for('works') }}">Works</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- TITLE SECTION -->
+    <div class="title-text">
+      <ul>
+        <li>B</li>
+        <li>I</li>
+        <li>N</li>
+        <li>A</li>
+        <li>R</li>
+        <li>Y</li>
+        <li>T</li>
+        <li>R</li>
+        <li>E</li>
+        <li>E</li>
+      </ul>
+    </div>
+
+    <!-- CONTENT SECTION -->
+    <div class="container">
+      <div class="conversion-box">
+        <div class="converter-container-content">
+          <h1 class="converter-text">Binary Tree Traversals</h1>
+          <form action="/binary_tree" method="POST">
+            <label class="direction" for="tree">Enter Node Values (comma-separated):</label><br />
+            <input type="text" id="tree" name="tree" required />
+            <div class="button-container">
+              <button class="btn button_primary">
+                <div class="btn_bg"></div>
+                <span>Submit</span>
+              </button>
+              <button type="button" id="clearButton" class="btn button_primary">
+                <div class="btn_bg"></div>
+                <span>Clear</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Result Box -->
+      <div class="result-box">
+        {% if traversals %}
+        <div class="result">
+          <h2>Traversal Results:</h2>
+          <h3>In-Order:</h3>
+          <p>{{ traversals['in_order'] }}</p>
+          <h3>Pre-Order:</h3>
+          <p>{{ traversals['pre_order'] }}</p>
+          <h3>Post-Order:</h3>
+          <p>{{ traversals['post_order'] }}</p>
+        </div>
+        {% endif %}
+        {% if status_message %}
+        <div class="status-message">
+          <p>{{ status_message }}</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("clearButton").addEventListener("click", function () {
+        // Clear the input field
+        document.getElementById("tree").value = "";
+        
+        // Clear the result container
+        const resultContainer = document.querySelector(".result");
+        if (resultContainer) {
+          resultContainer.innerHTML = "";
+        }
+      });
+    </script>
+  </body>
+</html>

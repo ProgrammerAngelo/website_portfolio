@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue Implementation</title>
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/base_style.css') }}"
+    />
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/queue_style.css') }}"
+    />
+</head>
+<body onload="viewQueue()">
+    <!-- Header Section -->
+    <header>
+        <a href="#" class="logo">
+          <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="Logo"
+          />
+        </a>
+        <nav>
+          <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('profiles') }}">Profiles</a></li>
+            <li><a href="{{ url_for('works') }}">Works</a></li>
+          </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Queue Implementation with Linked List</h1>
+        <div class="queue-container">
+            <input type="text" id="dataInput" placeholder="Enter value" />
+            <div class="button-group">
+                <button onclick="enqueue()">Enqueue</button>
+                <button onclick="dequeue()">Dequeue</button>
+            </div>
+            <div id="queueDisplay"></div>
+        </div>
+    </main>
+</body>
+
+<!-- JavaScript -->
+<script>
+    async function enqueue() {
+        const data = document.getElementById("dataInput").value;
+        if (data === "") {
+            alert("Please enter a value!");
+            return;
+        }
+
+        const response = await fetch("/enqueue", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `data=${data}`,
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            updateQueue(result.queue);
+            document.getElementById("dataInput").value = "";
+        } else {
+            alert(result.message);
+        }
+    }
+
+    async function dequeue() {
+        const response = await fetch("/dequeue", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            alert(`Dequeued: ${result.dequeued}`);
+            updateQueue(result.queue);
+        } else {
+            alert(result.message);
+        }
+    }
+
+    async function viewQueue() {
+        const response = await fetch("/view");
+        const result = await response.json();
+        updateQueue(result.queue);
+    }
+
+    function updateQueue(queue) {
+        const queueDisplay = document.getElementById("queueDisplay");
+        queueDisplay.innerHTML = queue.length ? queue.join(" -> ") : "Queue is empty!";
+    }
+</script>
+</html>
