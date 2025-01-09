@@ -148,6 +148,18 @@ section {
   margin-top: 7rem;
 }
 
+.home-content h1 span {
+  background: linear-gradient(
+    to right,
+    rgb(14, 14, 255),
+    rgb(159, 60, 159),
+    pink,
+    rgb(227, 177, 177)
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
 .home .home-content h1 {
   font-size: 4rem;
   font-weight: 700;
@@ -166,6 +178,7 @@ span {
 
 .home-content p {
   font-size: 1.5rem;
+  text-align: justify;
 }
 
 .home-img {
@@ -231,6 +244,7 @@ span {
   box-shadow: 0 0 25px #f8b7f1;
 }
 
+/*TEXT AREA*/
 .typing-text {
   font-size: 34px;
   font-weight: 600;
@@ -318,6 +332,7 @@ span {
   }
 }
 
+/*======================================================*/
 /* PROFILE SECTION */
 .profile-section {
   padding: 5rem 9%;
@@ -366,6 +381,7 @@ span {
   color: #dcdcdc;
 }
 
+/*======================================================*/
 /* WORKS SECTION */
 .works-section {
   padding: 5rem 9%;
@@ -413,6 +429,7 @@ span {
   color: #dcdcdc;
 }
 
+/*======================================================*/
 /* FOOTER SECTION */
 footer {
   background-color: #161616;
