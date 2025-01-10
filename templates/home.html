@@ -30,52 +30,17 @@
 
     <!-- HERO SECTION -->
     <section class="hero">
-      <div class="home">
-        <div class="home-img">
-          <img
-            src="{{ url_for('static', filename='images/group_pics.gif') }}"
-            alt="Profile Image"
+      <div class="codyssey-hero">
+        <video class="codyssey-video" autoplay muted loop playsinline>
+          <source
+            src="{{ url_for('static', filename='mp4/codyssey-hero.mp4') }}"
+            type="video/mp4"
           />
-        </div>
-        <div class="home-content">
-          <h1><span>CODYSSEY'S</span> WEBSITE</h1>
-          <h3 class="typing-text">I'm <span></span></h3>
-          <p>
-            Codyssey is a dedicated group of Computer Engineering students
-            united by a shared passion for technology, innovation, and teamwork.
-            We aim to foster learning, creativity, and collaboration as we work
-            on projects and explore the latest advancements in the field of
-            engineering. Through shared experiences and knowledge, we strive to
-            make an impact and shape the future of technology.
-          </p>
-          <div class="social-icons">
-            <a
-              href="https://www.linkedin.com/in/sheena-mae-delima-413809297/"
-              target="_blank"
-            >
-              <i class="fa-brands fa-linkedin"></i>
-            </a>
-            <a
-              href="https://github.com/ProgrammerAngelo/website_portfolio.git"
-              target="_blank"
-            >
-              <i class="fa-brands fa-github"></i>
-            </a>
-            <a
-              href="https://www.facebook.com/profile.php?id=100074418943027&mibextid=ZbWKwL"
-              target="_blank"
-            >
-              <i class="fa-brands fa-facebook"></i>
-            </a>
-            <a
-              href="https://www.instagram.com/chiin.chiin_?igsh=MTA2anB0eTdva2J3Mg=="
-              target="_blank"
-            >
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-          </div>
-          <a href="{{ url_for('profiles') }}" class="btn">About Us</a>
-        </div>
+          Does not support mp4
+        </video>
+        <a href="{{ url_for('profiles') }}">
+          <button id="about-us-bttn">About Us</button>
+        </a>
       </div>
     </section>
 

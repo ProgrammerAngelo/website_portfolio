@@ -64,7 +64,7 @@ header {
   position: absolute;
   left: 2%;
   font-size: 3rem;
-  color: #b74b4b;
+  color: #4bb77d;
   font-weight: 800;
   cursor: pointer;
 }
@@ -100,8 +100,9 @@ nav a {
 
 nav a:hover,
 nav a.active {
-  color: #b74b4b;
-  border-bottom: 3px solid #b74b4b;
+  font-weight: 500;
+  color: #d627b0;
+  border-bottom: 3px solid #cc8282;
 }
 
 @media (max-width: 995px) {
@@ -137,113 +138,93 @@ nav a.active {
 /* MAIN CONTENT SECTION */
 section {
   min-height: 100vh;
-  padding: 5rem 9% 5rem;
 }
 
-.home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8rem;
-  margin-top: 7rem;
-}
-
-.home-content h1 span {
-  background: linear-gradient(
-    to right,
-    rgb(14, 14, 255),
-    rgb(159, 60, 159),
-    pink,
-    rgb(227, 177, 177)
-  );
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.home .home-content h1 {
-  font-size: 4rem;
-  font-weight: 700;
-  line-height: 1.3;
-}
-
-span {
-  color: #ffffff;
-}
-
-.home-content h3 {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-}
-
-.home-content p {
-  font-size: 1.5rem;
-  text-align: justify;
-}
-
-.home-img {
-  border-radius: 50%;
-}
-
-.home-img img {
+/* Video Class */
+.codyssey-hero {
   position: relative;
-  max-width: 380px; /* Adjust the max width */
-  max-height: 380px; /* Adjust the max height */
-  border-radius: 25%;
-  box-shadow: 0 0 25px solid #b74b4b;
+  width: 100%;
+  height: 100vh; /* Adjusts the height to match the full viewport */
+  overflow: hidden;
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: flex-end; /* Aligns the button at the bottom */
+}
+
+.codyssey-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the video covers the section area without distortion */
+  z-index: -1; /* Keeps the video in the background */
+}
+
+/* About Us Button */
+#about-us-bttn {
+  position: absolute;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(154, 13, 167);
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
   cursor: pointer;
-  transition: 0.2s linear;
-}
-
-.home-img img:hover {
-  font-size: 1.8rem;
-  font-weight: 500;
-}
-
-/* SOCIAL ICONS SECTION */
-.social-icons a {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 4rem;
-  height: 4rem;
-  background-color: transparent;
-  border: 0.2rem solid hsl(308, 94%, 86%);
-  font-size: 2rem;
-  border-radius: 50%;
-  margin: 3rem 1.5rem 3rem 0;
-  transition: 0.3s ease;
-  color: #ac49da;
-}
-
-.social-icons a:hover {
-  color: black;
-  transform: scale(1.3) translateY(-5px);
-  background-color: #6bddf1;
-  box-shadow: 0 0 25px #f8b7f1;
-}
-
-.btn {
+  border: none;
+  margin-bottom: 20px; /* Adjust this to control the button's bottom margin */
+  top: 80%;
+  transform: translateX(-50%) translateY(50px); /* Start below the normal position */
+  transform: -50% -50%;
   display: inline-block;
-  padding: 1rem 2.8rem;
-  background-color: rgb(0, 0, 0);
+  background-color: transparent;
   border-radius: 4rem;
   font-size: 1.6rem;
-  color: #ac49da;
   letter-spacing: 0.3rem;
   font-weight: 600;
-  border: 2px solid hsl(308, 94%, 86%);
-  transition: 0.3s ease;
-  cursor: pointer;
+  border: 2px solid hsl(0, 0%, 100%);
+  text-decoration: solid;
+  text-shadow: #dcdcdc;
+  left: 50%;
+  opacity: 0; /* Start invisible */
+  animation: ascend 4.6s forwards ease-in-out; /* Add the ascend animation */
 }
 
-.btn:hover {
+#about-us-bttn:hover {
   transform: scale3d(1.03);
-  background-color: #b74b4b;
-  color: rgb(208, 208, 208);
+  background-color: #5aafff;
+  color: rgb(154, 13, 167);
   box-shadow: 0 0 25px #f8b7f1;
 }
 
+#about-us-bttn:active {
+  background-color: #f084d5; /* Darker color when clicked */
+  color: #ffffff; /* Keep the text white */
+  box-shadow: 0 0 15px #f8b7f1; /* Optional: Keep the glowing effect when clicked */
+}
+
+/* Ascend Animation */
+@keyframes ascend {
+  0% {
+    transform: translateX(-50%) translateY(50px); /* Start 50px below */
+    opacity: 0; /* Start invisible */
+  }
+  50% {
+    transform: translateX(-50%) translateY(50px); /* Start 50px below */
+    opacity: 0; /* Start invisible */
+  }
+  70% {
+    transform: translateX(-50%) translateY(40px); /* Start 50px below */
+    opacity: 0; /* Start invisible */
+  }
+  85% {
+    transform: translateX(-50%) translateY(30px); /* Start 50px below */
+    opacity: 0; /* Start invisible */
+  }
+  100% {
+    transform: translateX(-50%) translateY(0); /* Final position */
+    opacity: 1; /* Fade in */
+  }
+}
+/*=====================================*/
 /*TEXT AREA*/
 .typing-text {
   font-size: 34px;
