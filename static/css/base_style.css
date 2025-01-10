@@ -12,9 +12,14 @@
     padding: 15px;
   }
 
+  .gallery {
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center; /* Center images */
+  }
+
   .gallery img {
-    width: 100px; /* Reduce image size */
-    height: 150px;
+    max-width: 100px; /* Reduce image size */
+    height: auto; /* Maintain aspect ratio */
   }
 
   #about-us-bttn {
@@ -292,6 +297,7 @@ section {
 
 .gallery {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center; /* Centers the images horizontally */
   align-items: center; /* Centers images vertically */
@@ -299,12 +305,13 @@ section {
   padding: 40px 20px;
   text-align: center;
   margin: 5px 20px 5px 20px;
-  overflow-y: auto; /* Allow vertical scrolling only if necessary */
+  overflow: hidden; /* Prevents overflow */
 }
 
 .gallery img {
   width: 150px;
   height: 200px;
+  max-width: 130px; /* Limit max width */
   object-fit: cover; /* Ensures the image covers the area without distortion */
   border-radius: 10px;
   transition: transform 0.3s;
