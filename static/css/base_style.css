@@ -30,6 +30,20 @@
   .codyssey-hero {
     height: auto; /* Adjust height for small screens */
   }
+  .works-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    width: 100%; /* Ensure it takes full width */
+    min-height: auto; /* Remove fixed height */
+  }
+
+  .dsa-works {
+    flex: 1 1 100%; /* Ensure full width on small screens */
+    min-height: auto; /* Allow height to adjust based on content */
+    padding: 15px;
+  }
 }
 
 /* ||ROOT OF THE DOC|| */
@@ -173,17 +187,18 @@ nav a.active {
 /* <Codyssey Opening Section> */
 section {
   min-height: 100vh;
+  z-index: 2;
 }
 
 /* Video Class */
 .codyssey-hero {
   position: relative;
   width: 100%;
-  height: 100vh; /* Adjusts the height to match the full viewport */
+  height: 100vh; 
   overflow: hidden;
   display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: flex-end; /* Aligns the button at the bottom */
+  justify-content: center; 
+  align-items: flex-end; 
 }
 
 .codyssey-video {
@@ -192,8 +207,8 @@ section {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the video covers the section area without distortion */
-  z-index: -1; /* Keeps the video in the background */
+  object-fit: cover;
+  z-index: -1; 
 }
 
 /* About Us Button */
@@ -205,7 +220,7 @@ section {
   border-radius: 0.5rem;
   cursor: pointer;
   border: none;
-  margin-bottom: 20px; /* Adjust this to control the button's bottom margin */
+  margin-bottom: 20px; 
   top: 80%;
   transform: translateX(-50%) translateY(50px); /* Start below the normal position */
   transform: -50% -50%;
@@ -219,7 +234,7 @@ section {
   text-decoration: solid;
   text-shadow: #dcdcdc;
   left: 50%;
-  opacity: 0; /* Start invisible */
+  opacity: 0; 
   animation: ascend 4.6s forwards ease-in-out; /* Add the ascend animation */
 }
 
@@ -231,31 +246,30 @@ section {
 }
 
 #about-us-bttn:active {
-  background-color: #f084d5; /* Darker color when clicked */
-  color: #ffffff; /* Keep the text white */
-  box-shadow: 0 0 15px #f8b7f1; /* Optional: Keep the glowing effect when clicked */
+  background-color: #f084d5; 
+  color: #ffffff; 
+  box-shadow: 0 0 15px #f8b7f1; 
 }
 
 /* Ascend Animation */
 @keyframes ascend {
   0% {
-    transform: translateX(-50%) translateY(50px); /* Start 50px below */
-    opacity: 0; /* Start invisible */
+    transform: translateX(-50%) translateY(50px); 
   }
   50% {
-    transform: translateX(-50%) translateY(50px); /* Start 50px below */
-    opacity: 0; /* Start invisible */
+    transform: translateX(-50%) translateY(50px);
+    opacity: 0; /
   }
   70% {
-    transform: translateX(-50%) translateY(40px); /* Start 50px below */
-    opacity: 0; /* Start invisible */
+    transform: translateX(-50%) translateY(40px); 
+    opacity: 0; 
   }
   85% {
-    transform: translateX(-50%) translateY(30px); /* Start 50px below */
-    opacity: 0; /* Start invisible */
+    transform: translateX(-50%) translateY(30px); 
+    opacity: 0; 
   }
   100% {
-    transform: translateX(-50%) translateY(0); /* Final position */
+    transform: translateX(-50%) translateY(0); 
     opacity: 1; /* Fade in */
   }
 }
@@ -263,13 +277,13 @@ section {
 /*======================================================*/
 /* <Profile Section> */
 .profile-section {
-  display: flex; /* Center child elements horizontally and vertically */
+  display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   background: fixed;
   padding: 20px;
-  background-color: #d0cce0;
+  z-index: 2;
 }
 
 .prof-sec-details {
@@ -278,29 +292,66 @@ section {
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: 20px; /* Smooth rounded corners */
+  border-radius: 20px;
   padding: 30px;
-  box-sizing: border-box;
   width: 95%;
   max-width: 1200px;
-  border-radius: 30px;
-  background: #d0cce0;
-  box-shadow: 15px 15px 30px #b0aabd,
-    /* Adjusted to be darker for depth */ -15px -15px 30px #ffffff; /* Brighter for light source effect */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.05)
+  );
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5),
+    inset 0 2px 5px rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  margin: 30px auto;
+  color: #fff;
+  overflow: hidden;
+}
+.prof-sec-details::before,
+.prof-sec-details::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.3),
+    transparent 60%
+  );
+  z-index: -1; /* Behind the element */
+  transform: rotate(45deg);
+  animation: rotateGlow 6s infinite linear; /* Smooth glow effect */
 }
 
-.prof-sec-details h2 {
-  font-family: Poppins;
-  font-size: 2.4rem;
-  margin-bottom: 20px;
+.prof-sec-details::after {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 0.2),
+    rgba(255, 0, 255, 0.2)
+  );
+  animation: rotateGlow 8s infinite reverse linear; /* Add contrast with rotation */
+}
+
+@keyframes rotateGlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .gallery {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center; /* Centers the images horizontally */
-  align-items: center; /* Centers images vertically */
+  justify-content: center; 
+  align-items: center; 
   gap: 15px;
   padding: 40px 20px;
   text-align: center;
@@ -311,8 +362,8 @@ section {
 .gallery img {
   width: 150px;
   height: 200px;
-  max-width: 130px; /* Limit max width */
-  object-fit: cover; /* Ensures the image covers the area without distortion */
+  max-width: 130px; 
+  object-fit: cover; 
   border-radius: 10px;
   transition: transform 0.3s;
   border-color: #5aafff;
@@ -355,41 +406,74 @@ section {
 }
 
 /*======================================================*/
-/* WORKS SECTION */
+/* <Works Section> */
 .works-section {
-  padding: 5rem 9%;
-  background-color: rgba(255, 255, 255, 0.05);
-  text-align: center;
-  background-color: #534936;
-  padding: 30px;
-  align-items: center;
+  display: flex; /*?????????????????????????????*/
+  position: relative;
+  background-image: url();
+  min-height: 100vh;
+  min-width: 100vh;
+  z-index: 2;
   justify-content: center;
+  flex-wrap: wrap;
+  height: 35%;
 }
 
 .works-details {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  flex-wrap: wrap;
+  position: relative;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  min-height: 90vh;
+  min-width: 100vh;
+  margin: 30px;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px; /* Adds space between works-text and dsa-works */
+  height: 40px;
 }
 
 .dsa-works {
-  width: 50px;
-  height: 50px;
+  flex: 1 1 45%; /* Each takes 45% of the container width */
+  min-height: 35vh; /* Set a reasonable min-height */
+  text-align: center;
+  background-color: #2dd271;
+  box-sizing: border-box; /* Ensure padding is included in the width/height */
 }
 
-.dsa-works img {
-  width: 50px;
-  height: 50px;
+/* General styles for text columns */
+.text-column-left,
+.text-column-right {
+  display: flex;
+  flex-direction: column; /* Stack letters vertically */
+  align-items: center; /* Center align horizontally */
+  justify-content: center; /* Center align vertically */
+  background-color: #5aafff; /* Default background color */
+  width: 150px; /* Consistent width */
+  height: 300px; /* Consistent height */
 }
 
-.works-text h2 {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 100px;
+/* Custom color for right column */
+.text-column-right {
+  background-color: #81f230;
+  height: 83px;
+  min-height: 83vh;
+  min-width: 25vh;
+}
+
+.text-column-left {
+  background-color: #81f230;
+  height: 83px;
+  min-height: 83vh;
+  min-width: 25vh;
+}
+
+/* Letter styling */
+.vertical-text {
+  font-size: 2rem; /* Adjust font size */
+  font-weight: bold; /* Bold text */
+  margin: 5px 0; /* Add spacing between letters */
+  color: black; /* Text color */
 }
 
 /*======================================================*/
