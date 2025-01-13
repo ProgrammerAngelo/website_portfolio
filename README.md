@@ -10,6 +10,6 @@ Agulto, Marck Christian I. <br>
 Delima, Sheena Mae D. <br>
 Flores, John Gabriel Louis <br>
 Macasinag, Edmharx <br>
-Pangilana, Angelo <br>
+Pangilagan, Angelo <br>
 Teylan, Reece Baron <br>
 Tuazon, Daryl Keith <br>
