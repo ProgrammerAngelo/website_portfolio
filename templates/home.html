@@ -2,12 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="static/css/base_style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <title>Portfolio Website</title>
   </head>
   <body>
@@ -79,11 +91,170 @@
     <section class="works-section">
       <div class="works-details">
         <div class="text-column-left">
-          <span class="vertical-text">O</span>
-          <span class="vertical-text">U</span>
+          <span class="vertical-text">O</span><br />
+          <span class="vertical-text">U</span><br />
           <span class="vertical-text">R</span>
         </div>
-        <div class="dsa-works"><h2>Hello</h2></div>
+        <div class="dsa-works">
+          <div class="slider-container swiper">
+            <div class="slide-content">
+              <div class="card-wrapper swiper-wrapper">
+                                <!-- Card 1 -->
+                <div class="card swiper-slide">
+                  <a href="link_list">
+                    <div class="image-content">
+                      <span class="overlay"></span>
+                      <div class="card-image">
+                        <img
+                          src="static/images/img_chin.jpg"
+                          alt="linked list poster"
+                          class="card-img"
+                        />
+                      </div>
+                    </div>
+                    <div class="card-content">
+                      <h2 class="name">Linked List</h2>
+                      <p class="description">
+                        A linear data structure where elements are stored in
+                        nodes, each contaaining a reference to the next node.
+                      </p>
+                      <button class="button">Explore</button>
+                    </div>
+                  </a>
+                </div>
+
+                                <!-- Card 2 -->
+                <div class="card swiper-slide">
+                  <a href="stack">
+                    <div class="image-content">
+                      <span class="overlay"></span>
+                      <div class="card-image">
+                        <img src="images/khadem.png" alt="stack poster" class="card-img" />
+                      </div>
+                    </div>
+                    <div class="card-content">
+                      <h2 class="name">Stack</h2>
+                      <p class="description">
+                        A last-in, first-out (LIFO) data structure where elements
+                        are added and removed from the top.
+                      </p>
+                      <button class="button">Explore</button>
+                    </div>
+                  </a>
+                </div>
+
+                                  <!-- Card 3 -->
+                <div class="card swiper-slide">
+                  <a href="queue_page">
+                    <div class="image-content">
+                      <span class="overlay"></span>
+                      <div class="card-image">
+                        <img src="images/khadem.png" alt="queue poster" class="card-img" />
+                      </div>
+                    </div>
+                    <a href="link_list">
+                    <div class="card-content">
+                      <h2 class="name">Queue</h2>
+                      <p class="description">
+                        A first-in, first-out (FIFO) data structure where elements
+                        are added at the rear and removed from the front.
+                      </p>
+                      <button class="button">Explore</button>
+                  </a>
+                </div>
+
+                </div>
+                                  <!-- Card 4 -->
+                <div class="card swiper-slide">
+                  <a href="binary_tree_page">
+                    <div class="image-content">
+                      <span class="overlay"></span>
+                      <div class="card-image">
+                        <img src="images/khadem.png" alt="binary tree poster" class="card-img" />
+                      </div>
+                    </div>
+                    <div class="card-content">
+                      <h2 class="name">Binary Tree</h2>
+                      <p class="description">
+                        A hierarchical structure where each node has at most two
+                        children, typically referred to as the left and right
+                        child.
+                      </p>
+                      <button class="button">Explore</button>
+                    </div>
+                  </a>
+                </div>
+
+                                  <!-- Card 5 -->
+                <div class="card swiper-slide">
+                  <a href="graph">
+                    <div class="image-content">
+                      <span class="overlay"></span>
+                      <div class="card-image">
+                        <img src="images/khadem.png" alt="" class="card-img" />
+                      </div>
+                    </div>
+                    <div class="card-content">
+                      <h2 class="name">Graph</h2>
+                      <p class="description">
+                        A collection of nodes (vertices) connected by edges, used
+                        to represent relationships between entities.
+                      </p>
+                      <button class="button">Explore</button>
+                    </div>
+                  </a>
+                </div>
+
+                                  <!-- Card 6 ???-->
+                <div class="card swiper-slide">
+                  <div class="image-content">
+                    <span class="overlay"></span>
+                    <div class="card-image">
+                      <img src="images/khadem.png" alt="" class="card-img" />
+                    </div>
+                  </div>
+                  <div class="card-content">
+                    <h2 class="name">Sheena ganda</h2>
+                    <p class="description">Lorem</p>
+                    <button class="button">Explore</button>
+                  </div>
+                </div>
+
+                                  <!-- Card 7 -->
+                <div class="card swiper-slide">
+                  <div class="image-content">
+                    <span class="overlay"></span>
+                    <div class="card-image">
+                      <img src="images/khadem.png" alt="" class="card-img" />
+                    </div>
+                  </div>
+                  <div class="card-content">
+                    <h2 class="name">Sheena ganda</h2>
+                    <p class="description">Lorem</p>
+                    <button class="button">Explore</button>
+                  </div>
+                </div>
+                                  <!-- Card 8 -->
+                <div class="card swiper-slide">
+                  <div class="image-content">
+                    <span class="overlay"></span>
+                    <div class="card-image">
+                      <img src="images/khadem.png" alt="" class="card-img" />
+                    </div>
+                  </div>
+                  <div class="card-content">
+                    <h2 class="name">Ganda ka?</h2>
+                    <p class="description">Lorem</p>
+                    <button class="button">Explore</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-button-next swiper-navBtn"></div>
+            <div class="swiper-button-prev swiper-navBtn"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
         <div class="text-column-right">
           <span class="vertical-text">C</span>
           <span class="vertical-text">R</span>
@@ -110,5 +281,36 @@
         </div>
       </div>
     </footer>
+
+    <!-- JS SECTION -->
+    <script>
+      var swiper = new Swiper(".slide-content", {
+        slidesPerView: 3,
+        spaceBetween: 10,
+        centerSlide: "true",
+        fade: "true",
+        grabCursor: "true",
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          dynamicBullets: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+          },
+          520: {
+            slidesPerView: 2,
+          },
+          950: {
+            slidesPerView: 3,
+          },
+        },
+      });
+    </script>
   </body>
 </html>

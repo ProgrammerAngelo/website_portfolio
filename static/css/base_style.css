@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
 
+
 /* Adjust styles for screens smaller than 768px */
 @media (max-width: 768px) {
   .logo {
@@ -25,18 +26,11 @@
   #about-us-bttn {
     font-size: 1.4rem;
     padding: 0.8rem 1.5rem;
+    font-family: "Poppins", sans-serif;
   }
 
   .codyssey-hero {
     height: auto; /* Adjust height for small screens */
-  }
-  .works-details {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 15px;
-    width: 100%; /* Ensure it takes full width */
-    min-height: auto; /* Remove fixed height */
   }
 
   .dsa-works {
@@ -44,7 +38,22 @@
     min-height: auto; /* Allow height to adjust based on content */
     padding: 15px;
   }
+  .slide-content {
+    margin: 0 10px;
+  }
+
+  .swiper-navBtn {
+    display: none;
+  }
+  .slide-content {
+    margin: 0 10px;
+  }
+  .swiper-navBtn {
+    display: none;
+  }
 }
+
+  
 
 /* ||ROOT OF THE DOC|| */
 * {
@@ -140,9 +149,9 @@ nav ul li {
 nav a {
   font-size: 1.8rem;
   color: white;
-  font-weight: 500;
   transition: 0.3s ease;
   border-bottom: 3px solid transparent;
+  font-family: "Poppins", sans-serif;
 }
 
 nav a:hover,
@@ -213,25 +222,21 @@ section {
 /* About Us Button */
 #about-us-bttn {
   position: absolute;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: rgb(154, 13, 167);
+  font-family: "Poppins", sans-serif;
+  color: rgb(220, 189, 231);
   padding: 1rem 2rem;
-  border-radius: 0.5rem;
   cursor: pointer;
-  border: none;
   margin-bottom: 20px; 
   top: 80%;
   transform: translateX(-50%) translateY(50px); /* Start below the normal position */
-  transform: -50% -50%;
   display: inline-block;
   background-color: transparent;
   border-radius: 4rem;
   font-size: 1.6rem;
   letter-spacing: 0.3rem;
-  font-weight: 600;
   border: 2px solid hsl(0, 0%, 100%);
   text-decoration: solid;
-  text-shadow: #dcdcdc;
+  text-shadow: #3d3a3a;
   left: 50%;
   opacity: 0; 
   animation: ascend 4.6s forwards ease-in-out; /* Add the ascend animation */
@@ -239,8 +244,8 @@ section {
 
 #about-us-bttn:hover {
   transform: scale3d(1.03);
-  background-color: #5aafff;
-  color: rgb(154, 13, 167);
+  background-color: #ab81b8;
+  color: rgb(28, 28, 28);
   box-shadow: 0 0 25px #f8b7f1;
 }
 
@@ -280,7 +285,6 @@ section {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: fixed;
   padding: 20px;
   z-index: 2;
 }
@@ -309,6 +313,7 @@ section {
   color: #fff;
   overflow: hidden;
 }
+
 .prof-sec-details::before,
 .prof-sec-details::after {
   content: "";
@@ -342,6 +347,62 @@ section {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.prof-sec-details h2 {
+  font-size: 4rem; /* Adjust as needed */
+  font-weight: 900;
+  text-align: center;
+  color: white; /* Main text color */
+  text-shadow: 2px 2px 0 #000, /* Shadow layers */
+               4px 4px 0 #000;
+  position: relative;
+  letter-spacing: 2px;
+  transition: transform 0.3s ease; /* Adds an interactive effect */
+  font-family: "Roboto", sans-serif;
+}
+
+.prof-sec-details h2:hover {
+  transform: scale(1.1) translateY(-5px); /* Adds a hover effect */
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.prof-sec-details h2 {
+  animation: float 3s ease-in-out infinite;
+}
+
+
+@keyframes gradient-outline {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+@keyframes gradient-outline {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
@@ -407,78 +468,264 @@ section {
 /*======================================================*/
 /* <Works Section> */
 .works-section {
-  display: flex; /*?????????????????????????????*/
+  display: flex;
   position: relative;
-  background-image: url();
-  min-height: 100vh;
-  min-width: 100vh;
   z-index: 2;
   justify-content: center;
-  flex-wrap: wrap;
-  height: 35%;
+  width: 100%;
+  height: 100vh; /* Set the height to 100% of the viewport */
+  min-height: 100vh; /* Ensure fallback for smaller screen sizes */
+  overflow: hidden; /* Prevent scrolling */
+  margin: 0; /* Remove margin if any */
 }
 
-.works-details {
+.works-details{
   display: flex;
-  flex-wrap: wrap;
   position: relative;
+  flex-wrap: nowrap;
+  justify-content: space-between; /* Ensure the elements are spaced out */
+  align-items: stretch; /* Ensure equal height for all divs */
+  overflow: hidden; /* Prevent scrolling */
+  margin: 50px;
+  align-content: center;
   width: 100%;
-  min-height: 90vh;
-  min-width: 100vh;
-  margin: 30px;
-  justify-content: center;
-  padding: 20px;
-  gap: 20px; /* Adds space between works-text and dsa-works */
-  height: 40px;
+  height: 100vh; /* Set the height to 100% of the viewport */
+  min-height: 100vh; /* Ensure fallback for smaller screen sizes */
 }
 
 .dsa-works {
-  flex: 1 1 45%; /* Each takes 45% of the container width */
-  min-height: 35vh; /* Set a reasonable min-height */
+  flex: 1 1 20%; /* Grow 3 times more than others */
   text-align: center;
-  background-color: #2dd271;
-  box-sizing: border-box; /* Ensure padding is included in the width/height */
-}
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%; /* Ensure it stretches vertically */
+  padding: 10px;
+  width: 70%;
+}
 /* General styles for text columns */
 .text-column-left,
 .text-column-right {
+  flex: 1 1 40%; /* Each column takes equal width, flex 1, shrinkable */
   display: flex;
-  flex-direction: column; /* Stack letters vertically */
-  align-items: center; /* Center align horizontally */
-  justify-content: center; /* Center align vertically */
-  background-color: #5aafff; /* Default background color */
-  width: 150px; /* Consistent width */
-  height: 300px; /* Consistent height */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  min-height: 100vh; /* Ensure it stretches vertically */
+  max-height: 100%; /* Avoid overflow */
 }
 
-/* Custom color for right column */
-.text-column-right {
-  background-color: #81f230;
-  height: 83px;
-  min-height: 83vh;
-  min-width: 25vh;
-}
 
-.text-column-left {
-  background-color: #81f230;
-  height: 83px;
-  min-height: 83vh;
-  min-width: 25vh;
-}
-
-/* Letter styling */
+/* Letter styling for vertical text with animated gradient and subtle 3D shadow */
 .vertical-text {
-  font-size: 2rem; /* Adjust font size */
-  font-weight: bold; /* Bold text */
-  margin: 5px 0; /* Add spacing between letters */
-  color: black; /* Text color */
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  text-decoration: solid;
+  flex-direction: column;
+  justify-content: center; /* Center the letters vertically */
+  align-items: center; /* Center the letters horizontally */
+  font-size: 50px;
+  font-weight: bold;
+  color: transparent; /* Make the text transparent */
+  background: linear-gradient(90deg, #d39aeb, #ffffff, #6262ea, #f880be); /* Gradient with purple, blue, white, pink, and green */
+  background-size: 400% 400%; /* Make the gradient bigger than the container to allow the movement effect */
+  animation: gradientMove 5s ease infinite; /* Apply animation */
+  -webkit-background-clip: text; /* Apply gradient to text */
+  background-clip: text; /* Support for non-webkit browsers */
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3), /* Subtle depth effect */
+               4px 4px 6px rgba(0, 0, 0, 0.2); /* Additional layers for depth */
+  height: auto; /* Allow the height to adapt to the content */
+  text-align: center; /* Ensure the text is centered */
+  max-height: 100vh; /* Prevent overflow on larger font sizes */
+  overflow: hidden; /* Prevent content from overflowing */
 }
+
+/* Animation to move the gradient */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%; /* Start position */
+  }
+  50% {
+    background-position: 100% 50%; /* Middle position */
+  }
+  100% {
+    background-position: 0% 50%; /* End position */
+  }
+}
+
+/* Style each letter individually */
+.vertical-text span {
+  display: block; /* Make each letter a block element */
+  line-height: 1.5; /* Increase line-height to control space between letters */
+}
+
+
+/*=-----------------------------------------------*/
+.slider-container {
+  max-width: 1120px;
+  width: 100%;
+  padding: 40px 0;
+}
+.slide-content {
+  margin: 0 40px;
+  overflow: hidden;
+  border-radius: 25px;
+}
+.card {
+  border-radius: 25px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.05)
+  );
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2),
+    inset 0 2px 5px rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  margin: 30px auto;
+  color: #fff;
+  overflow: hidden;
+}
+
+.image-content,
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 14px;
+}
+.image-content {
+  position: relative;
+  row-gap: 5px;
+  padding: 25px 0;
+}
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 25px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.05)
+  );
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2),
+    inset 0 2px 5px rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  position: relative;
+  color: #fff;
+  overflow: hidden;
+
+}
+.overlay::before,
+.overlay::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -40px;
+  height: 40px;
+  width: 40px;
+}
+.overlay::after {
+  border-radius: 0 25px 0 0;
+}
+.card-image {
+  position: relative;
+  height: 230px;
+  width: 200px;
+  border-radius: 50px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.05)
+  );
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2),
+    inset 0 2px 5px rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+.card-image .card-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+
+}
+.name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #f0f0f0;
+}
+.description {
+  font-size: 14px;
+  color: #c4bfbf;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.button {
+  border: none;
+  font-size: 16px;
+  color: #fff;
+  padding: 8px 16px;
+  background-color: #9725d0;
+  border-radius: 6px;
+  margin: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;  /* Optional: makes the text capitalized */
+  font-weight: bold;         /* Optional: adds a bold weight to the text */
+}
+
+.button:hover {
+  background-color: #f652dd;
+  transform: scale(1.05); /* Slightly enlarges the button */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow effect */
+  color: #f1f1f1; /* Optionally change text color on hover */
+}
+
+.button:active {
+  transform: scale(1); /* Resets the scale when clicked */
+  box-shadow: none;    /* Removes shadow when button is pressed */
+  background-color: #52a7ab;
+}
+
+
+.swiper-navBtn {
+  color: #6e93f7;
+  transition: color 0.3s ease;
+}
+.swiper-navBtn:hover {
+  color: #4070f4;
+}
+.swiper-navBtn::before,
+.swiper-navBtn::after {
+  font-size: 35px;
+}
+.swiper-button-next {
+  right: 0;
+}
+.swiper-button-prev {
+  left: 0;
+}
+.swiper-pagination-bullet {
+  background-color: #6e93f7;
+  opacity: 1;
+}
+.swiper-pagination-bullet-active {
+  background-color: #4070f4;
+}
+
 
 /*======================================================*/
 /* FOOTER SECTION */
 footer {
-  background-color: #161616;
   padding: 2rem 9%;
   text-align: center;
   color: #dcdcdc;
@@ -496,7 +743,7 @@ footer {
 }
 
 .footer-social-icons a {
-  color: #b74b4b;
+  color: #864bb7;
   font-size: 2rem;
   transition: transform 0.3s ease, color 0.3s ease;
 }
