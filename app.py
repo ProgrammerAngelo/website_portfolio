@@ -2,14 +2,14 @@
 from flask import Flask, render_template, request, jsonify
 from link_list import LinkedList
 from stack import ShuntingYard
-from queue_page import Queue_App
+from queue_page import Node, Deque_App
 from binary_tree_page import BinaryTree
 
 # ========================
 # || ROOT ||
 app = Flask(__name__)
 linked_list = LinkedList()
-queue_app = Queue_App()  # Instantiate the Queue_App object
+deque_app = Deque_App()  # Instantiate the Queue_App object
 binary_tree = BinaryTree()
 
 # ========================
@@ -128,26 +128,65 @@ def convert():
 
 @app.route('/queue')  # Route for accessing the queue page
 def queue_page():
-    return render_template('queue_page.html')  # This will render your queue page (HTML)
+    return render_template('queue_page.html')  # Render the queue HTML page
 
+# ----------------------------
+# Simple Queue Operations
+# ----------------------------
 @app.route('/enqueue', methods=['POST'])
 def enqueue():
-    data = request.form.get('data')  # Use .get() to safely retrieve the 'data' value
+    data = request.form.get('data')
     if not data:
         return jsonify({"status": "error", "message": "No data provided"}), 400
-    queue_app.enqueue(data)  # Call the method on the instance of Queue_App
-    return jsonify({"status": "success", "queue": queue_app.view_queue()})  # View updated queue after enqueue
+    deque_app.enqueue(data)  # Call enqueue (adds to the rear)
+    return jsonify({"status": "success", "queue": deque_app.view_deque()})
 
 @app.route('/dequeue', methods=['POST'])
 def dequeue():
-    dequeued = queue_app.dequeue()  # Call the method on the instance of Queue_App
+    dequeued = deque_app.dequeue()  # Call dequeue (removes from the front)
     if dequeued is None:
         return jsonify({"status": "error", "message": "Queue is empty!"}), 400
-    return jsonify({"status": "success", "dequeued": dequeued, "queue": queue_app.view_queue()})  # Return the dequeued value and updated queue
+    return jsonify({"status": "success", "dequeued": dequeued, "queue": deque_app.view_deque()})
 
+# ----------------------------
+# Double-Ended Queue Operations
+# ----------------------------
+@app.route('/push', methods=['POST'])
+def push():
+    data = request.form.get('data')
+    if not data:
+        return jsonify({"status": "error", "message": "No data provided"}), 400
+    deque_app.push(data)  # Call push (adds to the front)
+    return jsonify({"status": "success", "queue": deque_app.view_deque()})
+
+@app.route('/pop', methods=['POST'])
+def pop():
+    popped = deque_app.pop()  # Call pop (removes from the front)
+    if popped is None:
+        return jsonify({"status": "error", "message": "Deque is empty!"}), 400
+    return jsonify({"status": "success", "popped": popped, "queue": deque_app.view_deque()})
+
+@app.route('/inject', methods=['POST'])
+def inject():
+    data = request.form.get('data')
+    if not data:
+        return jsonify({"status": "error", "message": "No data provided"}), 400
+    deque_app.inject(data)  # Call inject (adds to the rear)
+    return jsonify({"status": "success", "queue": deque_app.view_deque()})
+
+@app.route('/eject', methods=['POST'])
+def eject():
+    ejected = deque_app.eject()  # Call eject (removes from the rear)
+    if ejected is None:
+        return jsonify({"status": "error", "message": "Deque is empty!"}), 400
+    return jsonify({"status": "success", "ejected": ejected, "queue": deque_app.view_deque()})
+
+# ----------------------------
+# View Queue / Deque State
+# ----------------------------
 @app.route('/view', methods=['GET'])
-def view_queue():
-    return jsonify({"queue": queue_app.view_queue()})  # View current state of the queue
+def view_deque():
+    return jsonify({"queue": deque_app.view_deque()})
 
 # ========================
 # BINARY TREE SYNTAX
