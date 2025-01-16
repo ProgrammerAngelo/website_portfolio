@@ -4,6 +4,8 @@ from link_list import LinkedList
 from stack import ShuntingYard
 from queue_page import Node, Deque_App
 from binary_tree_page import BinaryTree
+import networkx as nx
+from stations import stations_coordinates, connections
 
 # ========================
 # || ROOT ||
@@ -220,6 +222,42 @@ def binary_tree_page():
             status_message = "No valid input provided."
 
     return render_template('binary_tree_page.html', traversals=traversals, status_message=status_message)
+
+#
+# 
+# 
+@app.route('/graph')
+def graph():
+    # Pass the stations data to the template
+    return render_template('graph.html', stations=stations_coordinates)
+
+# Create a graph and add nodes and edges
+G = nx.Graph()
+for station in stations_coordinates.keys():
+    G.add_node(station, pos=stations_coordinates[station])
+
+for station1, station2 in connections:
+    G.add_edge(station1, station2, weight=1)
+
+# Function to find the shortest path
+def find_shortest_path(start, end):
+    if start not in G or end not in G:
+        return None
+    return nx.shortest_path(G, source=start, target=end, weight='weight')
+
+@app.route('/find_path', methods=['POST'])
+def find_path():
+    start = request.form['start'].lower().strip()
+    end = request.form['end'].lower().strip()
+
+    # Find the shortest path
+    shortest_path = find_shortest_path(start, end)
+
+    if shortest_path is None:
+        return jsonify({'error': 'Invalid stations or no path found.'})
+    
+    path_coords = [stations_coordinates[station] for station in shortest_path]
+    return jsonify({'path': shortest_path, 'coordinates': path_coords})
 
 if __name__ == "__main__":
     app.run(debug=True)
