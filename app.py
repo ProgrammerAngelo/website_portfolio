@@ -1,4 +1,3 @@
-# || IMPORTS ||
 from flask import Flask, render_template, request, jsonify
 from link_list import LinkedList
 from stack import ShuntingYard
@@ -186,46 +185,128 @@ def eject():
 # ----------------------------
 # View Queue / Deque State
 # ----------------------------
-@app.route('/view', methods=['GET'])
-def view_deque():
-    return jsonify({"queue": deque_app.view_deque()})
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+class BinaryTree:
+    # Build a binary tree from infix expression
+    @staticmethod
+    def from_infix(expression):
+        def build_tree(tokens):
+            ops = []
+            nodes = []
+            precedence = {'+': 1, '-': 1, '*': 2, '/': 2}
+
+            def attach_operator():
+                operator = ops.pop()
+                right = nodes.pop()
+                left = nodes.pop()
+                operator_node = TreeNode(operator)
+                operator_node.left = left
+                operator_node.right = right
+                nodes.append(operator_node)
+
+            for token in tokens:
+                if token.isalnum():  # Operand
+                    nodes.append(TreeNode(token))
+                elif token in precedence:  # Operator
+                    while ops and precedence.get(ops[-1], 0) >= precedence[token]:
+                        attach_operator()
+                    ops.append(token)
+                elif token == '(':
+                    ops.append(token)
+                elif token == ')':
+                    while ops[-1] != '(':
+                        attach_operator()
+                    ops.pop()
+
+            while ops:
+                attach_operator()
+
+            return nodes[0]
+
+        tokens = expression.replace('(', ' ( ').replace(')', ' ) ').split()
+        return build_tree(tokens)
+
+    # Build a binary tree from postfix expression
+    @staticmethod
+    def from_postfix(expression):
+        stack = []
+        for token in expression.split():
+            if token.isalnum():  # Operand
+                stack.append(TreeNode(token))
+            else:  # Operator
+                right = stack.pop()
+                left = stack.pop()
+                operator_node = TreeNode(token)
+                operator_node.left = left
+                operator_node.right = right
+                stack.append(operator_node)
+        return stack[0]
+
+    # Build a binary tree from prefix expression
+    @staticmethod
+    def from_prefix(expression):
+        stack = []
+        for token in reversed(expression.split()):
+            if token.isalnum():  # Operand
+                stack.append(TreeNode(token))
+            else:  # Operator
+                left = stack.pop()
+                right = stack.pop()
+                operator_node = TreeNode(token)
+                operator_node.left = left
+                operator_node.right = right
+                stack.append(operator_node)
+        return stack[0]
+
+    # Serialize the tree into JSON-compatible format
+    @staticmethod
+    def serialize_tree(root):
+        if not root:
+            return None
+        return {
+            "value": root.value,
+            "left": BinaryTree.serialize_tree(root.left),
+            "right": BinaryTree.serialize_tree(root.right),
+        }
+
+
+@app.route('/binary_tree', methods=['GET'])
+def binary_tree_home():
+    return render_template('binary_tree_page.html')
+
+
+@app.route('/build_tree', methods=['POST'])
+def build_tree():
+    data = request.json
+    expression = data.get('expression', '').strip()
+    expr_type = data.get('type', 'infix').lower()
+
+    if not expression:
+        return jsonify({"error": "Expression cannot be empty!"}), 400
+
+    try:
+        if expr_type == 'infix':
+            root = BinaryTree.from_infix(expression)
+        elif expr_type == 'postfix':
+            root = BinaryTree.from_postfix(expression)
+        elif expr_type == 'prefix':
+            root = BinaryTree.from_prefix(expression)
+        else:
+            return jsonify({"error": f"Unsupported expression type: {expr_type}"}), 400
+
+        tree_data = BinaryTree.serialize_tree(root)
+        return jsonify({"tree": tree_data})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 # ========================
-# BINARY TREE SYNTAX
-@app.route('/binary_tree', methods=['GET', 'POST'])
-def binary_tree_page():
-    status_message = ""
-    traversals = {}
-
-    if request.method == "POST":
-        # Get the tree node values as comma-separated input
-        node_values = request.form.get("tree", "").split(',')
-        
-        # Clean up the values (strip spaces and filter out empty strings)
-        node_values = [value.strip() for value in node_values if value.strip()]
-
-        # Insert values into the binary tree
-        if node_values:
-            for value in node_values:
-                try:
-                    binary_tree.insert(int(value))  # Insert each value into the binary tree
-                except ValueError:
-                    status_message = f"'{value}' is not a valid integer and was skipped."
-
-            # Get current traversals after insertions
-            traversals = {
-                'in_order': binary_tree.in_order_traversal(),
-                'pre_order': binary_tree.pre_order_traversal(),
-                'post_order': binary_tree.post_order_traversal(),
-            }
-        else:
-            status_message = "No valid input provided."
-
-    return render_template('binary_tree_page.html', traversals=traversals, status_message=status_message)
-
-#
-# 
-# 
+# GRAPH SYNTAX
 @app.route('/graph')
 def graph():
     # Pass the stations data to the template

@@ -1,106 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/base_style.css') }}"
-    />
-    <link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/binary_tree_style.css') }}"
-    />
-    <title>Binary Tree</title>
-  </head>
-  <body>
-    <!-- HEADER SECTION -->
-    <header>
-      <a href="#" class="logo">
-        <img
-          src="{{ url_for('static', filename='images/logo.png') }}"
-          alt="Logo"
-        />
-      </a>
-      <nav>
-        <ul>
-          <li><a href="{{ url_for('home') }}">Home</a></li>
-          <li><a href="{{ url_for('profiles') }}">Profiles</a></li>
-          <li><a href="{{ url_for('works') }}">Works</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <!-- TITLE SECTION -->
-    <div class="title-text">
-      <ul>
-        <li>B</li>
-        <li>I</li>
-        <li>N</li>
-        <li>A</li>
-        <li>R</li>
-        <li>Y</li>
-        <li>T</li>
-        <li>R</li>
-        <li>E</li>
-        <li>E</li>
-      </ul>
-    </div>
-
-    <!-- CONTENT SECTION -->
-    <div class="container">
-      <div class="conversion-box">
-        <div class="converter-container-content">
-          <h1 class="converter-text">Binary Tree Traversals</h1>
-          <form action="/binary_tree" method="POST">
-            <label class="direction" for="tree">Enter Node Values (comma-separated):</label><br />
-            <input type="text" id="tree" name="tree" required />
-            <div class="button-container">
-              <button class="btn button_primary">
-                <div class="btn_bg"></div>
-                <span>Submit</span>
-              </button>
-              <button type="button" id="clearButton" class="btn button_primary">
-                <div class="btn_bg"></div>
-                <span>Clear</span>
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <!-- Result Box -->
-      <div class="result-box">
-        {% if traversals %}
-        <div class="result">
-          <h2>Traversal Results:</h2>
-          <h3>In-Order:</h3>
-          <p>{{ traversals['in_order'] }}</p>
-          <h3>Pre-Order:</h3>
-          <p>{{ traversals['pre_order'] }}</p>
-          <h3>Post-Order:</h3>
-          <p>{{ traversals['post_order'] }}</p>
-        </div>
-        {% endif %}
-        {% if status_message %}
-        <div class="status-message">
-          <p>{{ status_message }}</p>
-        </div>
-        {% endif %}
-      </div>
-    </div>
-
-    <script>
-      document.getElementById("clearButton").addEventListener("click", function () {
-        // Clear the input field
-        document.getElementById("tree").value = "";
-        
-        // Clear the result container
-        const resultContainer = document.querySelector(".result");
-        if (resultContainer) {
-          resultContainer.innerHTML = "";
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Tree Visualization</title>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #1e0033;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-      });
+
+        /* Container Styling */
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        form label {
+            color: #00ffff; /* Changed label color to cyan */
+            font-size: 16px; /* Optional: Adjusted font size */
+            font-weight: bold; /* Optional: Made text bold */
+        }
+
+        form input, form select {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        form button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #00ffff;
+            color: #1e0033;
+            font-weight: bold;
+        }
+
+        form button:hover {
+            background: #ff4081;
+            color: #fff;
+        }
+
+        /* Error Message Styling */
+        #error {
+            color: #ff4081;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Binary Tree Section */
+        .tree-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        .tree {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .node::before, .node::after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 20px;
+            background: #fff;
+            top: -10px;
+        }
+
+        .node::before {
+            left: -50%;
+        }
+
+        .node::after {
+            right: -50%;
+        }
+
+        .node:first-child::before,
+        .node:last-child::after {
+            display: none;
+        }
+
+        .children {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .node-data {
+            border: 2px solid #00ffff;
+            border-radius: 50%;
+            padding: 10px;
+            background: #1e0033;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Binary Tree Visualization</h2>
+        <form id="expressionForm">
+            <label for="expression">Enter Expression:</label>
+            <input type="text" id="expression" name="expression" placeholder="Enter your expression here" required>
+            <label for="type">Expression Type:</label>
+            <select id="type" name="type">
+                <option value="infix">Infix</option>
+                <option value="postfix">Postfix</option>
+                <option value="prefix">Prefix</option>
+            </select>
+            <button type="submit">Generate Tree</button>
+        </form>
+        <div id="error"></div>
+        <div class="tree-container">
+            <div id="treeContainer" class="tree"></div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('expressionForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const expression = document.getElementById('expression').value;
+            const type = document.getElementById('type').value;
+
+            // Clear any existing error messages or tree data
+            document.getElementById('error').innerText = '';
+            document.getElementById('treeContainer').innerHTML = '';
+
+            try {
+                const response = await fetch('/build_tree', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ expression, type }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    renderTree(data.tree);
+                } else {
+                    document.getElementById('error').innerText = data.error || 'An error occurred';
+                }
+            } catch (err) {
+                document.getElementById('error').innerText = 'An unexpected error occurred';
+            }
+        });
+
+        function renderTree(node) {
+            const container = document.getElementById('treeContainer');
+            container.innerHTML = '';
+
+            if (!node) {
+                const error = document.createElement('div');
+                error.innerText = 'Invalid tree structure or empty node!';
+                container.appendChild(error);
+                return;
+            }
+
+            function createNode(node) {
+                const div = document.createElement('div');
+                div.className = 'node';
+
+                const data = document.createElement('div');
+                data.className = 'node-data';
+                data.innerText = node.value;
+                div.appendChild(data);
+
+                if (node.left || node.right) {
+                    const children = document.createElement('div');
+                    children.className = 'children';
+                    if (node.left) children.appendChild(createNode(node.left));
+                    if (node.right) children.appendChild(createNode(node.right));
+                    div.appendChild(children);
+                }
+
+                return div;
+            }
+
+            container.appendChild(createNode(node));
+        }
     </script>
-  </body>
+</body>
 </html>
