@@ -3,146 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/binary_tree_page_style.css') }}" />
     <title>Binary Tree Visualization</title>
-    <style>
-        /* General Page Styling */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #1e0033;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        /* Container Styling */
-        .container {
-            max-width: 600px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
-        }
-
-        h2 {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        form label {
-            color: #00ffff; /* Changed label color to cyan */
-            font-size: 16px; /* Optional: Adjusted font size */
-            font-weight: bold; /* Optional: Made text bold */
-        }
-
-        form input, form select {
-            padding: 10px;
-            font-size: 16px;
-            width: 100%;
-            max-width: 400px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-
-        form button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background: #00ffff;
-            color: #1e0033;
-            font-weight: bold;
-        }
-
-        form button:hover {
-            background: #ff4081;
-            color: #fff;
-        }
-
-        /* Error Message Styling */
-        #error {
-            color: #ff4081;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        /* Binary Tree Section */
-        .tree-container {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-        }
-
-        .tree {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .node {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
-        .node::before, .node::after {
-            content: '';
-            position: absolute;
-            width: 1px;
-            height: 20px;
-            background: #fff;
-            top: -10px;
-        }
-
-        .node::before {
-            left: -50%;
-        }
-
-        .node::after {
-            right: -50%;
-        }
-
-        .node:first-child::before,
-        .node:last-child::after {
-            display: none;
-        }
-
-        .children {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-        }
-
-        .node-data {
-            border: 2px solid #00ffff;
-            border-radius: 50%;
-            padding: 10px;
-            background: #1e0033;
-            color: #fff;
-        }
-    </style>
 </head>
 <body>
-
+    <header>
+        <a href="#" class="logo">
+          <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" />
+        </a>
+        <nav>
+          <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('profiles') }}" >Profiles</a></li>
+            <li><a href="{{ url_for('works') }}" class="active">Works</a></li>
+          </ul>
+        </nav>
+      </header>
     <div class="container">
         <h2>Binary Tree Visualization</h2>
         <form id="expressionForm">
@@ -157,9 +33,9 @@
             <button type="submit">Generate Tree</button>
         </form>
         <div id="error"></div>
-        <div class="tree-container">
-            <div id="treeContainer" class="tree"></div>
-        </div>
+    </div>
+    <div class="container tree-container" id="treeContainer">
+        <svg id="svg"></svg>
     </div>
     <script>
         document.getElementById('expressionForm').addEventListener('submit', async function (e) {
@@ -167,9 +43,13 @@
             const expression = document.getElementById('expression').value;
             const type = document.getElementById('type').value;
 
-            // Clear any existing error messages or tree data
             document.getElementById('error').innerText = '';
-            document.getElementById('treeContainer').innerHTML = '';
+            const treeContainer = document.getElementById('treeContainer');
+            const svg = document.getElementById('svg');
+            treeContainer.innerHTML = '<svg id="svg"></svg>'; // Clear the container for the new tree
+            const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svgElement.setAttribute('id', 'svg');
+            treeContainer.appendChild(svgElement);
 
             try {
                 const response = await fetch('/build_tree', {
@@ -181,7 +61,9 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    renderTree(data.tree);
+                    const treeHeight = getTreeHeight(data.tree);
+                    treeContainer.style.height = `${treeHeight * 100}px`; // Adjust container height dynamically
+                    renderTree(data.tree, treeContainer, svgElement);
                 } else {
                     document.getElementById('error').innerText = data.error || 'An error occurred';
                 }
@@ -190,38 +72,44 @@
             }
         });
 
-        function renderTree(node) {
-            const container = document.getElementById('treeContainer');
-            container.innerHTML = '';
+        function renderTree(node, container, svg, depth = 0, x = 400, y = 20, spacing = 100) {
+            if (!node) return;
 
-            if (!node) {
-                const error = document.createElement('div');
-                error.innerText = 'Invalid tree structure or empty node!';
-                container.appendChild(error);
-                return;
+            const nodeEl = document.createElement('div');
+            nodeEl.className = 'node';
+            const nodeData = document.createElement('div');
+            nodeData.className = 'node-data';
+            nodeData.innerText = node.value;
+
+            nodeEl.style.top = `${y}px`;
+            nodeEl.style.left = `${x}px`;
+
+            nodeEl.appendChild(nodeData);
+            container.appendChild(nodeEl);
+
+            if (node.left) {
+                drawLine(svg, x, y, x - spacing, y + 100);
+                renderTree(node.left, container, svg, depth + 1, x - spacing, y + 100, spacing / 2);
             }
 
-            function createNode(node) {
-                const div = document.createElement('div');
-                div.className = 'node';
-
-                const data = document.createElement('div');
-                data.className = 'node-data';
-                data.innerText = node.value;
-                div.appendChild(data);
-
-                if (node.left || node.right) {
-                    const children = document.createElement('div');
-                    children.className = 'children';
-                    if (node.left) children.appendChild(createNode(node.left));
-                    if (node.right) children.appendChild(createNode(node.right));
-                    div.appendChild(children);
-                }
-
-                return div;
+            if (node.right) {
+                drawLine(svg, x, y, x + spacing, y + 100);
+                renderTree(node.right, container, svg, depth + 1, x + spacing, y + 100, spacing / 2);
             }
+        }
 
-            container.appendChild(createNode(node));
+        function drawLine(svg, x1, y1, x2, y2) {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', x1 + 20); // Adjust for node center
+            line.setAttribute('y1', y1 + 20);
+            line.setAttribute('x2', x2 + 20);
+            line.setAttribute('y2', y2);
+            svg.appendChild(line);
+        }
+
+        function getTreeHeight(node) {
+            if (!node) return 0;
+            return 1 + Math.max(getTreeHeight(node.left), getTreeHeight(node.right));
         }
     </script>
 </body>

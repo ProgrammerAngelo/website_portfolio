@@ -6,54 +6,10 @@
     <title>LRT/MRT Map</title>
     <!-- External CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/graph_style.css') }}">
     <!-- Leaflet.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <style>
-        /* Map and input styles */
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            border-color: aqua;
-        }
-
-        #map {
-            width: 80%;
-            height: 70vh;
-            margin-top: 20px; /* Add space below the header */
-        }
-
-        input[type="text"], button {
-            padding: 10px;
-            margin: 5px;
-            font-size: 14px;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        .station-label {
-            font-size: 14px;
-            font-weight: bold;
-            color: black;
-            text-align: center;
-        }
-
-        .selected-station {
-            font-size: 20px;
-            color: rgb(226, 37, 37);
-            text-shadow: 0 0 10px rgba(77, 249, 126, 0.892), 0 0 20px rgba(105, 178, 197, 0.8);
-        }
-    </style>
 </head>
 <body>
     <!-- Header Section -->
