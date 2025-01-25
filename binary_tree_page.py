@@ -1,61 +1,52 @@
 class Node:
-    def __init__(self, value):
-        self.value = value
+    def __init__(self, data):
+        self.data = data
         self.left = None
         self.right = None
 
+
 class BinaryTree:
-    def __init__(self):
-        self.root = None
+    @staticmethod
+    def from_infix(expression):
+        # Implementation for building a binary tree from an infix expression
+        pass
 
-    def insert(self, value):
-        if not self.root:
-            self.root = Node(value)
-        else:
-            self._insert_recursively(self.root, value)
+    @staticmethod
+    def from_postfix(expression):
+        # Implementation for building a binary tree from a postfix expression
+        pass
 
-    def _insert_recursively(self, current, value):
-        if value < current.value:
-            if current.left:
-                self._insert_recursively(current.left, value)
-            else:
-                current.left = Node(value)
-        elif value > current.value:  # Only insert if value is greater
-            if current.right:
-                self._insert_recursively(current.right, value)
-            else:
-                current.right = Node(value)
-        # If value == current.value, we do nothing to prevent duplicates
+    @staticmethod
+    def from_prefix(expression):
+        # Implementation for building a binary tree from a prefix expression
+        pass
 
-    def in_order_traversal(self):
-        result = []
-        self._in_order(self.root, result)
-        return result
+    @staticmethod
+    def in_order_traversal(node):
+        if node is None:
+            return []
+        return BinaryTree.in_order_traversal(node.left) + [node.data] + BinaryTree.in_order_traversal(node.right)
 
-    def _in_order(self, node, result):
-        if node:
-            self._in_order(node.left, result)
-            result.append(node.value)
-            self._in_order(node.right, result)
+    @staticmethod
+    def pre_order_traversal(node):
+        if node is None:
+            return []
+        return [node.data] + BinaryTree.pre_order_traversal(node.left) + BinaryTree.pre_order_traversal(node.right)
 
-    def pre_order_traversal(self):
-        result = []
-        self._pre_order(self.root, result)
-        return result
+    @staticmethod
+    def post_order_traversal(node):
+        if node is None:
+            return []
+        return BinaryTree.post_order_traversal(node.left) + BinaryTree.post_order_traversal(node.right) + [node.data]
 
-    def _pre_order(self, node, result):
-        if node:
-            result.append(node.value)
-            self._pre_order(node.left, result)
-            self._pre_order(node.right, result)
 
-    def post_order_traversal(self):
-        result = []
-        self._post_order(self.root, result)
-        return result
-
-    def _post_order(self, node, result):
-        if node:
-            self._post_order(node.left, result)
-            self._post_order(node.right, result)
-            result.append(node.value)
+class BinaryTreeVisualizer:
+    @staticmethod
+    def tree_to_dict(node):
+        if not node:
+            return None
+        return {
+            'data': node.data,
+            'left': BinaryTreeVisualizer.tree_to_dict(node.left),
+            'right': BinaryTreeVisualizer.tree_to_dict(node.right)
+        }
