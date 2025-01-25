@@ -1,95 +1,272 @@
-/* Ensure the body takes up the full height and centers its content */
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* Prevent horizontal scrollbar */
-  overflow-y: auto; /* Allow vertical scrolling only if necessary */
-  height: 100vh; /* Ensure the body takes full viewport height */
-  width: 100%;
-  display: flex; /* Use flexbox to center the content */
-  justify-content: center; /* Horizontally center content */
-  align-items: center; /* Vertically center content */
-  box-sizing: border-box;
-}
-
-/* Keyframes for rainbow glow */
-@keyframes rainbowGlow {
-  0% {
-    box-shadow: 0 0 10px 2px red;
-  }
-  14% {
-    box-shadow: 0 0 10px 2px orange;
-  }
-  28% {
-    box-shadow: 0 0 10px 2px yellow;
-  }
-  42% {
-    box-shadow: 0 0 10px 2px green;
-  }
-  57% {
-    box-shadow: 0 0 10px 2px cyan;
-  }
-  71% {
-    box-shadow: 0 0 10px 2px blue;
-  }
-  85% {
-    box-shadow: 0 0 10px 2px purple;
-  }
-  100% {
-    box-shadow: 0 0 10px 2px red;
-  }
-}
-
-/* Gallery container */
-.gallery {
+/* Container for the row of posters */
+.github-row {
   display: flex;
-  justify-content: center; /* Centers the images horizontally */
-  align-items: center; /* Ensures vertical alignment if needed */
-  gap: 15px;
-  flex-wrap: wrap; /* Allows images to wrap on smaller screens */
-  padding: 40px 20px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Each poster container */
+.github-container {
+  flex: 1;
+  max-width: 22%;
+  min-width: 120px;
+  box-sizing: border-box;
+  margin-right: 6px;
+}
+
+/* Ensures square aspect ratio for posters */
+.square-container {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+}
+
+/* Image styling for posters */
+.square-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 25px;
+}
+
+.container {
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center; /* Center the glassmorphism container horizontally */
+  align-items: center; /* Center the glassmorphism container vertically */
+  padding: 20px;
+}
+
+/* Glassmorphism effect on the container */
+.glassmorphism {
+  width: 80%; /* Adjust size of the glassmorphism box */
+  max-width: 1200px; /* Optional: max width for large screens */
+  min-height: 80vh; /* Minimum height of the container */
+  padding: 20px;
+  display: flex;
+  flex-direction: row; /* Align items horizontally (image and text side by side) */
+  justify-content: flex-start; /* Align items to the left */
+  align-items: flex-start; /* Align items to the top */
+  border-top: 2px solid rgba(255, 255, 255, 0.45);
+  border-left: 2px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  overflow: hidden;
+  backdrop-filter: blur(10px); /* Glassmorphism blur effect */
+}
+
+/* Left side for image and skills */
+.left-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 250px;
+  height: auto;
+  margin-right: 40px;
+  box-sizing: border-box;
+  padding: 20px;
+  position: relative;
+}
+
+/* Circular container for the image */
+.circular-container {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Image inside the circular container */
+.circular-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#profile-img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Technical skills section */
+.skills {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.skills h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #fff;
+}
+
+.skill {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Label for each skill */
+.skill label {
+  font-size: 3rem;
+  color: #fff;
+}
+
+/* Skill container to hold progress bar and image */
+.skill-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Progress bar container */
+.progress-bar {
+  width: 80%;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+/* Progress levels for each skill */
+.progress {
+  height: 100%;
+  transition: width 1s ease-in-out;
+}
+
+/* Individual skill progress widths (adjust these to represent your skill levels) */
+.python {
+  width: 80%;
+  background-color: #306998;
+}
+
+.html {
+  width: 70%; /* HTML skill level */
+  background-color: #e34c26;
+}
+
+.css {
+  width: 70%; /* CSS skill level */
+  background-color: #264de4;
+}
+
+.aws {
+  width: 20%; /* AWS skill level */
+  background-color: #ff9900;
+}
+
+/* Small circle for skill image */
+.skill-image-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Image inside the small circle */
+.skill-image {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+/* Right side for profile description */
+.right-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 60%;
+  padding-left: 30px;
+}
+
+/* Portfolio and GitHub section in one row */
+.portfolio-github-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+.right-side h2 {
+  margin-bottom: 20px;
+}
+.right-side p {
+  margin-bottom: 20px;
+}
+.portfolio-section h3 {
+  font-size: 1.5rem;
+}
+/* Portfolio Section */
+.portfolio-section {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* GitHub Section */
+.github-container {
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.github-container a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  border-radius: 8px;
+  overflow: hidden;
   text-align: center;
 }
 
-.gallery img {
-  width: 150px;
-  height: 200px;
+/* Let's Connect Section */
+.connect-section {
+  font-size: 1.2rem;
+  width: 100%;
+  margin-top: 40px;
+}
+
+/* Image styling for posters inside the square */
+.square-image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 10px;
-  transition: transform 0.3s;
-  width: 20%; /* Scales images with the screen width */
-  max-width: 150px; /* Prevents being too large on larger screens */
+  border-radius: 8px;
 }
 
-.gallery img:hover {
-  transform: scale(1.1);
-  animation: rainbowGlow 1.5s infinite; /* Apply the rainbow glow animation */
+/* Responsive design: Ensure images fit in smaller screens */
+@media (max-width: 768px) {
+  .square-image {
+    object-fit: contain;
+  }
 }
 
-/* Keyframes for rainbow glow */
-@keyframes rainbowGlow {
-  0% {
-    box-shadow: 0 0 10px 2px red;
-  }
-  14% {
-    box-shadow: 0 0 10px 2px orange;
-  }
-  28% {
-    box-shadow: 0 0 10px 2px yellow;
-  }
-  42% {
-    box-shadow: 0 0 10px 2px green;
-  }
-  57% {
-    box-shadow: 0 0 10px 2px cyan;
-  }
-  71% {
-    box-shadow: 0 0 10px 2px blue;
-  }
-  85% {
-    box-shadow: 0 0 10px 2px purple;
-  }
-  100% {
-    box-shadow: 0 0 10px 2px red;
+@media (max-width: 480px) {
+  .square-image {
+    object-fit: contain; /* Ensures the image fits well on very small screens */
   }
 }
+
+/**/
