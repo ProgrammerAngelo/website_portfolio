@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
 
-
+/* || RESPONSIVENESS || */
 /* Adjust styles for screens smaller than 768px */
 @media (max-width: 768px) {
   .logo {
@@ -53,7 +53,6 @@
   }
 }
 
-  
 
 /* ||ROOT OF THE DOC|| */
 * {
@@ -99,9 +98,10 @@ body::before {
   z-index: -1; /* Make sure the overlay stays behind the content */
 }
 
-/* ||MAIN CONTENT SECTION|| */
+
+/* || MAIN CONTENT SECTION | */
 /*======================================================*/
-/* ||HEADER SECTION|| */
+/* || <HEADER SECTION> || */
 header {
   margin-top: 20px;
   position: fixed;
@@ -191,14 +191,16 @@ nav a.active {
   }
 }
 
+
 /*======================================================*/
-/* <Codyssey Opening Section> */
+/* || <SECTION 1:OPENING> || */
+/* [Section 1 DIV] */
 section {
   min-height: 100vh;
   z-index: 2;
 }
 
-/* Video Class */
+/* [Video Class] */
 .codyssey-hero {
   position: relative;
   width: 100%;
@@ -219,7 +221,7 @@ section {
   z-index: -1; 
 }
 
-/* About Us Button */
+/* [About Us Button] */
 #about-us-bttn {
   position: absolute;
   font-family: "Poppins", sans-serif;
@@ -255,7 +257,7 @@ section {
   box-shadow: 0 0 15px #f8b7f1; 
 }
 
-/* Ascend Animation */
+/* [Ascend Animation] */
 @keyframes ascend {
   0% {
     transform: translateX(-50%) translateY(50px); 
@@ -278,8 +280,10 @@ section {
   }
 }
 
+
 /*======================================================*/
-/* <Profile Section> */
+/* <SECTION 2: PROFILE SECTION> */
+/* [Section 2 DIV] */
 .profile-section {
   display: flex;
   justify-content: center;
@@ -289,6 +293,7 @@ section {
   z-index: 2;
 }
 
+/* [Profile Part] */
 .prof-sec-details {
   display: flex;
   flex-direction: column;
@@ -380,7 +385,6 @@ section {
   animation: float 3s ease-in-out infinite;
 }
 
-
 @keyframes gradient-outline {
   0% {
     background-position: 0% 50%;
@@ -406,6 +410,7 @@ section {
   }
 }
 
+/* [Gallery Part] */
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -437,7 +442,7 @@ section {
   animation: rainbowGlow 1.5s infinite; /* Apply the rainbow glow animation */
 }
 
-/* Keyframes for rainbow glow */
+/* [Keyframes for rainbow glow] */
 @keyframes rainbowGlow {
   0% {
     box-shadow: 0 0 10px 2px red;
@@ -465,31 +470,34 @@ section {
   }
 }
 
+
 /*======================================================*/
-/* <Works Section> */
+/* <SECTION 3: WORK SECTION> */
+/* [Section 3 DIV] */
 .works-section {
   display: flex;
   position: relative;
   z-index: 2;
   justify-content: center;
   width: 100%;
-  height: 100vh; /* Set the height to 100% of the viewport */
-  min-height: 100vh; /* Ensure fallback for smaller screen sizes */
+  height: 100vh; 
+  min-height: 100vh; 
   overflow: hidden; /* Prevent scrolling */
   margin: 0; /* Remove margin if any */
 }
 
+/* [Works Part Adjustments DIVS] */
 .works-details{
   display: flex;
   position: relative;
   flex-wrap: nowrap;
-  justify-content: space-between; /* Ensure the elements are spaced out */
+  justify-content: space-between; 
   align-items: stretch; /* Ensure equal height for all divs */
   overflow: hidden; /* Prevent scrolling */
   margin: 50px;
   align-content: center;
   width: 100%;
-  height: 100vh; /* Set the height to 100% of the viewport */
+  height: 100vh; 
   min-height: 100vh; /* Ensure fallback for smaller screen sizes */
 }
 
@@ -504,7 +512,7 @@ section {
   padding: 10px;
   width: 70%;
 }
-/* General styles for text columns */
+
 .text-column-left,
 .text-column-right {
   flex: 1 1 40%; /* Each column takes equal width, flex 1, shrinkable */
@@ -518,7 +526,7 @@ section {
 }
 
 
-/* Letter styling for vertical text with animated gradient and subtle 3D shadow */
+/* [Text Adjustments] */
 .vertical-text {
   display: flex;
   font-family: 'Roboto', sans-serif;
@@ -542,7 +550,12 @@ section {
   overflow: hidden; /* Prevent content from overflowing */
 }
 
-/* Animation to move the gradient */
+.vertical-text span {
+  display: block; /* Make each letter a block element */
+  line-height: 1.5; /* Increase line-height to control space between letters */
+}
+
+/* [Text Animation] */
 @keyframes gradientMove {
   0% {
     background-position: 0% 50%; /* Start position */
@@ -555,14 +568,7 @@ section {
   }
 }
 
-/* Style each letter individually */
-.vertical-text span {
-  display: block; /* Make each letter a block element */
-  line-height: 1.5; /* Increase line-height to control space between letters */
-}
-
-
-/*=-----------------------------------------------*/
+/* [Slider Content Part] */
 .slider-container {
   max-width: 1120px;
   width: 100%;
@@ -696,7 +702,6 @@ section {
   background-color: #52a7ab;
 }
 
-
 .swiper-navBtn {
   color: #6e93f7;
   transition: color 0.3s ease;
@@ -724,7 +729,7 @@ section {
 
 
 /*======================================================*/
-/* FOOTER SECTION */
+/* <FOOTER SECTION> */
 footer {
   padding: 2rem 9%;
   text-align: center;
