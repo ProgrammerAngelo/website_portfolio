@@ -127,7 +127,7 @@ def convert():
 # ========================
 # QUEUE SYNTAX
 
-@app.route('/queue_page', methods=['GET'])  # Route for accessing the queue page
+@app.route('/queue_page')  # Route for accessing the queue page
 def queue_page():
     return render_template('queue_page.html')  # Render the queue HTML page
 
@@ -195,7 +195,7 @@ class TreeNode:
 class BinaryTree:
     # Build a binary tree from infix expression
     @staticmethod
-    def from_infix(expession):
+    def from_infix(expression):
         def build_tree(tokens):
             ops = []
             nodes = []
