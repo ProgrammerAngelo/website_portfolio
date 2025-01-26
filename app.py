@@ -8,6 +8,7 @@ from stations import stations_coordinates, connections
 from selection_sort import selection_sort
 from insertion_sort import insertion_sort
 from flask import Flask, render_template, request, redirect, url_for
+from merge_sort import merge_sort
 
 # ========================
 # || ROOT ||
@@ -411,6 +412,26 @@ def reset_sorted_list():
     sorted_list = []  # Clear the sorted list
     return redirect(url_for("insertion_sort_page"))  # Redirect to the insertion sort page
 
+#-----------
+#Merge Sort
+def home():
+    return render_template('merge_sort.html')
+
+@app.route('/merge_sort_page', methods=['GET', 'POST'])  # Allow both GET and POST
+def merge_sort_page():
+    if request.method == 'POST':
+        numbers_input = request.form['numbers']
+        
+        try:
+            numbers = [int(num.strip()) for num in numbers_input.split(',')]
+        except ValueError:
+            return render_template('merge_sort.html', error="Please enter valid numbers.")
+        
+        sorted_numbers, steps = merge_sort(numbers)
+        return render_template('merge_sort.html', sorted_numbers=sorted_numbers, steps=steps)
+    
+    # Handle GET request to render the page initially
+    return render_template('merge_sort.html')
 
 
 if __name__ == "__main__":

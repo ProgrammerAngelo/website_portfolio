@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Sort Process</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/merge_sort_style.css') }}">
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">
+          <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="Logo"
+          />
+        </a>
+        <nav>
+          <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('profiles') }}">Profiles</a></li>
+            <li><a href="{{ url_for('works') }}" class="active">Works</a></li>
+          </ul>
+        </nav>
+      </header>
+    <div class="container" style="display: flex; justify-content: space-between; gap: 20px;">
+        <!-- Container One: Input Form -->
+        <div id="input-container">
+            <h2>Enter Numbers for Merge Sort</h2>
+            <form action="/merge_sort_page" method="post">  <!-- Update to the new endpoint -->
+                <input type="text" name="numbers" placeholder="e.g., 38, 27, 43, 3, 9, 82, 10" required>
+                <button type="submit">Sort</button>
+            </form>
+        </div>
+
+        <!-- Container Two: Merge Sort Process -->
+        <div id="process-container">
+            <h2>Merge Sort Process</h2>
+            <div id="process-output">
+                {% if steps %}
+                    <ul>
+                        {% for step in steps %}
+                            <li>{{ step }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Start by entering numbers to see the merge sort process!</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
