@@ -250,3 +250,34 @@ svg text {
 .buttons-section button:hover {
   background-color: #0056b3;
 }
+
+/*======================================================*/
+/* <FOOTER SECTION> */
+footer {
+  padding: 2rem 9%;
+  text-align: center;
+  color: #dcdcdc;
+  margin-top: 60px;
+}
+
+.footer-content p {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.footer-social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.footer-social-icons a {
+  color: #864bb7;
+  font-size: 2rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-social-icons a:hover {
+  transform: scale(1.3);
+  color: white;
+}

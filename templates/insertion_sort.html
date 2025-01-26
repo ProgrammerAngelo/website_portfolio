@@ -1,57 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Insertion Sort Visualizer</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/insertion_sort_style.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}" />
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/insertion_sort_style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/base_style.css') }}"
+    />
+  </head>
+  <body>
     <header>
-        <a href="#" class="logo">
-          <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" />
-        </a>
-        <nav>
-          <ul>
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('profiles') }}" class="active">Profiles</a></li>
-            <li><a href="{{ url_for('works') }}">Works</a></li>
-          </ul>
-        </nav>
-      </header>
-      <div class="container">
-        <h1>Insertion Sort Visualizer</h1>
-        
-        <form method="POST" class="form-section">
-            <div class="input-container">
-                <label for="number">Enter numbers (comma-separated):</label>
-                <input 
-                    type="text" 
-                    id="number" 
-                    name="number" 
-                    placeholder="e.g., 9,4,6,2,7,1" 
-                    required>
-            </div>
-            <button type="submit" class="sort-btn">Sort</button>
-        </form>
-        
-        <!-- Form to reset the list -->
-        <form method="POST" action="/reset_sorted_list">
-            <button type="submit" class="reset-btn">Reset List</button>
-        </form>
-    
-        {% if sorted_list %}
-    <div class="sorted-list-container">
+      <a href="#" class="logo">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="Logo"
+        />
+      </a>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('profiles') }}">Profiles</a></li>
+          <li><a href="{{ url_for('works') }}" class="active">Works</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <h1>Insertion Sort Visualizer</h1>
+
+      <form method="POST" class="form-section">
+        <div class="input-container">
+          <label for="number">Enter numbers (comma-separated):</label>
+          <input
+            type="text"
+            id="number"
+            name="number"
+            placeholder="e.g., 9,4,6,2,7,1"
+            required
+          />
+        </div>
+        <button type="submit" class="sort-btn">Sort</button>
+      </form>
+
+      <!-- Form to reset the list -->
+      <form method="POST" action="/reset_sorted_list">
+        <button type="submit" class="reset-btn">Reset List</button>
+      </form>
+
+      {% if sorted_list %}
+      <div class="sorted-list-container">
         <h3>Sorted List:</h3>
         <p>{{ sorted_list | join(", ") }}</p>
+      </div>
+      {% endif %}
+
+      <!-- Display error message -->
+      {% if error %}
+      <p style="color: red">{{ error }}</p>
+      {% endif %}
     </div>
-        {% endif %}
-    
-        <!-- Display error message -->
-        {% if error %}
-        <p style="color: red;">{{ error }}</p>
-        {% endif %}
-    </div>
-</body>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-content">
+        <p>© 2025 Codyssey. All Rights Reserved.</p>
+        <div class="footer-social-icons">
+          <a
+            href="https://www.facebook.com/profile.php?id=100074418943027&mibextid=ZbWKwL"
+            target="blank"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
+          <a
+            href="https://github.com/ProgrammerAngelo/website_portfolio.git"
+            target="blank"
+            ><i class="fa-brands fa-github"></i
+          ></a>
+          <a
+            href="https://www.instagram.com/chiin.chiin_?igsh=MTA2anB0eTdva2J3Mg=="
+            target="blank"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/delima-sheena-mae-413809297"
+            target="blank"
+            ><i class="fa-brands fa-linkedin"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

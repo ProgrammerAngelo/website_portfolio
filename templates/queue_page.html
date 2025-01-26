@@ -1,191 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Queue Implementation</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/queue_style.css') }}" />
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/base_style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/queue_style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+  <body>
     <!-- Header Section -->
     <header>
-        <a href="#" class="logo">
-            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" />
-        </a>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('profiles') }}">Profiles</a></li>
-                <li><a href="{{ url_for('works') }}">Works</a></li>
-            </ul>
-        </nav>
+      <a href="#" class="logo">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="Logo"
+        />
+      </a>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('profiles') }}">Profiles</a></li>
+          <li><a href="{{ url_for('works') }}">Works</a></li>
+        </ul>
+      </nav>
     </header>
 
     <!-- Main Content -->
     <main>
-        <h1>Queue Implementation with Linked List</h1>
-        
-        <!-- Buttons for switching between Simple Queue and Double-Ended Queue -->
-        <div class="queue-type-selection">
-            <button onclick="selectQueueType('simple')">Simple Queue</button>
-            <button onclick="selectQueueType('doubleEnded')">Double-Ended Queue</button>
-        </div>
+      <h1>Queue Implementation with Linked List</h1>
 
-        <div class="queue-container">
-            <input type="text" id="dataInput" placeholder="Enter value" />
-            <div class="button-group" id="simpleQueueButtons" style="display:none;">
-                <button onclick="enqueue()">Enqueue</button>
-                <button onclick="dequeue()">Dequeue</button>
-            </div>
-            <div class="button-group" id="doubleEndedQueueButtons" style="display:none;">
-                <button onclick="push()">Push</button>
-                <button onclick="pop()">Pop</button>
-                <button onclick="inject()">Inject</button>
-                <button onclick="eject()">Eject</button>
-            </div>
-            <div id="queueDisplay"></div>
+      <!-- Buttons for switching between Simple Queue and Double-Ended Queue -->
+      <div class="queue-type-selection">
+        <button onclick="selectQueueType('simple')">Simple Queue</button>
+        <button onclick="selectQueueType('doubleEnded')">
+          Double-Ended Queue
+        </button>
+      </div>
+
+      <div class="queue-container">
+        <input type="text" id="dataInput" placeholder="Enter value" />
+        <div class="button-group" id="simpleQueueButtons" style="display: none">
+          <button onclick="enqueue()">Enqueue</button>
+          <button onclick="dequeue()">Dequeue</button>
         </div>
+        <div
+          class="button-group"
+          id="doubleEndedQueueButtons"
+          style="display: none"
+        >
+          <button onclick="push()">Push</button>
+          <button onclick="pop()">Pop</button>
+          <button onclick="inject()">Inject</button>
+          <button onclick="eject()">Eject</button>
+        </div>
+        <div id="queueDisplay"></div>
+      </div>
     </main>
 
     <script>
-        let currentQueueType = 'simple';  // Default to Simple Queue
+      let currentQueueType = "simple"; // Default to Simple Queue
 
-        function selectQueueType(queueType) {
-            currentQueueType = queueType;
-            if (queueType === 'simple') {
-                document.getElementById('simpleQueueButtons').style.display = 'block';
-                document.getElementById('doubleEndedQueueButtons').style.display = 'none';
-            } else {
-                document.getElementById('simpleQueueButtons').style.display = 'none';
-                document.getElementById('doubleEndedQueueButtons').style.display = 'block';
-            }
+      function selectQueueType(queueType) {
+        currentQueueType = queueType;
+        if (queueType === "simple") {
+          document.getElementById("simpleQueueButtons").style.display = "block";
+          document.getElementById("doubleEndedQueueButtons").style.display =
+            "none";
+        } else {
+          document.getElementById("simpleQueueButtons").style.display = "none";
+          document.getElementById("doubleEndedQueueButtons").style.display =
+            "block";
         }
+      }
 
-        async function enqueue() {
-            const data = document.getElementById("dataInput").value;
-            if (data === "") {
-                alert("Please enter a value!");
-                return;
-            }
-            const response = await fetch("/enqueue", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-                body: `data=${data}`,
-            });
-
-            const result = await response.json();
-            if (response.ok) {
-                updateQueue(result.queue);
-                document.getElementById("dataInput").value = "";
-            } else {
-                alert(result.message);
-            }
+      async function enqueue() {
+        const data = document.getElementById("dataInput").value;
+        if (data === "") {
+          alert("Please enter a value!");
+          return;
         }
+        const response = await fetch("/enqueue", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: `data=${data}`,
+        });
 
-        async function dequeue() {
-            const response = await fetch("/dequeue", {
-                method: "POST",
-            });
-
-            const result = await response.json();
-            if (response.ok) {
-                alert(`Dequeued: ${result.dequeued}`);
-                updateQueue(result.queue);
-            } else {
-                alert(result.message);
-            }
+        const result = await response.json();
+        if (response.ok) {
+          updateQueue(result.queue);
+          document.getElementById("dataInput").value = "";
+        } else {
+          alert(result.message);
         }
+      }
 
-        async function push() {
-            const data = document.getElementById("dataInput").value;
-            if (data === "") {
-                alert("Please enter a value!");
-                return;
-            }
-            const response = await fetch("/push", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-                body: `data=${data}`,
-            });
+      async function dequeue() {
+        const response = await fetch("/dequeue", {
+          method: "POST",
+        });
 
-            const result = await response.json();
-            if (response.ok) {
-                updateQueue(result.queue);
-                document.getElementById("dataInput").value = "";
-            } else {
-                alert(result.message);
-            }
+        const result = await response.json();
+        if (response.ok) {
+          alert(`Dequeued: ${result.dequeued}`);
+          updateQueue(result.queue);
+        } else {
+          alert(result.message);
         }
+      }
 
-        async function pop() {
-            const response = await fetch("/pop", {
-                method: "POST",
-            });
-
-            const result = await response.json();
-            if (response.ok) {
-                alert(`Popped: ${result.popped}`);
-                updateQueue(result.queue);
-            } else {
-                alert(result.message);
-            }
+      async function push() {
+        const data = document.getElementById("dataInput").value;
+        if (data === "") {
+          alert("Please enter a value!");
+          return;
         }
+        const response = await fetch("/push", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: `data=${data}`,
+        });
 
-        async function inject() {
-            const data = document.getElementById("dataInput").value;
-            if (data === "") {
-                alert("Please enter a value!");
-                return;
-            }
-            const response = await fetch("/inject", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-                body: `data=${data}`,
-            });
-
-            const result = await response.json();
-            if (response.ok) {
-                updateQueue(result.queue);
-                document.getElementById("dataInput").value = "";
-            } else {
-                alert(result.message);
-            }
+        const result = await response.json();
+        if (response.ok) {
+          updateQueue(result.queue);
+          document.getElementById("dataInput").value = "";
+        } else {
+          alert(result.message);
         }
+      }
 
-        async function eject() {
-            const response = await fetch("/eject", {
-                method: "POST",
-            });
+      async function pop() {
+        const response = await fetch("/pop", {
+          method: "POST",
+        });
 
-            const result = await response.json();
-            if (response.ok) {
-                alert(`Ejected: ${result.ejected}`);
-                updateQueue(result.queue);
-            } else {
-                alert(result.message);
-            }
+        const result = await response.json();
+        if (response.ok) {
+          alert(`Popped: ${result.popped}`);
+          updateQueue(result.queue);
+        } else {
+          alert(result.message);
         }
+      }
 
-        async function viewQueue() {
-            const response = await fetch("/view");
-            const result = await response.json();
-            updateQueue(result.queue);
+      async function inject() {
+        const data = document.getElementById("dataInput").value;
+        if (data === "") {
+          alert("Please enter a value!");
+          return;
         }
+        const response = await fetch("/inject", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: `data=${data}`,
+        });
 
-        function updateQueue(queue) {
-            const queueDisplay = document.getElementById("queueDisplay");
-            queueDisplay.innerHTML = queue.length ? queue.join(" -> ") : "Queue is empty!";
+        const result = await response.json();
+        if (response.ok) {
+          updateQueue(result.queue);
+          document.getElementById("dataInput").value = "";
+        } else {
+          alert(result.message);
         }
+      }
 
-        // Initialize with Simple Queue by default
-        window.onload = () => selectQueueType('simple');
+      async function eject() {
+        const response = await fetch("/eject", {
+          method: "POST",
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          alert(`Ejected: ${result.ejected}`);
+          updateQueue(result.queue);
+        } else {
+          alert(result.message);
+        }
+      }
+
+      async function viewQueue() {
+        const response = await fetch("/view");
+        const result = await response.json();
+        updateQueue(result.queue);
+      }
+
+      function updateQueue(queue) {
+        const queueDisplay = document.getElementById("queueDisplay");
+        queueDisplay.innerHTML = queue.length
+          ? queue.join(" -> ")
+          : "Queue is empty!";
+      }
+
+      // Initialize with Simple Queue by default
+      window.onload = () => selectQueueType("simple");
     </script>
-</body>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-content">
+        <p>© 2025 Codyssey. All Rights Reserved.</p>
+        <div class="footer-social-icons">
+          <a
+            href="https://www.facebook.com/profile.php?id=100074418943027&mibextid=ZbWKwL"
+            target="blank"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
+          <a
+            href="https://github.com/ProgrammerAngelo/website_portfolio.git"
+            target="blank"
+            ><i class="fa-brands fa-github"></i
+          ></a>
+          <a
+            href="https://www.instagram.com/chiin.chiin_?igsh=MTA2anB0eTdva2J3Mg=="
+            target="blank"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/delima-sheena-mae-413809297"
+            target="blank"
+            ><i class="fa-brands fa-linkedin"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
