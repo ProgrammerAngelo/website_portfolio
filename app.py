@@ -195,15 +195,16 @@ class TreeNode:
 
 
 class BinaryTree:
-    # Build a binary tree from infix expression
     @staticmethod
     def from_infix(expression):
         def build_tree(tokens):
-            ops = []
-            nodes = []
+            ops = []  # Stack for operators
+            nodes = []  # Stack for operands
             precedence = {'+': 1, '-': 1, '*': 2, '/': 2}
 
             def attach_operator():
+                if len(nodes) < 2:
+                    raise ValueError("Invalid expression: missing operands.")
                 operator = ops.pop()
                 right = nodes.pop()
                 left = nodes.pop()
@@ -213,24 +214,30 @@ class BinaryTree:
                 nodes.append(operator_node)
 
             for token in tokens:
-                if token.isalnum():  # Operand
+                if token.isalnum():  # Operand (A, B, C, etc.)
                     nodes.append(TreeNode(token))
-                elif token in precedence:  # Operator
-                    while ops and precedence.get(ops[-1], 0) >= precedence[token]:
+                elif token in precedence:  # Operator (+, -, *, /)
+                    while (ops and ops[-1] != '(' and
+                           precedence.get(ops[-1], 0) >= precedence[token]):
                         attach_operator()
                     ops.append(token)
-                elif token == '(':
+                elif token == '(':  # Opening parenthesis
                     ops.append(token)
-                elif token == ')':
-                    while ops[-1] != '(':
+                elif token == ')':  # Closing parenthesis
+                    while ops and ops[-1] != '(':
                         attach_operator()
-                    ops.pop()
+                    if not ops:
+                        raise ValueError("Invalid expression: unmatched parenthesis.")
+                    ops.pop()  # Remove the '('
 
-            while ops:
+            while ops:  # Attach remaining operators
                 attach_operator()
 
+            if len(nodes) != 1:
+                raise ValueError("Invalid expression: too many operands or operators.")
             return nodes[0]
 
+        # Tokenize the expression by splitting on parentheses and spaces
         tokens = expression.replace('(', ' ( ').replace(')', ' ) ').split()
         return build_tree(tokens)
 
@@ -277,6 +284,13 @@ class BinaryTree:
             "right": BinaryTree.serialize_tree(root.right),
         }
 
+    # Convert a tree to a prefix expression
+    @staticmethod
+    def to_prefix(root):
+        if not root:
+            return ""
+        return f"{root.value} {BinaryTree.to_prefix(root.left)} {BinaryTree.to_prefix(root.right)}".strip()
+
 
 @app.route('/binary_tree_page', methods=['GET'])
 def binary_tree_page():
@@ -303,9 +317,11 @@ def build_tree():
             return jsonify({"error": f"Unsupported expression type: {expr_type}"}), 400
 
         tree_data = BinaryTree.serialize_tree(root)
-        return jsonify({"tree": tree_data})
+        prefix_expression = BinaryTree.to_prefix(root)
+        return jsonify({"tree": tree_data, "prefix": prefix_expression})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 # ========================
 # GRAPH SYNTAX

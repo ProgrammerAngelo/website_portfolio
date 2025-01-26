@@ -40,8 +40,8 @@ button {
 .selected-station {
   font-size: 20px;
   color: rgb(0, 0, 0);
-  text-shadow: 0 0 10px rgba(77, 249, 126, 0.892),
-    0 0 20px rgba(105, 178, 197, 0.8);
+  text-shadow: 0 0 10px rgba(114, 255, 170, 0.892),
+    0 0 20px rgba(90, 222, 255, 0.8);
 }
 
 /*======================================================*/
