@@ -7,6 +7,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    rel="stylesheet"
+  />
     <link rel="stylesheet" href="static/css/works_style.css" />
     <title>Portfolio Webpage</title>
   </head>
@@ -36,10 +44,10 @@
       class="raven-image"
     />
 
-    <!-- DATA STRUCTURES IMPLEMENTATION CARDS: Container Box for grouping the cards -->
+    <section class="section-one">
     <div class="container-box">
       <!-- Title Section inside the container -->
-      <div class="title">Data Structure Implementations</div>
+      <div class="title">Data Structure and Algorithm Implementations </div>
 
       <div class="card-group">
         <div class="card">
@@ -47,9 +55,6 @@
           <div class="layer"></div>
           <div class="info">
             <p>
-              A linear data structure consisting of nodes, where each node
-              contains a value and a reference (or pointer) to the next node in
-              the sequence.
             </p>
             <a href="{{ url_for('link_list') }}">
                 <button class="explore-button">Explore</button>
@@ -61,8 +66,6 @@
           <div class="layer"></div>
           <div class="info">
             <p>
-              A linear data structure that follows the LIFO (Last In, First Out)
-              principle.
             </p>
             <a href="{{ url_for('stack') }}">
                 <button class="explore-button">Explore</button>
@@ -74,8 +77,6 @@
           <div class="layer"></div>
           <div class="info">
             <p>
-              A linear data structure that follows the FIFO (First In, First
-              Out) principle.
             </p>
             <a href="{{ url_for('queue_page') }}">
                 <button class="explore-button">Explore</button>
@@ -87,8 +88,6 @@
           <div class="layer"></div>
           <div class="info">
             <p>
-              A hierarchical data structure in which each node has at most two
-              children, referred to as the left child and right child.
             </p>
             <a href="{{ url_for('binary_tree_page') }}">
                 <button class="explore-button">Explore</button>
@@ -100,14 +99,71 @@
           <div class="layer"></div>
           <div class="info">
             <p>
-              A graph is a non-linear data structure consisting of nodes (vertices) and edges that connect them, representing relationships between entities.
             </p>
             <a href="{{ url_for('graph') }}">
                 <button class="explore-button">Explore</button>
           </div>
         </div>
+
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/bubble-sort.png') }}" />
+          <div class="layer"></div>
+          <div class="info">
+            <p>
+            </p>
+            <a href="{{ url_for('graph') }}">
+                <button class="explore-button">Explore</button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/selection-sort.png') }}" />
+          <div class="layer"></div>
+          <div class="info">
+            <p>
+            </p>
+            <a href="{{ url_for('graph') }}">
+                <button class="explore-button">Explore</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/insertion-sort.png') }}" />
+          <div class="layer"></div>
+          <div class="info">
+            <p>
+            </p>
+            <a href="{{ url_for('graph') }}">
+                <button class="explore-button">Explore</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/merge-sort.png') }}" />
+          <div class="layer"></div>
+          <div class="info">
+            <p>
+            </p>
+            <a href="{{ url_for('graph') }}">
+                <button class="explore-button">Explore</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/quick-sort.png') }}" />
+          <div class="layer"></div>
+          <div class="info">
+            <p>
+        
+            </p>
+            <a href="{{ url_for('graph') }}">
+                <button class="explore-button">Explore</button>
+          </div>
+        </div>
+        
       </div>
     </div>
+  </section>
 
     <!-- FOOTER -->
     <footer>
@@ -121,5 +177,6 @@
         </div>
       </div>
     </footer>
+    
   </body>
 </html>
