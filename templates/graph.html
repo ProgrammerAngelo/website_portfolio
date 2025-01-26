@@ -104,15 +104,16 @@
 
     <script>
       var map = L.map('map').setView([14.5995, 120.9842], 13);
-
+    
       // Tile Layer
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; OpenStreetMap contributors'
       }).addTo(map);
-
+    
       var stationsCoordinates = {{ stations | tojson }};
       var stationMarkers = {};
-
+      var pathPolyline = null;  // To store the current path
+    
       // Separate lists for each train line
       var lrt1Stations = [
           "baclaran", "edsa", "libertad", "gil puyat", "vito cruz", "quirino",
@@ -120,19 +121,19 @@
           "doroteo jose", "bambang", "tayuman", "blumentritt", "abad santos",
           "r. papa", "5th avenue", "monumento", "balintawak", "roosevelt"
       ];
-
+    
       var lrt2Stations = [
           "recto", "legarda", "pureza", "v. mapa", "j. ruiz", "gilmore",
           "betty go-belmonte", "cubao-lrt2", "anonas", "katipunan",
           "santolan-lrt2", "marikina", "antipolo"
       ];
-
+    
       var mrt2Stations = [
           "north avenue", "quezon avenue", "gma kamuning", "cubao-mrt2",
           "ortigas", "shaw boulevard", "boni", "guadalupe", "buendia",
           "ayala", "magallanes", "taft avenue", "santolan-mrt2"
       ];
-
+    
       // Populate station markers and list
       function populateStations(stations, listId) {
           var list = document.getElementById(listId);
@@ -141,7 +142,7 @@
               var listItem = document.createElement('li');
               listItem.textContent = station.charAt(0).toUpperCase() + station.slice(1);
               list.appendChild(listItem);
-
+    
               // Add marker to the map
               if (stationsCoordinates[station]) {
                   var coord = stationsCoordinates[station];
@@ -151,20 +152,20 @@
                           html: station.charAt(0).toUpperCase() + station.slice(1)
                       })
                   }).addTo(map);
-
+    
                   stationMarkers[station.toLowerCase()] = marker;
               }
           });
       }
-
+    
       populateStations(lrt1Stations, "lrt1-list");
       populateStations(lrt2Stations, "lrt2-list");
       populateStations(mrt2Stations, "mrt2-list");
-
+    
       function findShortestPath() {
           var startStation = document.getElementById('start').value.toLowerCase().trim();
           var endStation = document.getElementById('end').value.toLowerCase().trim();
-
+    
           fetch('/find_path', {
               method: 'POST',
               headers: {
@@ -176,23 +177,32 @@
           .then(data => {
               if (data.path) {
                   console.log('Shortest Path:', data.path);
+    
+                  // Remove the previous path (if any)
+                  if (pathPolyline) {
+                      map.removeLayer(pathPolyline);
+                  }
+    
                   var pathCoordinates = data.coordinates;
                   var latlngs = pathCoordinates.map(coord => [coord[0], coord[1]]);
-
-                  L.polyline(latlngs, {color: 'red'}).addTo(map);
-
+    
+                  // Draw the new path
+                  pathPolyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
+    
                   highlightStations(data.path);
               } else {
                   alert('Error: ' + data.error);
               }
           });
       }
-
+    
       function highlightStations(path) {
+          // Remove "selected" class from all markers
           Object.values(stationMarkers).forEach(marker => {
               marker._icon.classList.remove('selected-station');
           });
-
+    
+          // Add "selected" class to markers in the current path
           path.forEach(station => {
               var marker = stationMarkers[station.toLowerCase()];
               if (marker) {
