@@ -5,6 +5,7 @@ from queue_page import Node, Deque_App
 from binary_tree_page import BinaryTree
 import networkx as nx
 from stations import stations_coordinates, connections
+from selection_sort import selection_sort
 from insertion_sort import insertion_sort
 from flask import Flask, render_template, request, redirect, url_for
 
@@ -346,6 +347,17 @@ def find_path():
 
 #--------------
 #Selection sort
+@app.route('/selection_sort', methods=['GET', 'POST'])
+def sort():
+    if request.method == 'POST':
+        try:
+            input_numbers = request.form['numbers']  # Get the input from the form
+            numbers = list(map(int, input_numbers.split(',')))  # Convert the input into a list of integers
+            sorted_numbers = selection_sort(numbers)  # Sort the numbers using the selection sort algorithm
+            return render_template('selection_sort.html', numbers=numbers, sorted_numbers=sorted_numbers)
+        except ValueError:
+            return render_template('selection_sort.html', error="Please enter a valid list of integers separated by commas.")
+    return render_template('selection_sort.html')  # GET request renders the form
 
 #--------------
 #Insertion sort

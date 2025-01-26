@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selection Sort Visualizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/insertion_sort_style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .array-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .array-bar {
+            width: 30px;
+            margin: 0 5px;
+            background-color: lightblue;
+            text-align: center;
+            font-size: 14px;
+            transition: background-color 0.3s ease, height 0.3s ease;
+        }
+        .current-item {
+            background-color: red; /* Highlight current item */
+        }
+        .current-minimum {
+            background-color: blue; /* Highlight current minimum */
+        }
+        .sorted {
+            background-color: violet; /* Changed from green to violet */
+        }
+        .legend {
+            margin-top: 20px;
+        }
+        .legend-item {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+        .legend-color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" />
+        </a>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('profiles') }}" class="active">Profiles</a></li>
+                <li><a href="{{ url_for('works') }}">Works</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Selection Sort Visualizer</h1>
+        <form id="sort-form">
+            <label for="numbers">Enter numbers separated by commas:</label>
+            <input type="text" id="numbers" name="numbers" required>
+            <button type="submit" id="sort-button">Sort</button>
+        </form>
+
+        <div class="legend">
+            <div class="legend-item">
+                <span class="legend-color" style="background-color: blue;"></span> Current Minimum
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background-color: red;"></span> Current Item
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background-color: violet;"></span> Sorted Partition
+            </div>
+        </div>
+
+        <div class="array-container" id="array-container"></div>
+    </main>
+
+    <script>
+        function createBars(array) {
+            const container = document.getElementById('array-container');
+            container.innerHTML = ''; // Clear previous bars
+            array.forEach((value, index) => {
+                const bar = document.createElement('div');
+                bar.classList.add('array-bar');
+                bar.style.height = `${value * 5}px`;
+                bar.textContent = value;
+                bar.dataset.index = index;
+                container.appendChild(bar);
+            });
+        }
+
+        async function selectionSortVisual(array) {
+            const container = document.getElementById('array-container');
+            let sortedPartition = 0;  // Keep track of the sorted partition
+            for (let i = 0; i < array.length; i++) {
+                let minIdx = i;
+                clearCurrentHighlights(container); // Clear previous highlights
+                updateBarState(container, i, 'current-minimum'); // Highlight current minimum
+                clearCurrentItems(container); // Clear any previous current item highlights
+                for (let j = i + 1; j < array.length; j++) {
+                    updateBarState(container, j, 'current-item'); // Highlight current item
+                    await delay(500); // Pause for animation
+
+                    // Check if the current item is less than the current minimum
+                    if (array[j] < array[minIdx]) {
+                        // Remove previous current minimum highlight
+                        clearCurrentHighlights(container);
+
+                        minIdx = j;
+                        updateBarState(container, minIdx, 'current-minimum'); // Update current minimum
+                    } else {
+                        removeBarState(container, j, 'current-item'); // Remove current item highlight if it's not the minimum
+                    }
+                }
+                if (minIdx !== i) {
+                    // Swap the values and update the bars
+                    [array[i], array[minIdx]] = [array[minIdx], array[i]];
+                    await swapBars(container, i, minIdx);
+                }
+                removeBarState(container, i, 'current-minimum'); // Remove current minimum after swap
+                
+                // Move the sorted partition boundary
+                updateBarState(container, i, 'sorted');
+                sortedPartition++;
+            }
+        }
+
+        function clearCurrentHighlights(container) {
+            // Clear any previous current minimum and current item highlights
+            const bars = container.querySelectorAll('.array-bar');
+            bars.forEach(bar => {
+                bar.classList.remove('current-item', 'current-minimum');
+            });
+        }
+
+        function clearCurrentItems(container) {
+            // Clear any previous current item highlights
+            const bars = container.querySelectorAll('.array-bar');
+            bars.forEach(bar => {
+                bar.classList.remove('current-item');
+            });
+        }
+
+        function updateBarState(container, index, stateClass) {
+            const bar = container.querySelector(`.array-bar[data-index="${index}"]`);
+            bar.classList.add(stateClass);
+        }
+
+        function removeBarState(container, index, stateClass) {
+            const bar = container.querySelector(`.array-bar[data-index="${index}"]`);
+            bar.classList.remove(stateClass);
+        }
+
+        async function swapBars(container, i, j) {
+            const bars = container.querySelectorAll('.array-bar');
+            const barI = bars[i];
+            const barJ = bars[j];
+
+            // Animate the swap visually
+            const tempHeight = barI.style.height;
+            const tempValue = barI.textContent;
+
+            barI.style.height = barJ.style.height;
+            barI.textContent = barJ.textContent;
+
+            barJ.style.height = tempHeight;
+            barJ.textContent = tempValue;
+
+            await delay(500); // Pause for swap animation
+        }
+
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        document.getElementById('sort-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const sortButton = document.getElementById('sort-button');
+            sortButton.disabled = true; // Disable the button
+
+            const input = document.getElementById('numbers').value;
+            const array = input.split(',').map(Number);
+            createBars(array);
+            await selectionSortVisual(array);
+
+            sortButton.disabled = false; // Re-enable the button
+        });
+    </script>
+</body>
+</html>
