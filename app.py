@@ -9,10 +9,12 @@ from selection_sort import selection_sort
 from insertion_sort import insertion_sort
 from flask import Flask, render_template, request, redirect, url_for
 from merge_sort import merge_sort
+import os
 
 # ========================
 # || ROOT ||
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
+
 linked_list = LinkedList()
 deque_app = Deque_App()  # Instantiate the Queue_App object
 binary_tree = BinaryTree()
@@ -25,6 +27,8 @@ binary_tree = BinaryTree()
 @app.route('/')
 def home():
     return render_template('home.html')
+
+
 
 @app.route('/profiles')
 def profiles():
@@ -359,8 +363,14 @@ def find_path():
     
     path_coords = [stations_coordinates[station] for station in shortest_path]
     return jsonify({'path': shortest_path, 'coordinates': path_coords})
+
 #-----------
 #Bubble sort
+
+@app.route('/bubble_sort')
+def bubble_sort():
+
+    return render_template('bubble_sort.html')
 
 #--------------
 #Selection sort
