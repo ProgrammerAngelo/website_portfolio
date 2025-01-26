@@ -6,48 +6,7 @@
     <title>Selection Sort Visualizer</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/insertion_sort_style.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}" />
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .array-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .array-bar {
-            width: 30px;
-            margin: 0 5px;
-            background-color: lightblue;
-            text-align: center;
-            font-size: 14px;
-            transition: background-color 0.3s ease, height 0.3s ease;
-        }
-        .current-item {
-            background-color: red; /* Highlight current item */
-        }
-        .current-minimum {
-            background-color: blue; /* Highlight current minimum */
-        }
-        .sorted {
-            background-color: violet; /* Changed from green to violet */
-        }
-        .legend {
-            margin-top: 20px;
-        }
-        .legend-item {
-            display: inline-block;
-            margin: 0 10px;
-            font-size: 14px;
-        }
-        .legend-color {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            margin-right: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/selection_sort_style.css') }}" />
 </head>
 <body>
     <header>
