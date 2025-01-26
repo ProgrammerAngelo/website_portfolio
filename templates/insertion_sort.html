@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertion Sort Visualizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/insertion_sort_style.css') }}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Insertion Sort Visualizer</h1>
+        
+        <form method="POST" class="form-section">
+            <label for="number">Enter numbers (comma-separated):</label><br>
+            <input 
+                type="text" 
+                id="number" 
+                name="number" 
+                placeholder="e.g., 9,4,6,2,7,1" 
+                required>
+            <button type="submit" class="sort-btn">Sort</button>
+        </form>
+        
+        <!-- Form to reset the list -->
+        <form method="POST" action="/reset_sorted_list">
+            <button type="submit" style="margin-top: 10px;">Reset List</button>
+        </form>
+
+        <!-- Display the sorted list -->
+        {% if sorted_list %}
+        <h3>Sorted List:</h3>
+        <p>{{ sorted_list | join(", ") }}</p>
+        {% endif %}
+
+        <!-- Display error message -->
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
