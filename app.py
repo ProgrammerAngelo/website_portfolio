@@ -363,6 +363,11 @@ def find_path():
 
 #--------------
 #Selection sort
+@app.route('/selection_sort')
+def selection_sort():
+    # Your view logic here
+    return render_template('selection_sort.html')
+
 @app.route('/selection_sort', methods=['GET', 'POST'])
 def sort():
     if request.method == 'POST':
@@ -377,6 +382,7 @@ def sort():
 
 #--------------
 #Insertion sort
+
 sorted_list = []
 
 @app.route("/insertion_sort", methods=["GET", "POST"])
