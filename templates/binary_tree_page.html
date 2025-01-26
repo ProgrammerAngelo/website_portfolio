@@ -1,116 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/binary_tree_page_style.css') }}" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/binary_tree_page_style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
     <title>Binary Tree Visualization</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <a href="#" class="logo">
-          <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" />
-        </a>
-        <nav>
-          <ul>
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('profiles') }}" >Profiles</a></li>
-            <li><a href="{{ url_for('works') }}" class="active">Works</a></li>
-          </ul>
-        </nav>
-      </header>
+      <a href="#" class="logo">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="Logo"
+        />
+      </a>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('profiles') }}">Profiles</a></li>
+          <li><a href="{{ url_for('works') }}" class="active">Works</a></li>
+        </ul>
+      </nav>
+    </header>
     <div class="container">
-        <h2>Binary Tree Visualization</h2>
-        <form id="expressionForm">
-            <label for="expression">Enter Expression:</label>
-            <input type="text" id="expression" name="expression" placeholder="Enter your expression here" required>
-            <label for="type">Expression Type:</label>
-            <select id="type" name="type">
-                <option value="infix">Infix</option>
-                <option value="postfix">Postfix</option>
-                <option value="prefix">Prefix</option>
-            </select>
-            <button type="submit">Generate Tree</button>
-        </form>
-        <div id="error"></div>
+      <h2>Binary Tree Visualization</h2>
+      <form id="expressionForm">
+        <label for="expression">Enter Expression:</label>
+        <input
+          type="text"
+          id="expression"
+          name="expression"
+          placeholder="Enter your expression here"
+          required
+        />
+        <label for="type">Expression Type:</label>
+        <select id="type" name="type">
+          <option value="infix">Infix</option>
+          <option value="postfix">Postfix</option>
+          <option value="prefix">Prefix</option>
+        </select>
+        <button type="submit">Generate Tree</button>
+      </form>
+      <div id="error"></div>
     </div>
     <div class="container tree-container" id="treeContainer">
-        <svg id="svg"></svg>
+      <svg id="svg"></svg>
     </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-content">
+        <p>© 2025 Codyssey. All Rights Reserved.</p>
+        <div class="footer-social-icons">
+          <a
+            href="https://www.facebook.com/profile.php?id=100074418943027&mibextid=ZbWKwL"
+            target="blank"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
+          <a
+            href="https://github.com/ProgrammerAngelo/website_portfolio.git"
+            target="blank"
+            ><i class="fa-brands fa-github"></i
+          ></a>
+          <a
+            href="https://www.instagram.com/chiin.chiin_?igsh=MTA2anB0eTdva2J3Mg=="
+            target="blank"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/delima-sheena-mae-413809297"
+            target="blank"
+            ><i class="fa-brands fa-linkedin"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Add JavaScript here -->
     <script>
-        document.getElementById('expressionForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const expression = document.getElementById('expression').value;
-            const type = document.getElementById('type').value;
+      document
+        .getElementById("expressionForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const expression = document.getElementById("expression").value;
+          const type = document.getElementById("type").value;
 
-            document.getElementById('error').innerText = '';
-            const treeContainer = document.getElementById('treeContainer');
-            const svg = document.getElementById('svg');
-            treeContainer.innerHTML = '<svg id="svg"></svg>'; // Clear the container for the new tree
-            const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            svgElement.setAttribute('id', 'svg');
-            treeContainer.appendChild(svgElement);
+          document.getElementById("error").innerText = "";
+          const treeContainer = document.getElementById("treeContainer");
+          const svg = document.getElementById("svg");
+          treeContainer.innerHTML = '<svg id="svg"></svg>'; // Clear the container for the new tree
+          const svgElement = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "svg"
+          );
+          svgElement.setAttribute("id", "svg");
+          treeContainer.appendChild(svgElement);
 
-            try {
-                const response = await fetch('/build_tree', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ expression, type }),
-                });
+          try {
+            const response = await fetch("/build_tree", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ expression, type }),
+            });
 
-                const data = await response.json();
+            const data = await response.json();
 
-                if (response.ok) {
-                    const treeHeight = getTreeHeight(data.tree);
-                    treeContainer.style.height = `${treeHeight * 100}px`; // Adjust container height dynamically
-                    renderTree(data.tree, treeContainer, svgElement);
-                } else {
-                    document.getElementById('error').innerText = data.error || 'An error occurred';
-                }
-            } catch (err) {
-                document.getElementById('error').innerText = 'An unexpected error occurred';
+            if (response.ok) {
+              const treeHeight = getTreeHeight(data.tree);
+              treeContainer.style.height = `${treeHeight * 100}px`; // Adjust container height dynamically
+              renderTree(data.tree, treeContainer, svgElement);
+            } else {
+              document.getElementById("error").innerText =
+                data.error || "An error occurred";
             }
+          } catch (err) {
+            document.getElementById("error").innerText =
+              "An unexpected error occurred";
+          }
         });
 
-        function renderTree(node, container, svg, depth = 0, x = 400, y = 20, spacing = 100) {
-            if (!node) return;
+      function renderTree(
+        node,
+        container,
+        svg,
+        depth = 0,
+        x = 400,
+        y = 20,
+        spacing = 100
+      ) {
+        if (!node) return;
 
-            const nodeEl = document.createElement('div');
-            nodeEl.className = 'node';
-            const nodeData = document.createElement('div');
-            nodeData.className = 'node-data';
-            nodeData.innerText = node.value;
+        const nodeEl = document.createElement("div");
+        nodeEl.className = "node";
+        const nodeData = document.createElement("div");
+        nodeData.className = "node-data";
+        nodeData.innerText = node.value;
 
-            nodeEl.style.top = `${y}px`;
-            nodeEl.style.left = `${x}px`;
+        nodeEl.style.top = `${y}px`;
+        nodeEl.style.left = `${x}px`;
 
-            nodeEl.appendChild(nodeData);
-            container.appendChild(nodeEl);
+        nodeEl.appendChild(nodeData);
+        container.appendChild(nodeEl);
 
-            if (node.left) {
-                drawLine(svg, x, y, x - spacing, y + 100);
-                renderTree(node.left, container, svg, depth + 1, x - spacing, y + 100, spacing / 2);
-            }
-
-            if (node.right) {
-                drawLine(svg, x, y, x + spacing, y + 100);
-                renderTree(node.right, container, svg, depth + 1, x + spacing, y + 100, spacing / 2);
-            }
+        if (node.left) {
+          drawLine(svg, x, y, x - spacing, y + 100);
+          renderTree(
+            node.left,
+            container,
+            svg,
+            depth + 1,
+            x - spacing,
+            y + 100,
+            spacing / 2
+          );
         }
 
-        function drawLine(svg, x1, y1, x2, y2) {
-            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line.setAttribute('x1', x1 + 20); // Adjust for node center
-            line.setAttribute('y1', y1 + 20);
-            line.setAttribute('x2', x2 + 20);
-            line.setAttribute('y2', y2);
-            svg.appendChild(line);
+        if (node.right) {
+          drawLine(svg, x, y, x + spacing, y + 100);
+          renderTree(
+            node.right,
+            container,
+            svg,
+            depth + 1,
+            x + spacing,
+            y + 100,
+            spacing / 2
+          );
         }
+      }
 
-        function getTreeHeight(node) {
-            if (!node) return 0;
-            return 1 + Math.max(getTreeHeight(node.left), getTreeHeight(node.right));
-        }
+      function drawLine(svg, x1, y1, x2, y2) {
+        const line = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "line"
+        );
+        line.setAttribute("x1", x1 + 20); // Adjust for node center
+        line.setAttribute("y1", y1 + 20);
+        line.setAttribute("x2", x2 + 20);
+        line.setAttribute("y2", y2);
+        svg.appendChild(line);
+      }
+
+      function getTreeHeight(node) {
+        if (!node) return 0;
+        return (
+          1 + Math.max(getTreeHeight(node.left), getTreeHeight(node.right))
+        );
+      }
     </script>
-</body>
+  </body>
 </html>

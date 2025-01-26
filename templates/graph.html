@@ -1,203 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LRT/MRT Map</title>
     <!-- External CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/graph_style.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/base_style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/graph_style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
     <!-- Leaflet.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header Section -->
     <header>
-        <a href="#" class="logo">
-            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" />
-        </a>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('profiles') }}">Profiles</a></li>
-                <li><a href="{{ url_for('works') }}" class="active">Works</a></li>
-            </ul>
-        </nav>
+      <a href="#" class="logo">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="Logo"
+        />
+      </a>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('profiles') }}">Profiles</a></li>
+          <li><a href="{{ url_for('works') }}" class="active">Works</a></li>
+        </ul>
+      </nav>
     </header>
 
     <!-- Main Content -->
     <div class="container">
-        <h1>LRT/MRT Map</h1>
-        <div>
-            <input type="text" id="start" placeholder="Enter starting station">
-            <input type="text" id="end" placeholder="Enter destination station">
-            <button onclick="findShortestPath()">Find Path</button>
-        </div>
-        <div id="map"></div>
+      <h1>LRT/MRT Map</h1>
+      <div>
+        <input type="text" id="start" placeholder="Enter starting station" />
+        <input type="text" id="end" placeholder="Enter destination station" />
+        <button onclick="findShortestPath()">Find Path</button>
+      </div>
+      <div id="map"></div>
 
-        <!-- Station List Container -->
-        <div id="station-list">
-            <h2>Stations:</h2>
-            <div class="columns">
-                <div class="column">
-                    <h3>LRT 1</h3>
-                    <ul id="lrt1-list"></ul>
-                </div>
-                <div class="column">
-                    <h3>LRT 2</h3>
-                    <ul id="lrt2-list"></ul>
-                </div>
-                <div class="column">
-                    <h3>MRT 2</h3>
-                    <ul id="mrt2-list"></ul>
-                </div>
-            </div>
+      <!-- Station List Container -->
+      <div id="station-list">
+        <h2>Stations:</h2>
+        <div class="columns">
+          <div class="column">
+            <h3>LRT 1</h3>
+            <ul id="lrt1-list"></ul>
+          </div>
+          <div class="column">
+            <h3>LRT 2</h3>
+            <ul id="lrt2-list"></ul>
+          </div>
+          <div class="column">
+            <h3>MRT 2</h3>
+            <ul id="mrt2-list"></ul>
+          </div>
         </div>
+      </div>
     </div>
 
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-content">
+        <p>© 2025 Codyssey. All Rights Reserved.</p>
+        <div class="footer-social-icons">
+          <a
+            href="https://www.facebook.com/profile.php?id=100074418943027&mibextid=ZbWKwL"
+            target="blank"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
+          <a
+            href="https://github.com/ProgrammerAngelo/website_portfolio.git"
+            target="blank"
+            ><i class="fa-brands fa-github"></i
+          ></a>
+          <a
+            href="https://www.instagram.com/chiin.chiin_?igsh=MTA2anB0eTdva2J3Mg=="
+            target="blank"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/delima-sheena-mae-413809297"
+            target="blank"
+            ><i class="fa-brands fa-linkedin"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
     <script>
-        var map = L.map('map').setView([14.5995, 120.9842], 13);
-
-        // Tile Layer
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
-
-        var stationsCoordinates = {{ stations | tojson }};
-        var stationMarkers = {};
-
-        // Separate lists for each train line
-        var lrt1Stations = [
-            "baclaran", "edsa", "libertad", "gil puyat", "vito cruz", "quirino", 
-            "pedro gil", "united nations", "central terminal", "carriedo", 
-            "doroteo jose", "bambang", "tayuman", "blumentritt", "abad santos", 
-            "r. papa", "5th avenue", "monumento", "balintawak", "roosevelt"
-        ];
-
-        var lrt2Stations = [
-            "recto", "legarda", "pureza", "v. mapa", "j. ruiz", "gilmore", 
-            "betty go-belmonte", "cubao-lrt2", "anonas", "katipunan", 
-            "santolan-lrt2", "marikina", "antipolo"
-        ];
-
-        var mrt2Stations = [
-            "north avenue", "quezon avenue", "gma kamuning", "cubao-mrt2", 
-            "ortigas", "shaw boulevard", "boni", "guadalupe", "buendia", 
-            "ayala", "magallanes", "taft avenue", "santolan-mrt2"
-        ];
-
-        // Populate station markers and list
-        function populateStations(stations, listId) {
-            var list = document.getElementById(listId);
-            stations.forEach(station => {
-                // Add to station list
-                var listItem = document.createElement('li');
-                listItem.textContent = station.charAt(0).toUpperCase() + station.slice(1);
-                list.appendChild(listItem);
-
-                // Add marker to the map
-                if (stationsCoordinates[station]) {
-                    var coord = stationsCoordinates[station];
-                    var marker = L.marker([coord[0], coord[1]], {
-                        icon: L.divIcon({
-                            className: 'station-label',
-                            html: station.charAt(0).toUpperCase() + station.slice(1)
-                        })
-                    }).addTo(map);
-
-                    stationMarkers[station.toLowerCase()] = marker;
-                }
-            });
-        }
-
-        populateStations(lrt1Stations, "lrt1-list");
-        populateStations(lrt2Stations, "lrt2-list");
-        populateStations(mrt2Stations, "mrt2-list");
-
-        function findShortestPath() {
-            var startStation = document.getElementById('start').value.toLowerCase().trim();
-            var endStation = document.getElementById('end').value.toLowerCase().trim();
-
-            fetch('/find_path', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `start=${startStation}&end=${endStation}`
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.path) {
-                    console.log('Shortest Path:', data.path);
-                    var pathCoordinates = data.coordinates;
-                    var latlngs = pathCoordinates.map(coord => [coord[0], coord[1]]);
-
-                    L.polyline(latlngs, {color: 'red'}).addTo(map);
-
-                    highlightStations(data.path);
-                } else {
-                    alert('Error: ' + data.error);
-                }
-            });
-        }
-
-        function highlightStations(path) {
-            Object.values(stationMarkers).forEach(marker => {
-                marker._icon.classList.remove('selected-station');
-            });
-
-            path.forEach(station => {
-                var marker = stationMarkers[station.toLowerCase()];
-                if (marker) {
-                    marker._icon.classList.add('selected-station');
-                }
-            });
-        }
+      var map = L.map('map').setView([14.5995, 120.9842], 13);
+    
+      // Tile Layer
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+    
+      var stationsCoordinates = {{ stations | tojson }};
+      var stationMarkers = {};
+      var pathPolyline = null;  // To store the current path
+    
+      // Separate lists for each train line
+      var lrt1Stations = [
+          "baclaran", "edsa", "libertad", "gil puyat", "vito cruz", "quirino",
+          "pedro gil", "united nations", "central terminal", "carriedo",
+          "doroteo jose", "bambang", "tayuman", "blumentritt", "abad santos",
+          "r. papa", "5th avenue", "monumento", "balintawak", "roosevelt"
+      ];
+    
+      var lrt2Stations = [
+          "recto", "legarda", "pureza", "v. mapa", "j. ruiz", "gilmore",
+          "betty go-belmonte", "cubao-lrt2", "anonas", "katipunan",
+          "santolan-lrt2", "marikina", "antipolo"
+      ];
+    
+      var mrt2Stations = [
+          "north avenue", "quezon avenue", "gma kamuning", "cubao-mrt2",
+          "ortigas", "shaw boulevard", "boni", "guadalupe", "buendia",
+          "ayala", "magallanes", "taft avenue", "santolan-mrt2"
+      ];
+    
+      // Populate station markers and list
+      function populateStations(stations, listId) {
+          var list = document.getElementById(listId);
+          stations.forEach(station => {
+              // Add to station list
+              var listItem = document.createElement('li');
+              listItem.textContent = station.charAt(0).toUpperCase() + station.slice(1);
+              list.appendChild(listItem);
+    
+              // Add marker to the map
+              if (stationsCoordinates[station]) {
+                  var coord = stationsCoordinates[station];
+                  var marker = L.marker([coord[0], coord[1]], {
+                      icon: L.divIcon({
+                          className: 'station-label',
+                          html: station.charAt(0).toUpperCase() + station.slice(1)
+                      })
+                  }).addTo(map);
+    
+                  stationMarkers[station.toLowerCase()] = marker;
+              }
+          });
+      }
+    
+      populateStations(lrt1Stations, "lrt1-list");
+      populateStations(lrt2Stations, "lrt2-list");
+      populateStations(mrt2Stations, "mrt2-list");
+    
+      function findShortestPath() {
+          var startStation = document.getElementById('start').value.toLowerCase().trim();
+          var endStation = document.getElementById('end').value.toLowerCase().trim();
+    
+          fetch('/find_path', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: `start=${startStation}&end=${endStation}`
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.path) {
+                  console.log('Shortest Path:', data.path);
+    
+                  // Remove the previous path (if any)
+                  if (pathPolyline) {
+                      map.removeLayer(pathPolyline);
+                  }
+    
+                  var pathCoordinates = data.coordinates;
+                  var latlngs = pathCoordinates.map(coord => [coord[0], coord[1]]);
+    
+                  // Draw the new path
+                  pathPolyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
+    
+                  highlightStations(data.path);
+              } else {
+                  alert('Error: ' + data.error);
+              }
+          });
+      }
+    
+      function highlightStations(path) {
+          // Remove "selected" class from all markers
+          Object.values(stationMarkers).forEach(marker => {
+              marker._icon.classList.remove('selected-station');
+          });
+    
+          // Add "selected" class to markers in the current path
+          path.forEach(station => {
+              var marker = stationMarkers[station.toLowerCase()];
+              if (marker) {
+                  marker._icon.classList.add('selected-station');
+              }
+          });
+      }
     </script>
 
     <style>
-        #station-list {
-            width: 80%;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #454647;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
+      #station-list {
+        width: 80%;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #454647;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
 
-        .columns {
-            display: flex;
-            justify-content: space-between;
-        }
+      .columns {
+        display: flex;
+        justify-content: space-between;
+      }
 
-        .column {
-            flex: 1;
-            margin: 0 10px;
-        }
+      .column {
+        flex: 1;
+        margin: 0 10px;
+      }
 
-        .column h3 {
-            margin-bottom: 10px;
-            font-size: 16px;
-            text-align: center;
-        }
+      .column h3 {
+        margin-bottom: 10px;
+        font-size: 16px;
+        text-align: center;
+      }
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
 
-        li {
-            font-size: 14px;
-            color: #a5dadb;
-            padding: 5px 0;
-            text-align: center;
-        }
+      li {
+        font-size: 14px;
+        color: #a5dadb;
+        padding: 5px 0;
+        text-align: center;
+      }
 
-        li:hover {
-            text-decoration: underline;
-            cursor: pointer;
-        }
+      li:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
     </style>
-</body>
+  </body>
 </html>

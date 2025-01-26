@@ -100,28 +100,42 @@ body {
   }
   
   /* Main Container Centered */
-  .container {
-    max-width: 600px;
-    width: 90%;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
-    text-align: center; /* Center text inside the container */
+/* Fix alignment of containers */
+.container {
+  max-width: 600px;
+  width: 90%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 30px;
+  margin: 100px auto 20px; /* Center horizontally and add spacing from top */
+  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+/* Align text container below the first container */
+.tree-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto; /* Center horizontally and space between containers */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  text-align: center;
+}
+
+/* Ensure responsive design */
+@media (max-width: 768px) {
+  .container, .tree-container {
+      margin: 20px 10px;
   }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    body {
-      align-items: flex-start; /* Prevents centering issues on smaller screens */
-      padding-top: 140px; /* Adjust for fixed header */
-    }
+}
+
   
     .container {
       margin: 0 20px;
     }
-  }
 
 /* ||MAIN CONTENT SECTION|| */
 /*======================================================*/

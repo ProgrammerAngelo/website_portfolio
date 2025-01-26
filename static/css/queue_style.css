@@ -1,99 +1,132 @@
 /* Ensure no scrolling on the body and html */
-html, body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden; /* Prevent scrolling */
-    height: 100%; /* Make sure the height is limited to the viewport */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+  height: 100%; /* Make sure the height is limited to the viewport */
 }
 
 /* Ensure child elements fit within the viewport */
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #0a192f; /* Match your background color */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #0a192f; /* Match your background color */
 }
 
 /* Title Style */
 h1 {
-    font-size: 36px; /* Matches the Binary Tree title size */
-    color: #64ffda; /* Consistent accent color */
-    text-align: center;
-    margin-bottom: 40px;
-    margin-top: 10px; /* Push the title slightly down */
+  font-size: 36px; /* Matches the Binary Tree title size */
+  color: #64ffda; /* Consistent accent color */
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 10px; /* Push the title slightly down */
 }
 
 /* Input field and Buttons */
 input[type="text"] {
-    padding: 12px;
-    width: 90%;
-    max-width: 400px;
-    font-size: 18px;
-    margin-bottom: 20px;
-    border: 2px solid #64ffda;
-    border-radius: 12px;
-    box-sizing: border-box;
-    display: block;
-    margin: 20px auto;
-    background: #0a192f; /* Dark background for input */
-    color: white;
+  padding: 12px;
+  width: 90%;
+  max-width: 400px;
+  font-size: 18px;
+  margin-bottom: 20px;
+  border: 2px solid #64ffda;
+  border-radius: 12px;
+  box-sizing: border-box;
+  display: block;
+  margin: 20px auto;
+  background: #0a192f; /* Dark background for input */
+  color: white;
 }
 
 .queue-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 40px;
 }
 
 .button-group {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 #queueDisplay {
-    margin-top: 30px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #112240;
-    padding: 25px;
-    border-radius: 12px;
-    border: 2px solid #64ffda;
-    width: 90%;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    color: #ccd6f6;
-    text-align: center;
-    white-space: normal; /* Allow wrapping */
-    word-wrap: break-word; /* Break long words */
+  margin-top: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #112240;
+  padding: 25px;
+  border-radius: 12px;
+  border: 2px solid #64ffda;
+  width: 90%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #ccd6f6;
+  text-align: center;
+  white-space: normal; /* Allow wrapping */
+  word-wrap: break-word; /* Break long words */
 }
 
 /* Responsiveness Adjustments */
 @media (max-width: 768px) {
-    input[type="text"], button {
-        width: 90%;
-    }
+  input[type="text"],
+  button {
+    width: 90%;
+  }
 
-    #queueDisplay {
-        width: 100%;
-    }
+  #queueDisplay {
+    width: 100%;
+  }
+}
+
+/*======================================================*/
+/* <FOOTER SECTION> */
+footer {
+  padding: 2rem 9%;
+  text-align: center;
+  color: #dcdcdc;
+  margin-top: 60px;
+}
+
+.footer-content p {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.footer-social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.footer-social-icons a {
+  color: #864bb7;
+  font-size: 2rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-social-icons a:hover {
+  transform: scale(1.3);
+  color: white;
 }
