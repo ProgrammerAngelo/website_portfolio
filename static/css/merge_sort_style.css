@@ -73,25 +73,24 @@ body {
 }
 
 /* Style for the input field */
-.input-container input[type="text"] {
+#input-container input[type="text"] {
     width: 100%;
     padding: 12px;
-    border: 2px solid #58efe5; /* Add a border */
-    border-radius: 8px; /* Rounded corners */
-    background-color: #393e46; /* Dark background */
-    color: #fff; /* Text color */
-    font-size: 1rem; /* Font size */
-    outline: none; /* Remove default focus outline */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
-    margin-bottom: 15px; /* Added margin to create space between input and button */
+    border: 2px solid #58efe5; /* Border color */
+    border-radius: 8px; /* Rounded corners for a smoother look */
+    background-color: #393e46; /* Dark background to match the overall theme */
+    color: #fff; /* White text for contrast */
+    font-size: 1rem; /* Standard font size */
+    outline: none; /* Removes default focus outline */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effect */
+    margin-bottom: 15px; /* Adds space between input field and button */
 }
 
 /* Style for input field on focus */
-.input-container input[type="text"]:focus {
-    border-color: #4bb77d; /* Change border color on focus */
-    box-shadow: 0 0 10px #4bb77d; /* Add glowing effect on focus */
+#input-container input[type="text"]:focus {
+    border-color: #4bb77d; /* Change border color when focused */
+    box-shadow: 0 0 10px #4bb77d; /* Add a glowing effect around the input field */
 }
-
 /* Style for the container title or heading */
 h2 {
     text-align: center;
