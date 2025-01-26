@@ -5,6 +5,8 @@ from queue_page import Node, Deque_App
 from binary_tree_page import BinaryTree
 import networkx as nx
 from stations import stations_coordinates, connections
+from insertion_sort import insertion_sort
+from flask import Flask, render_template, request, redirect, url_for
 
 # ========================
 # || ROOT ||
@@ -339,6 +341,43 @@ def find_path():
     
     path_coords = [stations_coordinates[station] for station in shortest_path]
     return jsonify({'path': shortest_path, 'coordinates': path_coords})
+#-----------
+#Bubble sort
+
+#--------------
+#Selection sort
+
+#--------------
+#Insertion sort
+sorted_list = []
+
+@app.route("/insertion_sort", methods=["GET", "POST"])
+def insertion_sort_page():
+    global sorted_list
+    if request.method == "POST":
+        try:
+            # Get the input from the form
+            numbers = request.form.get("number")  # Retrieve the input as a string
+            # Split the input by commas and convert to integers
+            number_list = [int(num.strip()) for num in numbers.split(",")]
+            # Replace the sorted_list with the new numbers
+            sorted_list = insertion_sort(number_list)
+        except ValueError:
+            # Handle invalid input (e.g., non-integer values)
+            return render_template(
+                "insertion_sort.html", 
+                sorted_list=sorted_list, 
+                error="Invalid input! Please enter a comma-separated list of integers."
+            )
+    return render_template("insertion_sort.html", sorted_list=sorted_list)
+
+@app.route("/reset_sorted_list", methods=["POST"])
+def reset_sorted_list():
+    global sorted_list
+    sorted_list = []  # Clear the sorted list
+    return redirect(url_for("insertion_sort_page"))  # Redirect to the insertion sort page
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
