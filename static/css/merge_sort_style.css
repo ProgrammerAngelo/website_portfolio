@@ -17,7 +17,8 @@ body {
     height: 100vh; /* Full viewport height */
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center ;
+    padding-top: 200px;
 }
 
 /* Main container for the layout */
@@ -35,6 +36,7 @@ body {
     color: #ffffff;
     font-family: "Poppins", sans-serif;
     flex-wrap: wrap; /* Ensure containers wrap on smaller screens */
+    margin-top: 10px;
 }
 
 /* Input container (Container One) */
