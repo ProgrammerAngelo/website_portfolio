@@ -14,7 +14,6 @@
 
 
 /* Preloader */
-
 .preloader {
     width: 100vw; 
     height: 100vh;
@@ -36,7 +35,6 @@
 *::-webkit-scrollbar {
     width: 12px;
 }
-
 *::-webkit-scrollbar-track {
     background: #1c2382;
 }
@@ -49,32 +47,42 @@
 
 
 /* **********Secttion part CSS Starts************** */
-
 section {
-    height: 100vh;   
+    height: 100vh;
     width: 100vw;
     background-size: 100%;
+    justify-content: flex-start; /* Align content at the top */
+    align-items: center;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    text-align: center;
 }
 
-/* 184 */
+
+.bttn-and-working-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto; /* Ensure it doesn't stretch unnecessarily */
+    margin-top: 100px; /* Adds spacing below the header */
+    padding-top: 20px;
+}
+/* CONTENT */
+
 
 /* **********Secttion part CSS Close ************** */
 
 /* ************ Header h1 part CSS Starts ******************** */
-
-header {
-    /* background-color: rgba(201, 201, 21, 0.587); */
-    height: 13vh;
+.top-work {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    padding: 0px 35px;
-    gap: 10px;
+    margin-bottom: 20px;
+} 
 
-}
-
-header h1 {
+.top-work h1 {
     font-size: 20px;
     letter-spacing: 9px;
     font-family: 'Unbounded', cursive;
@@ -405,19 +413,31 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 /* ************ Header slider part CSS close ******************** */
 
 /* main body */
+#mainbody {
+    width: 93vw;
+    height: 55vh;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: first baseline;
+    margin-top: 3vh;
+}
 
 #working_area {
-    /* background-color: red; */
+    display: flex;
+    flex-direction: column; /* Aligns buttons vertically */
+    align-items: center;    /* Centers buttons */
     width: 96vw;
     height: 78vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    margin: 20px auto;
+    flex-direction: column; /* Ensure content inside working area is in column */
+    margin: 0 auto;
+    position: relative; /* No need for absolute positioning */
+    top: 0; /* Align to the top of the section */
     transition: all 0.5s ease-in-out;
 }
-
 
 #mainbody {
     width: 93vw;
