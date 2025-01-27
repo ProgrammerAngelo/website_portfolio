@@ -270,7 +270,7 @@ form input, form select {
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.1);
-    color: #7843eb;
+    color: #ffffff;
 }
 
 form button {
@@ -279,7 +279,7 @@ form button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background: #00ffff;
+    background: #0fbbbb;
     color: #1e0033;
     font-weight: bold;
 }
