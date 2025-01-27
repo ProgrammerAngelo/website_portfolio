@@ -20,6 +20,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
+
   </head>
   <body>
     <!-- Header Section -->
@@ -41,11 +46,11 @@
 
     <!-- Main Content -->
     <main>
-      <h1>Queue Implementation with Linked List</h1>
+      <h1>Queue: Simple Queue and Double-Ended Queue</h1>
 
       <!-- Buttons for switching between Simple Queue and Double-Ended Queue -->
       <div class="queue-type-selection">
-        <button onclick="selectQueueType('simple')">Simple Queue</button>
+        <button onclick="selectQueueType('simple')" class="active">Simple Queue</button>
         <button onclick="selectQueueType('doubleEnded')">
           Double-Ended Queue
         </button>
@@ -70,6 +75,35 @@
         <div id="queueDisplay"></div>
       </div>
     </main>
+
+    <footer>
+      <div class="footer-content">
+        <p>© 2025 Codyssey. All Rights Reserved.</p>
+        <div class="footer-social-icons">
+          <a
+            href="https://www.facebook.com/profile.php?id=100074418943027&mibextid=ZbWKwL"
+            target="blank"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
+          <a
+            href="https://github.com/ProgrammerAngelo/website_portfolio.git"
+            target="blank"
+            ><i class="fa-brands fa-github"></i
+          ></a>
+          <a
+            href="https://www.instagram.com/chiin.chiin_?igsh=MTA2anB0eTdva2J3Mg=="
+            target="blank"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/delima-sheena-mae-413809297"
+            target="blank"
+            ><i class="fa-brands fa-linkedin"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+    
 
     <script>
       let currentQueueType = "simple"; // Default to Simple Queue
@@ -214,34 +248,5 @@
       // Initialize with Simple Queue by default
       window.onload = () => selectQueueType("simple");
     </script>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-content">
-        <p>© 2025 Codyssey. All Rights Reserved.</p>
-        <div class="footer-social-icons">
-          <a
-            href="https://www.facebook.com/profile.php?id=100074418943027&mibextid=ZbWKwL"
-            target="blank"
-            ><i class="fa-brands fa-facebook"></i
-          ></a>
-          <a
-            href="https://github.com/ProgrammerAngelo/website_portfolio.git"
-            target="blank"
-            ><i class="fa-brands fa-github"></i
-          ></a>
-          <a
-            href="https://www.instagram.com/chiin.chiin_?igsh=MTA2anB0eTdva2J3Mg=="
-            target="blank"
-            ><i class="fa-brands fa-instagram"></i
-          ></a>
-          <a
-            href="https://www.linkedin.com/in/delima-sheena-mae-413809297"
-            target="blank"
-            ><i class="fa-brands fa-linkedin"></i
-          ></a>
-        </div>
-      </div>
-    </footer>
   </body>
 </html>

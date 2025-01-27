@@ -3,9 +3,10 @@ html,
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent scrolling */
-  height: 100%; /* Make sure the height is limited to the viewport */
+  overflow: auto; /* Allow scrolling */
+  height: auto; /* Adjust height based on content */
 }
+
 
 /* Ensure child elements fit within the viewport */
 body {
@@ -14,15 +15,55 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #0a192f; /* Match your background color */
-}
+
+  width: 100%; /* Corrected */
+  height: 100vh;
+  }
+  
+
 
 /* Title Style */
 h1 {
-  font-size: 36px; /* Matches the Binary Tree title size */
-  color: #64ffda; /* Consistent accent color */
+  font-size: 30px; /* Large and bold */
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
   text-align: center;
-  margin-bottom: 40px;
-  margin-top: 10px; /* Push the title slightly down */
+  text-transform: uppercase;
+  letter-spacing: 4px; /* Slight spacing for drama */
+
+  /* Apply vibrant gradient */
+  background: linear-gradient(90deg, #ac4083, #b184f9); /* Pink -> Purple -> Blue */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Create a sharper 3D effect */
+  text-shadow: 
+
+    8px 8px 8px rgba(0, 0, 0, 0.5); /* Final black shadow for depth */
+}
+
+/* Add a glowing hover effect */
+h1:hover {
+  text-shadow: 
+    4px 4px 10px #8d68c7, 
+    8px 8px 20px rgba(0, 0, 0, 0.7); /* Intensify glow */
+}
+
+
+main {
+  margin-top: 50px;
+}
+
+
+/* Optional: Hover effect to emphasize 3D effect */
+h1:hover {
+  text-shadow: 
+    1px 1px 0 #ccc,
+    2px 2px 0 #bbb,
+    3px 3px 0 #aaa,
+    5px 5px 0 #888,
+    7px 7px 0 #777,
+    9px 9px 0 #666; /* Increase shadow size on hover */
 }
 
 /* Input field and Buttons */
@@ -41,6 +82,12 @@ input[type="text"] {
   color: white;
 }
 
+.queue-type-selection{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 .queue-container {
   display: flex;
   flex-direction: column;
@@ -58,16 +105,16 @@ input[type="text"] {
 button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: #9725d0;;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  margin-top: 30px;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color:  #f652dd;
 }
 
 #queueDisplay {
@@ -100,13 +147,17 @@ button:hover {
   }
 }
 
+
 /*======================================================*/
 /* <FOOTER SECTION> */
+/* Footer at the bottom */
 footer {
+  margin-top: 600px;
+  position: absolute;
   padding: 2rem 9%;
   text-align: center;
   color: #dcdcdc;
-  margin-top: 60px;
+  width: 100%; /* Corrected width */
 }
 
 .footer-content p {
