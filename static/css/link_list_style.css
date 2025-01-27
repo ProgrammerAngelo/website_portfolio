@@ -80,13 +80,22 @@ svg text {
   justify-content: center;
   align-items: center;
   gap: 15px;
-  animation: fadeIn 10s; /* Trigger the fade-in animation */
+  animation: fadeIn 2.5s; /* Trigger the fade-in animation */
   position: relative;
   will-change: opacity;
 }
 
 @keyframes fadeIn {
   0% {
+    opacity: 0; /* Start fully transparent */
+  }
+  40% {
+    opacity: 0; /* Start fully transparent */
+  }
+  60% {
+    opacity: 0; /* Start fully transparent */
+  }
+  80% {
     opacity: 0; /* Start fully transparent */
   }
   100% {
@@ -239,7 +248,7 @@ svg text {
 
 .buttons-section button {
   padding: 5px 5px;
-  background-color: #007bff;
+  background-color:#9725d0;
   color: white;
   border: none;
   border-radius: 4px;
@@ -248,16 +257,19 @@ svg text {
 }
 
 .buttons-section button:hover {
-  background-color: #0056b3;
+  background-color: #dd3982;
 }
 
 /*======================================================*/
 /* <FOOTER SECTION> */
+/* Footer at the bottom */
 footer {
+  margin-top: 600px;
+  position: absolute;
   padding: 2rem 9%;
   text-align: center;
   color: #dcdcdc;
-  margin-top: 60px;
+  width: 100%; /* Corrected width */
 }
 
 .footer-content p {
