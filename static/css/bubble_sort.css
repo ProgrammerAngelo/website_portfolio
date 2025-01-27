@@ -36,7 +36,7 @@
     width: 12px;
 }
 *::-webkit-scrollbar-track {
-    background: #1c2382;
+    background: #5d63b7;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -451,10 +451,10 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 
 .bar {
     border: 1px solid rgb(34, 23, 98);
-    color: #162b52;
+    color: #88b1ff;
     /* height: 43px; */
     width: 4vw;
-    background-color: cyan;
+    background-color: rgb(24, 92, 129);
     transition: all .5s ease-in-out;
     font-size: 1px;
     text-align: center;
