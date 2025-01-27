@@ -5,12 +5,54 @@ html {
   font-family: Arial, sans-serif;
 }
 
+body {
+  padding-top: 30px; /* Adjust the value based on the desired space */
+}
+
+.container h1 {
+  font-size: 65px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(90deg, #d792f4, #7ab6de, #ff00c3); /* Gradient colors */
+  background-size: 200% 200%; /* Make the gradient larger than the element */
+  background-clip: text; /* Clip the background to the text */
+  color: transparent; /* Make the text itself transparent so the background shows through */
+  animation: gradientAnimation 3s ease infinite; /* Animation for the moving gradient */
+  
+  /* 3D shadow effect */
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.3),  /* Light shadow */
+    4px 4px 6px rgba(0, 0, 0, 0.2);  /* Deeper shadow */
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.container h2 {
+  margin-top: 30px; /* Add space above the h1 element */
+  font-size: 19px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: lighter;
+
+}
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
   border-color: aqua;
+  margin-top: 50px;
 }
 
 #map {
@@ -25,6 +67,25 @@ button {
   margin: 5px;
   font-size: 14px;
 }
+
+/* Style for the Find Path button */
+.find-path {
+  padding: 12px 20px;
+  font-size: 14px;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect for the Find Path button */
+.find-path:hover {
+  background-color: #c719b9;
+  color: #fcf7f7;
+  transform: scale(1.05);  /* Slightly increases the button size */
+}
+
 
 button {
   cursor: pointer;
