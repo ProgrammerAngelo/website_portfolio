@@ -395,33 +395,38 @@ def sort():
 #Insertion sort
 
 sorted_list = []
+steps = []
 
 @app.route("/insertion_sort", methods=["GET", "POST"])
 def insertion_sort_page():
-    global sorted_list
+    global sorted_list, steps  # Declare the variables as global
     if request.method == "POST":
         try:
             # Get the input from the form
             numbers = request.form.get("number")  # Retrieve the input as a string
             # Split the input by commas and convert to integers
             number_list = [int(num.strip()) for num in numbers.split(",")]
-            # Replace the sorted_list with the new numbers
-            sorted_list = insertion_sort(number_list)
+            
+            # Call insertion sort function (ensure it's modified to return sorted list and steps)
+            sorted_list, steps = insertion_sort(number_list)  # Update both variables
+            
         except ValueError:
             # Handle invalid input (e.g., non-integer values)
             return render_template(
                 "insertion_sort.html", 
                 sorted_list=sorted_list, 
+                steps=steps, 
                 error="Invalid input! Please enter a comma-separated list of integers."
             )
-    return render_template("insertion_sort.html", sorted_list=sorted_list)
+    
+    return render_template("insertion_sort.html", sorted_list=sorted_list, steps=steps)
 
 @app.route("/reset_sorted_list", methods=["POST"])
 def reset_sorted_list():
-    global sorted_list
+    global sorted_list, steps
     sorted_list = []  # Clear the sorted list
-    return redirect(url_for("insertion_sort_page"))  # Redirect to the insertion sort page
-
+    steps = []  # Clear the step-by-step process
+    return redirect(url_for("insertion_sort_page"))
 #-----------
 #Merge Sort
 def home():

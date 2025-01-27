@@ -31,7 +31,7 @@
     </header>
     <div class="container">
       <h1>Insertion Sort Visualizer</h1>
-
+      
       <form method="POST" class="form-section">
         <div class="input-container">
           <label for="number">Enter numbers (comma-separated):</label>
@@ -45,25 +45,35 @@
         </div>
         <button type="submit" class="sort-btn">Sort</button>
       </form>
-
-      <!-- Form to reset the list -->
+      
+      <!-- Reset Form -->
       <form method="POST" action="/reset_sorted_list">
         <button type="submit" class="reset-btn">Reset List</button>
       </form>
-
+    
+      <!-- Step-by-Step Process Container -->
+      {% if steps %}
+      <div class="steps-container">
+        <h3>Step-by-Step Process</h3>
+        <ul>
+          {% for step in steps %}
+            <li>
+              <span class="step-number">{{ loop.index }}:</span>
+              <span>{{ step }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    
+      <!-- Sorted List Container -->
       {% if sorted_list %}
       <div class="sorted-list-container">
         <h3>Sorted List:</h3>
         <p>{{ sorted_list | join(", ") }}</p>
       </div>
       {% endif %}
-
-      <!-- Display error message -->
-      {% if error %}
-      <p style="color: red">{{ error }}</p>
-      {% endif %}
     </div>
-
     <!-- FOOTER -->
     <footer>
       <div class="footer-content">
