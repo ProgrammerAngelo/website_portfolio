@@ -54,18 +54,6 @@ main {
   margin-top: 50px;
 }
 
-
-/* Optional: Hover effect to emphasize 3D effect */
-h1:hover {
-  text-shadow: 
-    1px 1px 0 #ccc,
-    2px 2px 0 #bbb,
-    3px 3px 0 #aaa,
-    5px 5px 0 #888,
-    7px 7px 0 #777,
-    9px 9px 0 #666; /* Increase shadow size on hover */
-}
-
 /* Input field and Buttons */
 input[type="text"] {
   padding: 12px;
