@@ -133,7 +133,7 @@ nav a.active {
   font-size: 6rem;
   letter-spacing: 0.5rem;
   animation: pre-load 3s linear infinite;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .title-text li:nth-child(1) {
