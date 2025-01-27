@@ -9,6 +9,7 @@ from selection_sort import selection_sort
 from insertion_sort import insertion_sort
 from flask import Flask, render_template, request, redirect, url_for
 from merge_sort import merge_sort
+from quick_sort import quick_sort_algorithm
 import os
 
 # ========================
@@ -448,6 +449,32 @@ def merge_sort_page():
     # Handle GET request to render the page initially
     return render_template('merge_sort.html')
 
+
+#quick sort Logic
+@app.route("/quick_sort.html", methods=["GET", "POST"])
+def quick_sort():
+    sorted_list = None
+    steps = []  # List to hold step-by-step process
+    error = None
+
+    if request.method == "POST":
+        try:
+            # Get input from form
+            user_input = request.form.get("number")
+            if not user_input:
+                raise ValueError("Please enter numbers to sort.")
+
+            # Convert input to a list of integers
+            data = list(map(int, user_input.split(",")))
+
+            # Perform quick sort and track steps
+            quick_sort_algorithm(data, 0, len(data) - 1, steps)
+            sorted_list = data
+
+        except ValueError as e:
+            error = str(e)
+
+    return render_template("quick_sort.html", sorted_list=sorted_list, steps=steps, error=error)
 
 if __name__ == "__main__":
     app.run(debug=True)

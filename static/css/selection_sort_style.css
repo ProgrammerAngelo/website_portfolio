@@ -1,6 +1,12 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
 .array-container {
@@ -46,7 +52,6 @@ body {
     height: 20px;
     margin-right: 5px;
 }
-
 
 
 /*======================================================*/

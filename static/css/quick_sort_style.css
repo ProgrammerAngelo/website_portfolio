@@ -1,0 +1,117 @@
+/* Main container */
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 40px;
+    background: linear-gradient(135deg, #2a2a72, #4bb77d);
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    margin-top: 80px;
+  }
+  
+  /* Heading */
+  h1 {
+    font-size: 2.8rem;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+  }
+  
+  /* Form styling */
+  form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-size: 1.4rem;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    background: #f1f5f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 10px #38bdf8;
+  }
+  
+  button {
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    color: white;
+    background: linear-gradient(135deg, #3c8ce7, #00eaff);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background: linear-gradient(135deg, #00eaff, #3c8ce7);
+  }
+  
+  /* Step-by-Step Process styling */
+  .step-container {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    border: 1px solid #475569;
+  }
+  
+  .step-container ul {
+    padding-left: 25px;
+  }
+  
+  .step-container li {
+    font-size: 1.1rem;
+    color: #e2e8f0;
+    margin-bottom: 10px;
+  }
+  
+  /* Result container */
+  .result-container {
+    background: #0f172a;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 25px;
+    border: 2px solid #42e1e9;
+    box-shadow: 0 0 15px rgba(66, 225, 233, 0.5);
+    color: #ffffff;
+  }
+  
+  .result-container h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #42e1e9;
+  }
+  
+  .result-container p {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #00ffd4;
+  }
+  
+  /* Error message */
+  .error {
+    color: #f87171;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 1.2rem;
+  }
+  

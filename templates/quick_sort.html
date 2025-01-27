@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickSort Visualizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quick_sort_style.css') }}">
+  </head>
+  <body>
+    <header>
+      <a href="#" class="logo">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="Logo"
+        />
+      </a>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('profiles') }}">Profiles</a></li>
+          <li><a href="{{ url_for('works') }}" class="active">Works</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1>QuickSort Visualizer</h1>
+      <form method="POST" action="{{ url_for('quick_sort') }}">
+        <label for="number">Enter numbers (comma-separated):</label>
+        <input
+          type="text"
+          id="number"
+          name="number"
+          placeholder="e.g., 9,4,6,2,7,1"
+          required
+        />
+        <button type="submit">Sort</button>
+      </form>
+
+      {% if steps %}
+      <h2>Step-by-Step Process:</h2>
+      <div class="step-container">
+        <ul>
+          {% for step in steps %}
+          <li>{{ step }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      {% if sorted_list %}
+      <div class="result-container">
+        <h3>Sorted List:</h3>
+        <p>{{ sorted_list | join(", ") }}</p>
+      </div>
+      {% endif %}
+
+      {% if error %}
+      <p class="error">{{ error }}</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
