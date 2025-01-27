@@ -68,6 +68,7 @@ svg text {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-bottom: 120px;
 }
 
 /* LEFT SECTION */
@@ -114,6 +115,15 @@ svg text {
   align-items: center;
   gap: 15px; /* Space between tasks and status */
 }
+
+input[type="text"] {
+  width: 80%; /* Adjust width as needed */
+  max-width: 500px; /* Optional: limit the maximum width */
+  height: 30px; /* Adjust the height as needed */
+  padding: 12px; /* Adjust padding to control space inside the input */
+  font-size: 18px; /* Optional: adjust font size for text input */
+}
+
 
 /* TASK-STATUS STYLING WITH ANIMATION */
 .tasks-container,
@@ -248,12 +258,12 @@ svg text {
 
 .buttons-section button {
   padding: 5px 5px;
-  background-color:#9725d0;
+  background-color:#591dd2;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 15px;
   font-family: "Poppins", sans-serif;
 }
 
@@ -271,6 +281,7 @@ footer {
   text-align: center;
   color: #dcdcdc;
   width: 100%; /* Corrected width */
+  padding-top: 50px;
 }
 
 .footer-content p {
