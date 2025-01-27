@@ -9,6 +9,10 @@
       href="{{ url_for('static', filename='css/insertion_sort_style.css') }}"
     />
     <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+    <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/base_style.css') }}"
     />
@@ -46,6 +50,7 @@
         <button type="submit" class="sort-btn">Sort</button>
       </form>
       
+    
       <!-- Reset Form -->
       <form method="POST" action="/reset_sorted_list">
         <button type="submit" class="reset-btn">Reset List</button>
@@ -74,6 +79,7 @@
       </div>
       {% endif %}
     </div>
+
     <!-- FOOTER -->
     <footer>
       <div class="footer-content">
