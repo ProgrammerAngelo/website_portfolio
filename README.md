@@ -13,3 +13,17 @@ Macasinag, Edmharx <br>
 Pangilagan, Angelo <br>
 Teylan, Reece Baron <br>
 Tuazon, Daryl Keith <br>
+
+# Instructions: <br>
+Download the ZIP file and extract it. <br>
+
+Open the extracted folder in Visual Studio Code. <br>
+
+Open a terminal in VS Code and run the following commands to make sure Flask and NetworkX are installed: <br>
+
+pip install flask <br>
+pip install networkx <br>
+
+Run the app.py file in VS Code.<br>
+
+The app should now be running at http://127.0.0.1:5000/ <br>
