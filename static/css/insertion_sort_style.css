@@ -1,23 +1,36 @@
+/* Center the main container */
 .container {
   max-width: 800px; /* Increased width for a larger container */
   margin: auto;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  background: linear-gradient(
-    135deg,
-    #3c415c,
-    #232931
-  ); /* Darker gradient background */
-  border: 3px solid #58efe5; /* Thicker border with a vibrant color */
+  padding: 35px; /* Increased padding for spacious feel */
+  background: linear-gradient(135deg, #3c415c, #232931); /* Darker gradient background */
+  border: 3px solid #58efe5; /* Thicker border with vibrant color */
   border-radius: 15px; /* Slightly more rounded corners */
-  padding: 35px; /* Increased padding for a spacious feel */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(0, 0, 0, 0.25); /* More prominent shadows */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(0, 0, 0, 0.25); /* Prominent shadow */
   color: #ffffff;
   text-align: center;
   font-family: "Poppins", sans-serif;
+  position: relative;
+  top: 100px; /* No vertical translation */
+  min-height: 600px; /* Minimum height for content */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Allow container to grow with content */
+  align-items: center; /* Center all child elements horizontally */
+  width: 100%; /* Full width */
+  box-sizing: border-box;
 }
 
+/* Adjust the main heading */
+h1 {
+  color: #58efe5;
+  text-align: center;
+  font-size: 2.5rem;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+/* Input container styling */
 .input-container {
   display: flex;
   flex-direction: column;
@@ -25,15 +38,11 @@
   justify-content: center;
   margin: 20px auto; /* Center horizontally and add spacing */
   padding: 15px; /* Add padding */
-  border: 2px solid #58efe5; /* Border around the input field container */
+  border: 2px solid #58efe5; /* Border around input field container */
   border-radius: 12px; /* Rounded corners */
-  background: linear-gradient(
-    135deg,
-    #232931,
-    #393e46
-  ); /* Gradient background */
+  background: linear-gradient(135deg, #232931, #393e46); /* Gradient background */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 6px 25px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-  width: 90%; /* Adjust width */
+  width: 500px; /* Adjust width */
   max-width: 500px; /* Max width for responsiveness */
   color: #fff;
 }
@@ -65,45 +74,11 @@
   box-shadow: 0 0 10px #4bb77d; /* Add glowing effect on focus */
 }
 
-/* Style for the container title or heading */
-h2 {
-  text-align: center;
-  color: #58efe5;
-  font-size: 2.2rem; /* Slightly larger font size */
-  margin-bottom: 20px; /* More spacing below the heading */
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
-}
-
-h1 {
-  color: #58efe5;
-  text-align: center;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10px 0;
-}
-
-input[type="number"] {
-  padding: 10px;
-  width: 100%;
-  max-width: 400px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
+/* Button styling */
 button {
-  gap: 10px;
   padding: 12px 20px;
   color: #fff;
-  background: linear-gradient(
-    90deg,
-    #4bb77d,
-    #007bff
-  ); /* Gradient background */
+  background: linear-gradient(90deg, #4bb77d, #007bff); /* Gradient background */
   border: 2px solid #4bb77d; /* Border matches the container */
   border-radius: 50px; /* Rounded button */
   cursor: pointer;
@@ -113,24 +88,17 @@ button {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  margin-top: 20px; /* Space between buttons */
 }
 
+/* Hover effect for the button */
 button:hover {
   background: linear-gradient(90deg, #007bff, #4bb77d); /* Reversed gradient */
   box-shadow: 0 0 15px #4bb77d, 0 0 30px #007bff; /* Glow effect */
   transform: scale(1.05); /* Slightly larger on hover */
 }
 
-button:active {
-  transform: scale(0.98); /* Slightly smaller when clicked */
-}
-
-.reset-btn:hover {
-  background-color: #110f0f;
-  box-shadow: 0 0 15px #dc3545, 0 0 30px #a71d2a; /* Glow effect for reset button */
-}
-
-/* Sorted list container styling */
+/* Style for the sorted list container */
 .sorted-list-container {
   display: flex;
   flex-direction: column;
@@ -140,11 +108,7 @@ button:active {
   padding: 20px; /* Add padding */
   border: 2px solid #4bb77d; /* Border around the sorted list container */
   border-radius: 12px; /* Rounded corners */
-  background: linear-gradient(
-    135deg,
-    #1e272e,
-    #34495e
-  ); /* Gradient background */
+  background: linear-gradient(135deg, #1e272e, #34495e); /* Gradient background */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 6px 25px rgba(0, 0, 0, 0.2); /* Shadow for depth */
   width: 90%; /* Adjust width */
   max-width: 500px; /* Max width for responsiveness */
@@ -171,39 +135,83 @@ button:active {
   margin: 0 auto; /* Center horizontally */
 }
 
+/* Error message styling */
 .error {
   color: red;
   text-align: center;
   font-weight: bold;
+  margin-top: 10px;
 }
 
-/*======================================================*/
-/* <FOOTER SECTION> */
-footer {
-  padding: 2rem 9%;
+/* Steps container */
+.steps-container {
+  margin-top: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #1e272e, #34495e); /* Subtle background */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 6px 25px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  width: 90%; /* Adjust width */
+  max-width: 600px;
+  color: #fff;
+  text-align: left; /* Align text to the left for easy reading */
+  margin: 20px auto;
+}
+
+/* Heading for the steps */
+.steps-container h3 {
+  font-size: 1.6rem;
+  color: #58efe5; /* Light accent color */
+  margin-bottom: 15px;
+  font-weight: bold;
   text-align: center;
-  color: #dcdcdc;
-  margin-top: 60px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.footer-content p {
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
+/* Each step in the sorting process */
+.steps-container ul {
+  list-style-type: none; /* Remove default list styling */
+  padding: 0;
+  margin: 0;
 }
 
-.footer-social-icons {
+.steps-container li {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  align-items: center;
+  font-size: 1.1rem;
+  color: #4bb77d; /* Green color for active steps */
+  background: rgba(75, 183, 125, 0.2); /* Light background highlight for steps */
+  margin: 10px 0;
+  padding: 12px 15px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Inner shadow */
+  transition: background 0.3s ease, transform 0.3s ease;
+  width: 100%; /* Ensures the whole width is used for the list items */
 }
 
-.footer-social-icons a {
-  color: #864bb7;
-  font-size: 2rem;
-  transition: transform 0.3s ease, color 0.3s ease;
+.steps-container li:hover {
+  background: rgba(75, 183, 125, 0.4); /* Darker on hover */
+  transform: scale(1.02); /* Slight hover effect */
 }
 
-.footer-social-icons a:hover {
-  transform: scale(1.3);
-  color: white;
+.steps-container li .step-number {
+  color: #f1c40f; /* Yellow color for step number */
+  font-weight: bold;
+  margin-right: 10px; /* Space between step number and explanation */
+}
+
+/* Ensures the explanation aligns next to the step number */
+.steps-container li span {
+  color: #fff;
+  font-style: italic;
+  background-color: #2e3b47; /* Slight dark background for the data part */
+  padding: 5px;
+  border-radius: 6px;
+  margin-left: 8px;
+  word-wrap: break-word;
+  flex-grow: 1; /* Allows the explanation to take up the remaining space */
+}
+
+/* Highlight step number for better clarity */
+.steps-container li .step-number {
+  flex-shrink: 0; /* Prevents the step number from shrinking */
 }
