@@ -32,7 +32,7 @@ h1 {
   letter-spacing: 4px; /* Slight spacing for drama */
 
   /* Apply vibrant gradient */
-  background: linear-gradient(90deg, #ac4083, #b184f9); /* Pink -> Purple -> Blue */
+  background: linear-gradient(90deg, #ff4cb4, #b184f9); /* Pink -> Purple -> Blue */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -93,7 +93,7 @@ input[type="text"] {
 button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #9725d0;;
+  background-color: #7838f9;;
   color: white;
   border: none;
   border-radius: 5px;
