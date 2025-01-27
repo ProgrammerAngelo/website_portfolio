@@ -19,7 +19,7 @@ svg text {
   padding: 0;
   margin: 0;
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
   animation: stroke 5s infinite alternate;
 }
 
@@ -254,6 +254,7 @@ svg text {
   border-radius: 4px;
   cursor: pointer;
   font-size: 12px;
+  font-family: "Poppins", sans-serif;
 }
 
 .buttons-section button:hover {
